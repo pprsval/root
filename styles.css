@@ -1,0 +1,95 @@
+body{
+	background-color:#15202b;
+	margin:0 auto;
+	max-width: 800px;
+	}
+/* Oldalakon belüli címsorok */
+h1{
+	padding-top: 100px;
+	font-size: 18px;
+	font-family:'Courier New', Courier, monospace
+}
+
+h1,h2,h3{
+	 	color:rgb(79, 153, 120)
+}
+
+
+a:link,a:visited{
+text-decoration:none;
+color:rgb(79, 153, 120);
+}
+
+
+a:hover{
+color:rgb(76, 95, 61);
+}
+
+
+/* profil kép */
+.photo-left{
+	float:right;
+	margin-right:20px
+}
+
+.gallery{
+	color:rgb(79, 153, 120);
+}
+
+p{
+	font-size:20px;
+	color: rgb(35, 114, 114);
+}
+/* felső menü */
+ul{
+	float:right;
+	list-style: none;
+	margin-top: 40px;
+	font-size: 15px;
+}
+
+/* felső menü gombok */
+ul li{
+	display: inline-block;
+}
+
+.footer{
+	color:rgb(79, 153, 120);
+	text-align: center;
+	vertical-align:bottom;
+    bottom: 10;
+    margin-left:auto;
+    margin-right:auto;
+    width: 400px;
+    height: 100px;
+}
+
+ul li a{
+	text-decoration: none;
+	padding: 10px;
+	font-family: Arial, sans-serif;
+}
+
+.logo img{
+	height: auto;
+	width: 40px;
+	float:left
+}
+
+/* főoldali cím */
+.myname{
+	padding-top: 150px;
+	font-size: 31px;
+}
+/* kórházi kilátás */
+.khz{
+	border-radius: 10px;
+	height: 200px;
+}
+
+@media(max-width:950px) {
+	.portr {
+		width: 100%;
+		height: auto;
+	}
+}
