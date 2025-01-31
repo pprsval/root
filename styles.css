@@ -26,12 +26,6 @@ color:rgb(76, 95, 61);
 }
 
 
-/* profil kép */
-.photo-left{
-	float:right;
-	margin-right:20px
-}
-
 .gallery{
 	color:rgb(79, 153, 120);
 }
@@ -53,17 +47,6 @@ ul li{
 	display: inline-block;
 }
 
-.footer{
-	color:rgb(79, 153, 120);
-	text-align: center;
-	vertical-align:bottom;
-    bottom: 10;
-    margin-left:auto;
-    margin-right:auto;
-    width: 400px;
-    height: 100px;
-}
-
 ul li a{
 	text-decoration: none;
 	padding: 10px;
@@ -76,11 +59,7 @@ ul li a{
 	float:left
 }
 
-/* főoldali cím */
-.myname{
-	padding-top: 150px;
-	font-size: 25px;
-}
+
 /* kórházi kilátás */
 .khz{
 	border-radius: 10px;
