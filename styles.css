@@ -62,8 +62,8 @@ ul li a{
 
 /* kórházi kilátás */
 .khz{
-	border-radius: 10px;
-	height: 200px;
+	border-radius: 1px;
+	height: 150px;
 }
 
 @media(max-width:950px) {
