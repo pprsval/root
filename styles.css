@@ -1,5 +1,5 @@
 body{
-	background-color:#15202b;
+	background-color:black;
 	margin:0 auto;
 	max-width: 800px;
 	}
@@ -55,7 +55,7 @@ ul li a{
 
 .logo img{
 	height: auto;
-	width: 150px;
+	width: 100px;
 	float:left
 }
 
