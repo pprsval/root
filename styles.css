@@ -1,5 +1,5 @@
 body{
-	background-color:black;
+	background-color:rgb(170, 185, 154);
 	margin:0 auto;
 	max-width: 800px;
 	}
@@ -11,7 +11,7 @@ h1{
 }
 
 h1,h2,h3{
-	 	color:rgb(79, 153, 120)
+	 	color:rgb(114, 125, 115)
 }
 
 
@@ -32,7 +32,7 @@ color:rgb(76, 95, 61);
 
 p{
 	font-size:20px;
-	color: rgb(35, 114, 114);
+	color: rgb(80, 75, 56);
 }
 /* felső menü */
 ul{
