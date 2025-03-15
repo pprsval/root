@@ -1,5 +1,5 @@
 body{
-	background-color:rgb(170, 185, 154);
+	background-color:rgb(199, 149, 109);
 	margin:0 auto;
 	max-width: 800px;
 	}
@@ -11,23 +11,23 @@ h1{
 }
 
 h1,h2,h3{
-	 	color:rgb(114, 125, 115)
+	 	color:rgb(83, 78, 82)
 }
 
 
 a:link,a:visited{
 text-decoration:none;
-color:rgb(79, 153, 120);
+color:rgb(83, 78, 82);
 }
 
 
 a:hover{
-color:rgb(76, 95, 61);
+color:rgb(242, 217, 34);
 }
 
 
 .gallery{
-	color:rgb(79, 153, 120);
+	color:rgb(83, 78, 82);
 }
 
 p{
@@ -53,7 +53,7 @@ ul li a{
 	font-family: Arial, sans-serif;
 }
 
-.logo img{
+.logo{
 	height: auto;
 	width: 100px;
 	float:left
