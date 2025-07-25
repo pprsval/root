@@ -1,71 +1,66 @@
-body{
-	background-color:rgb(245, 225, 216);
-	margin:0 auto;
-	max-width: 800px;
-	}
-/* Oldalakon belüli címsorok */
-h1{
-	padding-top: 100px;
-	font-size: 18px;
-	font-family:'Courier New', Courier, monospace
+/* Alap stílusok */
+body {
+    font-family: "Instrument Serif", serif;
+    margin: 0;
+    padding: 0;
+    background-color: #408080;
+    color: black;
 }
 
-h1,h2,h3{
-	 	color:rgb(83, 78, 82)
+/* Fejléc stílus */
+header {
+    background-color: #2c3e50;
+    padding: 20px;
+    text-align: center;
 }
 
-
-a:link,a:visited{
-text-decoration:none;
-color:rgb(83, 78, 82);
+/* Konténer stílus */
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
 }
 
-
-a:hover{
-color:rgb(242, 217, 34);
+/* Profil stílus */
+.profile {
+    flex: 1;
+    margin-right: 20px;
 }
 
-
-.gallery{
-	color:rgb(83, 78, 82);
+/* Profilkép stílus */
+.profile img {
+    max-width: 100%; 
 }
 
-p{
-	line-height:22px;
-	font-size:16px;
-	color: rgb(80, 75, 56);
-}
-/* felső menü */
-.fent{
-	float:right;
-	list-style: none;
-	margin-top: 15px;
-	font-size: 15px;
+/* Tartalom stílus */
+.content {
+    flex: 2;
 }
 
-/* felső menü gombok */
-ul li a{
-	text-decoration: none;
-	padding: 10px;
-	font-family: Arial, sans-serif;
+/* Linkek stílus */
+.content h2 {
+    margin: 15px 0;
 }
 
-.logo{
-	height: auto;
-	width: 150px;
-	float:left
+.content a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
 }
 
-
-/* kórházi kilátás */
-.khz{
-	border-radius: 1px;
-	height: 150px;
+.content a:hover {
+    background-color: #dba134; /* Világosabb szín hover állapotban */
 }
 
-@media(max-width:950px) {
-	.portr {
-		width: 100%;
-		height: auto;
-	}
+/* Mobil nézet */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Oszlopos elrendezés mobilon */
+    }
+    .profile {
+        margin-right: 0;
+        margin-bottom: 20px; /* Margó a profil alatt */
+    }
 }
