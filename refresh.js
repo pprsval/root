@@ -9,7 +9,7 @@
  *     A "/" eleje a gyökérre mutat, ezért csak a relatív útvonal
  *     elegendő.
  */
-const basePdfUrl = "./tartalom/002-iras/02.02_mybook/mybook.pdf";
+const basePdfUrl = "/tartalom/002-iras/02.02_mybook/mybook.pdf";
 
 /* 2️⃣  Egyedi URL generálása timestamp‑kel.
  *     A "?v=" paraméter minden alkalommal más értékkel jelenik meg,
