@@ -9,7 +9,7 @@
  *     A "/" eleje a gyökérre mutat, ezért csak a relatív útvonal
  *     elegendő.
  */
-const basePdfUrl = "/tartalom/002-iras/02.02_mybook";
+const basePdfUrl = "/tartalom/002-iras/02.02_mybook/mybook.pdf";
 
 /* 2️⃣  Egyedi URL generálása timestamp‑kel.
  *     A "?v=" paraméter minden alkalommal más értékkel jelenik meg,
@@ -40,7 +40,7 @@ function loadPdf() {
 const RELOAD_INTERVAL_MS = 0 * 60 * 1000;   // 5 perc
 
 // Időzítő, ami periodikusan meghívja a loadPdf‑t
-setInterval(loadPdf, RELOAD_INTERVAL_MS);
+//setInterval(loadPdf, RELOAD_INTERVAL_MS);
 
 // Azonnali betöltés, amikor a felhasználó megnyitja az oldalt
 loadPdf();
