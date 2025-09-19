@@ -1,0 +1,53 @@
+name: Build & Publish PDF
+
+on:
+  push:
+    paths:
+      - 'src/**/*.tex'
+      - 'src/**/*.bib'
+      - 'src/**/*.png'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
+
+      - name: Compile LaTeX → PDF
+        working-directory: src
+        run: |
+          if ls *.bib 1>/dev/null 2>&1; then
+            latexmk -pdf -xelatex -interaction=nonstopmode -use-biber mybook.tex
+          else
+            latexmk -pdf -xelatex -interaction=nonstopmode mybook.tex
+          fi
+          if [ ! -f mybook.pdf ]; then
+            echo "::error::PDF generation failed"
+            exit 1
+          fi
+
+      - name: Optimize PDF size (Ghostscript)
+        run: |
+          gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.7 -dPDFSETTINGS=/printer \
+             -dNOPAUSE -dQUIET -dBATCH -sOutputFile=mybook_opt.pdf src/mybook.pdf
+          mv mybook_opt.pdf src/mybook.pdf
+
+      - name: Copy PDF to website folder
+        run: |
+          mkdir -p public/pdf
+          cp src/mybook.pdf public/pdf/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true
