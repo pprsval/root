@@ -1,0 +1,98 @@
+/* Alap stílusok */
+body {
+    font-family: "Instrument Serif", serif;
+    margin: 0;
+    padding: 0;
+    background-color: #408080;
+    color: black;
+}
+
+.back-arrow {
+    display: inline-block;
+    text-decoration: none;
+    color: black; /* Szöveg színe */
+    background-color: #2980b9; /* Háttérszín */
+    padding: 5px 5px; /* Párnázás */
+    border-radius: 80px; /* Lekerekített sarkok */
+    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
+}
+
+.back-arrow:hover {
+    background-color: #3498db; /* Világosabb kék hover állapotban */
+}
+
+
+/* Fejléc stílus */
+header {
+    background-color: #2c3e50;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Konténer stílus */
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+/* Profil stílus */
+.profile {
+    flex: 1;
+    margin-right: 20px;
+}
+
+/* Profilkép stílus */
+.profile img {
+    max-width: 100%; 
+}
+
+/* Tartalom stílus */
+.content {
+    flex: 2;
+}
+
+/* Linkek stílus */
+.content h2 {
+    margin: 15px 0;
+}
+
+.content a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
+}
+
+.content a:hover {
+    background-color: #dba134; /* Világosabb szín hover állapotban */
+}
+
+/* Mobil nézet */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Oszlopos elrendezés mobilon */
+    }
+    .profile {
+        margin-right: 0;
+        margin-bottom: 20px; /* Margó a profil alatt */
+    }
+}
+.profile.vignette::before{
+    content:"";
+    position:absolute;
+    inset:0;                 /* lefedi a .profile teljes területét */
+    pointer-events:none;    /* ne blokkolja a kép kattintását */
+    /* Maszk: középen 100 % látható, a szélek felé 0 % (teljesen átlátszó) */
+    mask-image:radial-gradient(
+        circle at center,
+        rgba(0,0,0,1) 55%,   /* 55 %‑ig teljesen látható (nem átlátszó) */
+        rgba(0,0,0,0) 100%   /* 100 %‑ig teljesen átlátszó */
+    );
+    -webkit-mask-image:radial-gradient(
+        circle at center,
+        rgba(0,0,0,1) 55%,
+        rgba(0,0,0,0) 100%
+    );
+}
