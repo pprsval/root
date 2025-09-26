@@ -1,0 +1,89 @@
+/* -----------------------------------------
+   Általános layout – sidebar + main
+   ----------------------------------------- */
+body {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Instrument Serif', serif;
+  background-color: #408080;
+}
+
+/* Bal oldali profilkép (sidebar) */
+.sidebar {
+  flex: 0 0 200px;               /* fix szélesség, de mobilon átméretezhető */
+  background: #408080;
+;
+  padding: 1rem;
+  text-align: center;            /* kép középre */
+}
+.sidebar .profile img {
+  width: 100%;
+  max-width: 150px;              /* a képet ne legyen nagyobb, mint 150 px */
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Fő tartalom */
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* -----------------------------------------
+   Íráslista – középre igazított szöveg
+   ----------------------------------------- */
+.writing-item {
+  background: #408080;
+  margin-bottom: 1.5rem;
+
+  /* Flexbox, hogy a kép és a szöveg egy sorban legyen, középre igazítva */
+  display: flex;
+  align-items: center;           /* függőleges középre */
+  justify-content: flex-start;   /* balra ragasztva, de a szöveg középen a saját blokkjában */
+}
+
+/* Kép (ha van) */
+.writing-item .thumb {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 1.5rem;
+}
+
+/* Cím és link – középre igazítva a saját konténerükben */
+.writing-item h2,
+.writing-item a {
+  margin: 0;
+  text-align: left;              /* balra igazítva, de a *cím* és a link egymás alatt */
+}
+
+/* Ha a szöveget tényleg teljesen középre szeretnéd (vízszintesen) a .writing-item‑en belül:
+   .writing-item { justify-content: center; }
+   De általában a kép balra, a szöveg a kép mellett jobbra szokott lenni.
+*/
+
+/* Mobilra – a sidebar felül, a lista teljes szélességben */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 0.5rem;
+  }
+  .content {
+    padding: 1rem;
+  }
+  .writing-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;          /* mobilon a szöveg középre kerül */
+  }
+  .writing-item .thumb {
+    margin: 0 0 1rem 0;
+  }
+}

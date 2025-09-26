@@ -1,97 +1,79 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <title>homepage of Peres Valentin honlapja</title>
-    <link rel="stylesheet" href="../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <title>homepage of Peres Valentin honlapja</title>
+  <link rel="stylesheet" href="./../pages.css">
 </head>
 <body>
-    <header>
+  <header>
     <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Írások</h1>
-</header>
-<div class="container"></div>
-<div class="profile">
-        <img src="../assets/images/thb_irasok_torol.jpg" alt="Profilkép">
-    </div>
-  
-  <!-- 3️⃣ Dinamikus tartalom konténer -->
-  <div id="writings-list" class="loading"></div>
+  </header>
 
-  <!-- 4️⃣ JavaScript – JSON betöltése és DOM‑építés -->
+  <!-- Profilkép (bal oldalon) -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="../assets/images/thb_irasok_torol.jpg" alt="Profilkép">
+    </div>
+  </aside>
+
+  <!-- Dinamikus tartalom -->
+  <main class="content">
+    <div id="writings-list" class="loading"></div>
+  </main>
+
   <script>
-    // ---------- 4.1 ---------- //
-    // 1. Betöltjük a JSON‑t a data/ mappából.
-    //    A relatív útvonal: a jelenlegi fájl (pages/) egy szinttel feljebb kell menjen,
-    //    ezért ../data/writings.json
-    // ----------
+    // ----------- JSON betöltése és DOM‑építés -------------
     fetch('../data/writings.json')
-      .then(response => {
-        if (!response.ok) {
-          // Ha a szerver 404‑et vagy más hibát ad, dobunk egy kivételt.
-          throw new Error(`JSON betöltési hiba: ${response.status}`);
-        }
-        return response.json(); // <-- JSON → JavaScript objektum (tömb)
+      .then(r => {
+        if (!r.ok) throw new Error(`JSON betöltési hiba: ${r.status}`);
+        return r.json();
       })
       .then(writings => {
-        // 2. A konténer elem, ahova a listát építjük.
         const container = document.getElementById('writings-list');
-        container.classList.remove('loading'); // eltávolítjuk a "Betöltés…" üzenetet
-        container.innerHTML = ''; // tisztítjuk (biztonság kedvéért)
+        container.classList.remove('loading');
+        container.innerHTML = '';
 
-        // 3. Ha a tömb üres, üzenetet írunk.
         if (!writings.length) {
           container.textContent = 'Jelenleg nincs megjeleníthető írás.';
           return;
         }
 
-        // 4. Végigiterálunk a bejegyzéseken.
         writings.forEach(item => {
-          // ---- 4.1.1 ----
-          // Létrehozzuk a <article> elemet, ami egy írást reprezentál.
           const article = document.createElement('article');
           article.className = 'writing-item';
 
-          // ---- 4.1.2 ----
-          // Ha van előnézeti kép (thumb), megjelenítjük.
           if (item.kep) {
             const img = document.createElement('img');
-            img.src = item.kep;               // abszolút útvonal a JSON‑ból
+            img.src = item.kep;
             img.alt = `${item.cim} előnézete`;
             img.className = 'thumb';
             article.appendChild(img);
           }
 
-          // ---- 4.1.3 ----
-          // Cím (h2)
           const title = document.createElement('h2');
           title.textContent = item.cim;
           article.appendChild(title);
 
-          // ---- 4.1.4 ----
-          // PDF link – új ablakban nyílik.
           const link = document.createElement('a');
-          link.href = item.pdf;                // abszolút útvonal a JSON‑ból
-          link.textContent = 'Megtekintés / letöltés';
-          link.target = '_blank';              // új tab
+          link.href = item.pdf;
+          link.textContent = '- Megtekintés / letöltés';
+          link.target = '_blank';
           article.appendChild(link);
 
-          // ---- 4.1.5 ----
-          // Végül az <article>-t a konténerbe tesszük.
           container.appendChild(article);
         });
       })
-      .catch(error => {
-        // 5. Hibakezelés – ha a fetch vagy a JSON parse sikertelen.
-        console.error(error);
+      .catch(err => {
+        console.error(err);
         const container = document.getElementById('writings-list');
         container.classList.remove('loading');
         container.textContent = 'Hiba történt a tartalom betöltésekor.';
       });
   </script>
-  </div>
 </body>
 </html>
