@@ -10,16 +10,18 @@
   <link rel="stylesheet" href="./../pages.css">
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Írások</h1>
   </header>
 
   <!-- Profilkép (bal oldalon) -->
-  <aside class="sidebar">
-    <div class="profile">
-      <img src="../assets/images/thb_irasok_torol.jpg" alt="Profilkép">
-    </div>
-  </aside>
+  <div class="main-wrapper">
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="../assets/images/thb_irasok_torol.jpg" alt="Profilkép">
+      </div>
+    </aside>
+
 
   <!-- Dinamikus tartalom -->
   <main class="content">
@@ -61,7 +63,7 @@
 
           const link = document.createElement('a');
           link.href = item.pdf;
-          link.textContent = '- Megtekintés / letöltés';
+          link.textContent = 'Megtekintés / letöltés';
           link.target = '_blank';
           article.appendChild(link);
 

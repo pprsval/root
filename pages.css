@@ -1,20 +1,34 @@
-/* -----------------------------------------
-   Általános layout – sidebar + main
-   ----------------------------------------- */
+/* -------------------------------------------------
+   Általános layout – header + flex‑wrapper
+   ------------------------------------------------- */
 body {
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh;
   margin: 0;
   font-family: 'Instrument Serif', serif;
   background-color: #408080;
 }
 
-/* Bal oldali profilkép (sidebar) */
+/* Header – teljes szélesség, saját stílus */
+.site-header {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: #2c3e50;               /* sötétebb árnyalat a kontraszthoz */
+  color: black;
+  text-align: center;
+}
+
+/* Flex‑wrapper, ami csak a sidebar‑t és a content‑et tartalmazza */
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 68px);    /* 68 px ≈ a header magassága, ha fix */
+}
+
+/* -------------------------------------------------
+   Bal oldali profilkép (sidebar)
+   ------------------------------------------------- */
 .sidebar {
-  flex: 0 0 200px;               /* fix szélesség, de mobilon átméretezhető */
+  flex: 0 0 200px;               /* fix szélesség, mobilon átméretezhető */
   background: #408080;
-;
   padding: 1rem;
   text-align: center;            /* kép középre */
 }
@@ -25,23 +39,25 @@ body {
   border-radius: 8px;
 }
 
-/* Fő tartalom */
+/* -------------------------------------------------
+   Fő tartalom
+   ------------------------------------------------- */
 .content {
   flex: 1;
   padding: 2rem;
 }
 
-/* -----------------------------------------
-   Íráslista – középre igazított szöveg
-   ----------------------------------------- */
+/* -------------------------------------------------
+   Íráslista – flex‑sor a kép + szöveg
+   ------------------------------------------------- */
 .writing-item {
-  background: #408080;
-  margin-bottom: 1.5rem;
-
-  /* Flexbox, hogy a kép és a szöveg egy sorban legyen, középre igazítva */
   display: flex;
   align-items: center;           /* függőleges középre */
-  justify-content: flex-start;   /* balra ragasztva, de a szöveg középen a saját blokkjában */
+  background: #408080;             /* világos háttér a kártyáknak */
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,.08);
 }
 
 /* Kép (ha van) */
@@ -53,37 +69,51 @@ body {
   margin-right: 1.5rem;
 }
 
-/* Cím és link – középre igazítva a saját konténerükben */
+/* Cím és link – egymás alatt, balra igazítva */
 .writing-item h2,
 .writing-item a {
   margin: 0;
-  text-align: left;              /* balra igazítva, de a *cím* és a link egymás alatt */
+  text-align: left;
 }
 
-/* Ha a szöveget tényleg teljesen középre szeretnéd (vízszintesen) a .writing-item‑en belül:
-   .writing-item { justify-content: center; }
-   De általában a kép balra, a szöveg a kép mellett jobbra szokott lenni.
-*/
+/* Ha a linket a címhez szeretnéd közelebb hozni, adj margin‑t */
+.writing-item a {
+  margin-left: 0.75rem;          /* szóköz a cím és a link között */
+  color:black;
+  text-decoration: none;
+}
+.writing-item a:hover { text-decoration: underline; }
 
-/* Mobilra – a sidebar felül, a lista teljes szélességben */
+/* -------------------------------------------------
+   Mobilra – a sidebar felül, a lista teljes szélességben
+   ------------------------------------------------- */
 @media (max-width: 768px) {
-  body {
+  .main-wrapper {               /* a flex‑irány most függőlegesen */
     flex-direction: column;
   }
+
   .sidebar {
-    flex: 0 0 auto;
     width: 100%;
+    flex: 0 0 auto;
     padding: 0.5rem;
   }
+
   .content {
     padding: 1rem;
   }
+
   .writing-item {
     flex-direction: column;
     align-items: center;
     text-align: center;          /* mobilon a szöveg középre kerül */
   }
+
   .writing-item .thumb {
     margin: 0 0 1rem 0;
+  }
+
+  .writing-item a {
+    margin-left: 0;               /* a mobil nézetben ne legyen bal‑margin */
+    margin-top: 0.5rem;           /* kis távolság a cím alatti linkhez */
   }
 }
