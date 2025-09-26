@@ -10,21 +10,88 @@
     <link rel="stylesheet" href="../../styles.css">
 </head>
 <body>
-
-<header>
-    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Írások/Writings</h1>
+    <header>
+    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Írások</h1>
 </header>
-
-<div class="container">
-    <div class="profile vignette">               <!-- ← vignette osztály -->
-        <img src="../../images/thb_irasok_torol.jpg" alt="Profilkép">
+<div class="container"></div>
+<div class="profile">
+        <img src="../assets/images/thb_irasok_torol.jpg" alt="Profilkép">
     </div>
+  
+  <!-- 3️⃣ Dinamikus tartalom konténer -->
+  <div id="writings-list" class="loading"></div>
 
-    <div class="content">
-    <h2><p><a href=".//../assets/pdf/writings/verses/PV-Ranezesre.pdf"><b>Ránézésre</b></a></p></h2>
-    
-    <p>-----------------------------------</p>        
-</div>
-</div>
+  <!-- 4️⃣ JavaScript – JSON betöltése és DOM‑építés -->
+  <script>
+    // ---------- 4.1 ---------- //
+    // 1. Betöltjük a JSON‑t a data/ mappából.
+    //    A relatív útvonal: a jelenlegi fájl (pages/) egy szinttel feljebb kell menjen,
+    //    ezért ../data/writings.json
+    // ----------
+    fetch('../data/writings.json')
+      .then(response => {
+        if (!response.ok) {
+          // Ha a szerver 404‑et vagy más hibát ad, dobunk egy kivételt.
+          throw new Error(`JSON betöltési hiba: ${response.status}`);
+        }
+        return response.json(); // <-- JSON → JavaScript objektum (tömb)
+      })
+      .then(writings => {
+        // 2. A konténer elem, ahova a listát építjük.
+        const container = document.getElementById('writings-list');
+        container.classList.remove('loading'); // eltávolítjuk a "Betöltés…" üzenetet
+        container.innerHTML = ''; // tisztítjuk (biztonság kedvéért)
+
+        // 3. Ha a tömb üres, üzenetet írunk.
+        if (!writings.length) {
+          container.textContent = 'Jelenleg nincs megjeleníthető írás.';
+          return;
+        }
+
+        // 4. Végigiterálunk a bejegyzéseken.
+        writings.forEach(item => {
+          // ---- 4.1.1 ----
+          // Létrehozzuk a <article> elemet, ami egy írást reprezentál.
+          const article = document.createElement('article');
+          article.className = 'writing-item';
+
+          // ---- 4.1.2 ----
+          // Ha van előnézeti kép (thumb), megjelenítjük.
+          if (item.kep) {
+            const img = document.createElement('img');
+            img.src = item.kep;               // abszolút útvonal a JSON‑ból
+            img.alt = `${item.cim} előnézete`;
+            img.className = 'thumb';
+            article.appendChild(img);
+          }
+
+          // ---- 4.1.3 ----
+          // Cím (h2)
+          const title = document.createElement('h2');
+          title.textContent = item.cim;
+          article.appendChild(title);
+
+          // ---- 4.1.4 ----
+          // PDF link – új ablakban nyílik.
+          const link = document.createElement('a');
+          link.href = item.pdf;                // abszolút útvonal a JSON‑ból
+          link.textContent = 'Megtekintés / letöltés';
+          link.target = '_blank';              // új tab
+          article.appendChild(link);
+
+          // ---- 4.1.5 ----
+          // Végül az <article>-t a konténerbe tesszük.
+          container.appendChild(article);
+        });
+      })
+      .catch(error => {
+        // 5. Hibakezelés – ha a fetch vagy a JSON parse sikertelen.
+        console.error(error);
+        const container = document.getElementById('writings-list');
+        container.classList.remove('loading');
+        container.textContent = 'Hiba történt a tartalom betöltésekor.';
+      });
+  </script>
+  </div>
 </body>
 </html>
