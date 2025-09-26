@@ -79,3 +79,20 @@ header {
         margin-bottom: 20px; /* Margó a profil alatt */
     }
 }
+.profile.vignette::before{
+    content:"";
+    position:absolute;
+    inset:0;                 /* lefedi a .profile teljes területét */
+    pointer-events:none;    /* ne blokkolja a kép kattintását */
+    /* Maszk: középen 100 % látható, a szélek felé 0 % (teljesen átlátszó) */
+    mask-image:radial-gradient(
+        circle at center,
+        rgba(0,0,0,1) 55%,   /* 55 %‑ig teljesen látható (nem átlátszó) */
+        rgba(0,0,0,0) 100%   /* 100 %‑ig teljesen átlátszó */
+    );
+    -webkit-mask-image:radial-gradient(
+        circle at center,
+        rgba(0,0,0,1) 55%,
+        rgba(0,0,0,0) 100%
+    );
+}
