@@ -1,32 +1,83 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <title>homepage of Peres Valentin honlapja</title>
-    <link rel="stylesheet" href="../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <title>homepage of Peres Valentin honlapja</title>
+  <link rel="stylesheet" href="/pages.css">
 </head>
 <body>
-
-<header>
+  <header class="site-header">
     <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Rajzok/Drawings</h1>
-</header>
-    <div class="content">
-        <h2><p><a href=".//../assets/drawings/mail_art_coffee.pdf"><b>02/23/25 - Grafika #4:</b> Mail art: Coffee (Svájc)</a></p></h2>
-        <p>-----------------------------------</p>
-        
-        <h2><p><a href="/assets/drawings/mail_art_food_for_body_and_mind.pdf"><b>02/23/25 - Grafika #3:</b> Mail art: Food for body and mind</a></p></h2>
-        <p>-----------------------------------</p>
-        
-        <h2><p><a href=".//../assets/drawings/eszkport.jpg"><b>02/03/21 - Grafika #2:</b> Portré</a></p></h2>
-        <p>-----------------------------------</p>
+  </header>
 
-        <h2><p><a href=".//../assets/drawings/rajz_katalog.pdf"><b>2018 - Grafika #1:</b> Rajz katalógus</a></p></h2>
-        <p>-----------------------------------</p>
-    </div>
-</div>
+  <div class="main-wrapper">
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="../assets/images/thb_irasok_torol.jpg" alt="Profilkép">
+      </div>
+    </main>
+    </aside>
+
+    <main class="content">
+      <div id="drawings-list" class="loading"></div>
+    </main>
+  </div>
+
+  <script>
+    // ----------- JSON betöltése és DOM‑építés -------------
+    fetch('../data/drawings.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`JSON betöltési hiba: ${r.status}`);
+        return r.json();
+      })
+      .then(drawings => {                     // <-- itt a változó neve is "drawings"
+        const container = document.getElementById('drawings-list'); // <-- helyes ID
+        container.classList.remove('loading');
+        container.innerHTML = '';
+
+        if (!drawings.length) {
+          container.textContent = 'Jelenleg nincs megjeleníthető rajz.';
+          return;
+        }
+
+        drawings.forEach(item => {
+          const article = document.createElement('article');
+          article.className = 'drawings-item';
+
+          // feltételezzük, hogy a JSON ilyen mezőket tartalmaz
+          if (item.kep) {
+            const img = document.createElement('img');
+            img.src = item.kep;
+            img.alt = `${item.cim} előnézete`;
+            img.className = 'thumb';
+            article.appendChild(img);
+          }
+
+          const title = document.createElement('h2');
+          title.textContent = item.cim;
+          article.appendChild(title);
+
+          if (item.pdf) {
+            const link = document.createElement('a');
+            link.href = item.pdf;
+            link.textContent = 'Megtekintés / letöltés';
+            link.target = '_blank';
+            article.appendChild(link);
+          }
+
+          container.appendChild(article);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        const container = document.getElementById('drawings-list');
+        container?.classList.remove('loading');
+        container.textContent = 'Hiba történt a tartalom betöltésekor.';
+      });
+  </script>
 </body>
 </html>

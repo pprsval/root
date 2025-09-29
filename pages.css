@@ -16,6 +16,16 @@ body {
   text-align: center;
 }
 
+.back-arrow {
+    display: inline-block;
+    text-decoration: none;
+    color: black; /* Szöveg színe */
+    background-color: #2980b9; /* Háttérszín */
+    padding: 5px 5px; /* Párnázás */
+    border-radius: 80px; /* Lekerekített sarkok */
+    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
+}
+
 /* Flex‑wrapper, ami csak a sidebar‑t és a content‑et tartalmazza */
 .main-wrapper {
   display: flex;

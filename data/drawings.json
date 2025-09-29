@@ -1,0 +1,20 @@
+[
+  {
+    "cim": "Decemberi séta",
+    "tipus": "rajz",
+    "pdf": "../assets/images/Levalik megint a naptar.pdf",
+    "kep": null
+  },
+  {
+    "cim": "Másik rajz",
+    "tipus": "illusztráció",
+    "pdf": "../assets/pdf/images/masik.pdf",
+    "kep": "../assets/images/masik_thmb.jpg"
+  },
+  {
+    "cim": "Harmadik",
+    "tipus": "grafika",
+    "pdf": "../assets/pdf/images/harmadik.pdf",
+    "kep": "../assets/images/harmadik_thmb.jpg"
+  }
+]
