@@ -1,20 +1,26 @@
 [
   {
-    "cim": "Decemberi séta",
-    "tipus": "rajz",
-    "pdf": "../assets/images/Levalik megint a naptar.pdf",
+    "cim": "Mail art - Food for body and mind",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/mail_art_food_for_body_and_mind.pdf",
     "kep": null
   },
   {
-    "cim": "Másik rajz",
-    "tipus": "illusztráció",
-    "pdf": "../assets/pdf/images/masik.pdf",
-    "kep": "../assets/images/masik_thmb.jpg"
+    "cim": "Portré",
+    "tipus": "rajz",
+    "pdf": "../assets/drawings/eszkport.jpg",
+    "kep": null
   },
   {
-    "cim": "Harmadik",
+    "cim": "Mail art - Coffee",
+    "tipus": "illusztráció",
+    "pdf": "../assets/drawings/mail_art_coffee.pdf",
+    "kep": null
+  },
+  {
+    "cim": "Rajzok 2018 ",
     "tipus": "grafika",
-    "pdf": "../assets/pdf/images/harmadik.pdf",
-    "kep": "../assets/images/harmadik_thmb.jpg"
+    "pdf": "../assets/drawings/rajz_katalog.pdf",
+    "kep": null
   }
 ]

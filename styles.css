@@ -44,12 +44,12 @@ header {
 
 /* Profilkép stílus */
 .profile img {
-    max-width: 100%; 
+    max-width: 200px; 
 }
 
 /* Tartalom stílus */
 .content {
-    flex: 2;
+    flex: 5;
 }
 
 /* Linkek stílus */
@@ -60,7 +60,7 @@ header {
 .content a {
     text-decoration: none;
     color: black;
-    padding: 10px;
+    padding: 1px;
     border-radius: 5px;
     transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
 }
