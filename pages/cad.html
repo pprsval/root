@@ -1,39 +1,81 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <title>homepage of Peres Valentin honlapja</title>
-    <link rel="stylesheet" href="../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <title>homepage of Peres Valentin honlapja</title>
+  <link rel="stylesheet" href="./../pages.css">
 </head>
 <body>
+  <header class="site-header">
+    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> CAD / Drawings</h1>
+  </header>
 
-<header>
-    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> CAD Tervek/CAD Drawings</h1>
-</header>
+  <!-- Profilkép (bal oldalon) -->
+  <div class="main-wrapper">
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="../assets/images/thb_irasok_torol.jpg" alt="Profilkép">
+      </div>
+    </aside>
 
-<div class="container">
-    <div class="profile">
-        <img src="images/Untitled.png" alt="Profilkép">
-    </div>
-    <div class="content">
-        <h2><p><a href="./04.02_MV_nyilak/mv_nyilak.html"><b>02/14/25 - Csinálmány #5:</b> Esküvői dekoráció, fából, nyilak</a></p></h2>
-        <p>-----------------------------------</p>
-        
-        <h2><p><a href="./04.05_parasolar/parasolar.html"><b>25/02/24 - Csinálmány #4:</b> Árnyékolástechnika házilag, deszkából</a></p></h2>
-        <p>-----------------------------------</p>
 
-        <h2><p><a href="./04.03_lemez_lepcso/lepcso.html"><b>12/10/23 - Csinálmány #3:</b> Padlásfeljáró élhajlított fémlemezből</a></p></h2>
-        <p>-----------------------------------</p>
-        
-        <h2><p><a href="../004-cad_tervek/04.01_aquarell_support/aqua.html"><b>29/08/23 - Csinálmány #2:</b> Akvarell kockafesték tartó</a></p></h2>
-        <p>-----------------------------------</p>
-        <h2><p><a href="./04.04_konyvkucko/lfl.html"><b>14/06/20 - Csinálmány #1:</b> Könyvkuckó</a></p></h2>
-        <p>-----------------------------------</p>
-    </div>
-</div>
+  <!-- Dinamikus tartalom -->
+  <main class="content">
+    <div id="writings-list" class="loading"></div>
+  </main>
+
+  <script>
+    // ----------- JSON betöltése és DOM‑építés -------------
+    fetch('../data/cad.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`JSON betöltési hiba: ${r.status}`);
+        return r.json();
+      })
+      .then(writings => {
+        const container = document.getElementById('writings-list');
+        container.classList.remove('loading');
+        container.innerHTML = '';
+
+        if (!writings.length) {
+          container.textContent = 'Jelenleg nincs megjeleníthető írás.';
+          return;
+        }
+
+        writings.forEach(item => {
+          const article = document.createElement('article');
+          article.className = 'writing-item';
+
+          if (item.kep) {
+            const img = document.createElement('img');
+            img.src = item.kep;
+            img.alt = `${item.cim} előnézete`;
+            img.className = 'thumb';
+            article.appendChild(img);
+          }
+
+          const title = document.createElement('h2');
+          title.textContent = item.cim;
+          article.appendChild(title);
+
+          const link = document.createElement('a');
+          link.href = item.pdf;
+          link.textContent = 'Megtekintés / letöltés';
+          link.target = '_blank';
+          article.appendChild(link);
+
+          container.appendChild(article);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        const container = document.getElementById('writings-list');
+        container.classList.remove('loading');
+        container.textContent = 'Hiba történt a tartalom betöltésekor.';
+      });
+  </script>
 </body>
 </html>
