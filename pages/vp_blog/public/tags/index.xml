@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on PV - Írások</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on PV - Írások</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>p.valentyin@protonmail.com (PV Peres Valentin)</managingEditor>
+    <webMaster>p.valentyin@protonmail.com (PV Peres Valentin)</webMaster>
+    <copyright>PV Peres Valentin (CC BY 4.0)</copyright>
+    <lastBuildDate>Sat, 25 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Egyperces</title>
+      <link>http://localhost:1313/tags/egyperces/</link>
+      <pubDate>Sat, 25 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/tags/egyperces/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Írás</title>
+      <link>http://localhost:1313/tags/%C3%ADr%C3%A1s/</link>
+      <pubDate>Sat, 25 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/tags/%C3%ADr%C3%A1s/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Tag1</title>
+      <link>http://localhost:1313/tags/tag1/</link>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/tags/tag1/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Tag2</title>
+      <link>http://localhost:1313/tags/tag2/</link>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/tags/tag2/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+  </channel>
+</rss>

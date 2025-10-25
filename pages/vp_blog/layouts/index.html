@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <main>
+    <h1>{{ .Site.Title }}</h1>
+    <ul>
+      {{ range .Site.RegularPages.ByDate.Reverse }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}</a><br>
+         
+        </li>
+      {{ else }}
+        <li>Nincsenek posztok.</li>
+      {{ end }}
+    </ul>
+  </main>
+{{ end }}
+

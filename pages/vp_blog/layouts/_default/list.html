@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <main>
+    <h1>{{ .Title }}</h1>
+    <ul>
+      {{ range .Pages.ByDate.Reverse }}
+        <li style="margin-bottom:1rem;">
+          <a href="{{ .Permalink }}">{{ .Title }}</a><br>
+          <small>{{ .Date.Format "2006. január 02." }}</small>
+        </li>
+      {{ else }}
+        <li>Nincsenek posztok.</li>
+      {{ end }}
+    </ul>
+  </main>
+{{ end }}
+

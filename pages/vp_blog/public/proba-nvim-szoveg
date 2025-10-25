@@ -1,0 +1,14 @@
++++
+title = "VPPVVPPV-próba"
+date = "2023-10-25"
+tags = ["hugo", "markdown"]
+categories = ["blog"]
++++
+
+Ez az első bejegyzésem a Hugo blogomban! Itt bemutatom, hogyan használhatod a markdown fájlokat Hugo-ban.
+
+## Markdown szintaxis
+- **Félkövér szöveg**: `**szöveg**`
+- *Dőlt szöveg*: `*szöveg*`
+- [Linkek](http://example.com)
+

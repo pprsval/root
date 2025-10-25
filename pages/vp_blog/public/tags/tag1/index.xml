@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tag1 on PV - Írások</title>
+    <link>http://localhost:1313/tags/tag1/</link>
+    <description>Recent content in Tag1 on PV - Írások</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>p.valentyin@protonmail.com (PV Peres Valentin)</managingEditor>
+    <webMaster>p.valentyin@protonmail.com (PV Peres Valentin)</webMaster>
+    <copyright>PV Peres Valentin (CC BY 4.0)</copyright>
+    <lastBuildDate>Wed, 22 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Első de nem utolsó</title>
+      <link>http://localhost:1313/elso-de-nem-utolso/</link>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/elso-de-nem-utolso/</guid>
+      <description>&lt;p&gt;Egy bejegyzés&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>Egy bejegyzés</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Harmadik de nem utolsó</title>
+      <link>http://localhost:1313/harmadik-de-nem-utolso/</link>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/harmadik-de-nem-utolso/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Mesterséges zajok, ízek, intelligenciák,&lt;/p&gt;&#xA;&lt;p&gt;Hangok, képek és szavak&lt;/p&gt;&#xA;&lt;p&gt;Úgy tűnik a természet is megunható,&lt;/p&gt;&#xA;&lt;p&gt;Határaink a valóságon túl nyugszanak.&lt;/p&gt;&#xA;&lt;p&gt;Enyhén szólva: ráléptünk a pedálra,&lt;/p&gt;&#xA;&lt;p&gt;Felgyorsult életünk irama mára,&lt;/p&gt;&#xA;&lt;p&gt;Lassan és biztosan&lt;/p&gt;&#xA;&lt;p&gt;Készülhetünk a gépek diadalára!&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>Mesterséges zajok, ízek, intelligenciák,</p>
+<p>Hangok, képek és szavak</p>
+<p>Úgy tűnik a természet is megunható,</p>
+<p>Határaink a valóságon túl nyugszanak.</p>
+<p>Enyhén szólva: ráléptünk a pedálra,</p>
+<p>Felgyorsult életünk irama mára,</p>
+<p>Lassan és biztosan</p>
+<p>Készülhetünk a gépek diadalára!</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Képtelenségesség</title>
+      <link>http://localhost:1313/keptelenseg/</link>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/keptelenseg/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Mesterséges zajok, ízek, intelligenciák,&lt;/p&gt;&#xA;&lt;p&gt;Hangok, képek és szavak&lt;/p&gt;&#xA;&lt;p&gt;Úgy tűnik a természet is megunható,&lt;/p&gt;&#xA;&lt;p&gt;Határaink a valóságon túl nyugszanak.&lt;/p&gt;&#xA;&lt;p&gt;Enyhén szólva: ráléptünk a pedálra,&lt;/p&gt;&#xA;&lt;p&gt;Felgyorsult életünk irama mára,&lt;/p&gt;&#xA;&lt;p&gt;Lassan és biztosan&lt;/p&gt;&#xA;&lt;p&gt;Készülhetünk a gépek diadalára!&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>Mesterséges zajok, ízek, intelligenciák,</p>
+<p>Hangok, képek és szavak</p>
+<p>Úgy tűnik a természet is megunható,</p>
+<p>Határaink a valóságon túl nyugszanak.</p>
+<p>Enyhén szólva: ráléptünk a pedálra,</p>
+<p>Felgyorsult életünk irama mára,</p>
+<p>Lassan és biztosan</p>
+<p>Készülhetünk a gépek diadalára!</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Második de nem utolsó</title>
+      <link>http://localhost:1313/masodik-de-nem-utolso/</link>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><author>p.valentyin@protonmail.com (PV Peres Valentin)</author>
+      <guid>http://localhost:1313/masodik-de-nem-utolso/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Mesterséges zajok, ízek, intelligenciák,&lt;/p&gt;&#xA;&lt;p&gt;Hangok, képek és szavak&lt;/p&gt;&#xA;&lt;p&gt;Úgy tűnik a természet is megunható,&lt;/p&gt;&#xA;&lt;p&gt;Határaink a valóságon túl nyugszanak.&lt;/p&gt;&#xA;&lt;p&gt;Enyhén szólva: ráléptünk a pedálra,&lt;/p&gt;&#xA;&lt;p&gt;Felgyorsult életünk irama mára,&lt;/p&gt;&#xA;&lt;p&gt;Lassan és biztosan&lt;/p&gt;&#xA;&lt;p&gt;Készülhetünk a gépek diadalára!&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>Mesterséges zajok, ízek, intelligenciák,</p>
+<p>Hangok, képek és szavak</p>
+<p>Úgy tűnik a természet is megunható,</p>
+<p>Határaink a valóságon túl nyugszanak.</p>
+<p>Enyhén szólva: ráléptünk a pedálra,</p>
+<p>Felgyorsult életünk irama mára,</p>
+<p>Lassan és biztosan</p>
+<p>Készülhetünk a gépek diadalára!</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
