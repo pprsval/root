@@ -6,15 +6,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <title>homepage of Peres Valentin honlapja</title>
+  <title>CAD / Drawings</title>
   <link rel="stylesheet" href="./../pages.css">
+  <style>
+    .gallery-item {
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .gallery-item img, .gallery-item canvas {
+      max-width: 200px;
+      max-height: 200px;
+      display: block;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <h1><a href="../../index.html" class="back-arrow">&#8678;</a> CAD / Drawings</h1>
   </header>
 
-  <!-- Profilkép (bal oldalon) -->
   <div class="main-wrapper">
     <aside class="sidebar">
       <div class="profile">
@@ -22,59 +36,75 @@
       </div>
     </aside>
 
+    <main class="content">
+      <div id="gallery" class="loading"></div>
+    </main>
+  </div>
 
-  <!-- Dinamikus tartalom -->
-  <main class="content">
-    <div id="writings-list" class="loading"></div>
-  </main>
+  <!-- PDF.js könyvtár -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.104/pdf.min.js"></script>
 
   <script>
-    // ----------- JSON betöltése és DOM‑építés -------------
     fetch('../data/cad.json')
-      .then(r => {
-        if (!r.ok) throw new Error(`JSON betöltési hiba: ${r.status}`);
-        return r.json();
-      })
-      .then(writings => {
-        const container = document.getElementById('writings-list');
-        container.classList.remove('loading');
-        container.innerHTML = '';
+      .then(r => r.json())
+      .then(items => {
+        const gallery = document.getElementById('gallery');
+        gallery.classList.remove('loading');
+        gallery.innerHTML = '';
 
-        if (!writings.length) {
-          container.textContent = 'Jelenleg nincs megjeleníthető írás.';
+        if (!items.length) {
+          gallery.textContent = 'Jelenleg nincs megjeleníthető tartalom.';
           return;
         }
 
-        writings.forEach(item => {
-          const article = document.createElement('article');
-          article.className = 'writing-item';
+        items.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.className = 'gallery-item';
 
-          if (item.kep) {
+          if (item.kep && item.kep.trim() !== "") {
             const img = document.createElement('img');
             img.src = item.kep;
-            img.alt = `${item.cim} előnézete`;
-            img.className = 'thumb';
-            article.appendChild(img);
+            img.alt = item.cim;
+            div.appendChild(img);
+            div.addEventListener('click', () => {
+              if (item.pdf && item.pdf.trim() !== "") {
+                window.open(item.pdf, '_blank');
+              }
+            });
+          } else if (item.pdf && item.pdf.trim() !== "") {
+            const canvas = document.createElement('canvas');
+            div.appendChild(canvas);
+
+            // PDF első oldal renderelése canvas-ra
+            pdfjsLib.getDocument(item.pdf).promise.then(pdf => {
+              pdf.getPage(1).then(page => {
+                const scale = 0.5;
+                const viewport = page.getViewport({ scale });
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                const context = canvas.getContext('2d');
+                page.render({ canvasContext: context, viewport });
+              });
+            });
+
+            // Kattintásra megnyitás új fülön
+            canvas.addEventListener('click', () => {
+              window.open(item.pdf, '_blank');
+            });
           }
 
-          const title = document.createElement('h2');
-          title.textContent = item.cim;
-          article.appendChild(title);
+          const caption = document.createElement('div');
+          caption.textContent = item.cim;
+          div.appendChild(caption);
 
-          const link = document.createElement('a');
-          link.href = item.pdf;
-          link.textContent = 'Megtekintés / letöltés';
-          link.target = '_blank';
-          article.appendChild(link);
-
-          container.appendChild(article);
+          gallery.appendChild(div);
         });
       })
       .catch(err => {
         console.error(err);
-        const container = document.getElementById('writings-list');
-        container.classList.remove('loading');
-        container.textContent = 'Hiba történt a tartalom betöltésekor.';
+        const gallery = document.getElementById('gallery');
+        gallery.classList.remove('loading');
+        gallery.textContent = 'Hiba történt a tartalom betöltésekor.';
       });
   </script>
 </body>

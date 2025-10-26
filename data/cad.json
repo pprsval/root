@@ -3,30 +3,30 @@
     "cim": "Aquarell kockatartó",
     "tipus": "CAD",
     "pdf": "../assets/cad/Aqua_sup.pdf",
-    "kep": "../assests/cad/aqua.bmp"
+    "kep": "../assets/cad/aqua.bmp"
   },
   {
     "cim": "Könyvkuckó / Little Free Library",
     "tipus": "CAD",
     "pdf": "../assets/cad/konyvkucko_little_free_library.pdf",
-    "kep": "../assests/cad/lfl_thbm.bmp"
+    "kep": "../assets/cad/lfl_thbm.bmp"
   },
   {
     "cim": "Lemezlépcső",
     "tipus": "CAD",
     "pdf": "../assets/cad/Lemezlepcso_striat.pdf",
-    "kep": "../assests/cad/lfl_thbm.bmp"
+    "kep": "../assets/cad/lfl_thbm.bmp"
   },
   {
     "cim": "Névtábla",
     "tipus": "CAD",
     "pdf": "../assets/cad/MV_dekor_nyil.pdf",
-    "kep": "../assests/cad/MV.jpg"
+    "kep": "../assets/cad/MV.jpg"
   },
   {
     "cim": "Árnyékolás",
     "tipus": "CAD",
     "pdf": "../assets/cad/parasolar.pdf",
-    "kep": "../assests/cad/thbm_paras.jpg"
+    "kep": "../assets/cad/thbm_paras.jpg"
   }
 ]
