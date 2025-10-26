@@ -1,5 +1,35 @@
 [
   {
+    "cim": "2025-10-25-drw_space",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/2025-10-25-urhja.jpg",
+    "kep": null
+  },
+  {
+    "cim": "2025-10-25-travel_time",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/2025-10-25-travel_time.jpg",
+    "kep": null
+  },
+  {
+    "cim": "2025-10-25-oldman",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/2025-10-25-oldaman.jpg",
+    "kep": null
+  },
+  {
+    "cim": "2025-10-25-man",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/2025-10-25-man.jpg",
+    "kep": null
+  },
+  {
+    "cim": "2025-10-25-borcan",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/2025-10-25-borcan.jpg",
+    "kep": null
+  },
+  {
     "cim": "Mail art - Food for body and mind",
     "tipus": "grafika",
     "pdf": "../assets/drawings/mail_art_food_for_body_and_mind.pdf",
@@ -21,12 +51,6 @@
     "cim": "Rajzok 2018 ",
     "tipus": "grafika",
     "pdf": "../assets/drawings/rajz_katalog.pdf",
-    "kep": null
-  },
-  {
-    "cim": "2025-10-25-borcan",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025-10-25-borcan.jpg",
     "kep": null
   }
 ]
