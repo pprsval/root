@@ -1,0 +1,45 @@
+[
+  {
+    "cim": "khz1",
+    "tipus": "foto",
+    "pdf": "../assets/images/khz1.jpg",
+    "kep": null
+  },
+  {
+    "cim": "khz2",
+    "tipus": "foto",
+    "pdf": "../assets/images/khz2.jpg",
+    "kep": null
+  },
+  {
+    "cim": "khz3",
+    "tipus": "grafika",
+    "pdf": "../assets/images/khz3.jpg",
+    "kep": null
+  },
+  {
+    "cim": "khz5",
+    "tipus": "foto",
+    "pdf": "../assets/images/khz5.jpg",
+    "kep": null
+  },
+  {
+    "cim": "khz7",
+    "tipus": "foto",
+    "pdf": "../assets/images/khz7.jpg",
+    "kep": null
+  },
+  {
+    "cim": "Pillanatyi tartás",
+    "tipus": "foto",
+    "pdf": "../assets/images/Pillanatnyi tartás.pdf",
+    "kep": null
+  },
+  {
+    "cim": "Leválik a naptár",
+    "tipus": "foto",
+    "pdf": "../assets/images/Levalik megint a naptar.pdf",
+    "kep": null
+  }
+
+]
