@@ -57,17 +57,15 @@
             article.appendChild(img);
           }
 
-          const title = document.createElement('h2');
-          title.textContent = item.cim;
-          article.appendChild(title);
+          const title = document.createElement('h2');       // létrehozzuk a címet
+          const link = document.createElement('a');         // létrehozzuk a linket
+          link.href = item.pdf;                              // a PDF címe lesz a link
+          link.textContent = item.cim;                      // a cím lesz a link szövege
+          link.target = '_blank';                            // új ablakban nyíljon meg
+          title.appendChild(link);                           // a link a címbe kerül
+          article.appendChild(title);                        // a cím az article-hez kerül
 
-          const link = document.createElement('a');
-          link.href = item.pdf;
-          link.textContent = 'Megtekintés';
-          link.target = '_blank';
-          article.appendChild(link);
-
-          container.appendChild(article);
+          container.appendChild(article);                    // az article a containerbe kerül
         });
       })
       .catch(err => {

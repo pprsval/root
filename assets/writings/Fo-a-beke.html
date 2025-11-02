@@ -5,32 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fő a béke – novella</title>
   <style>
+    /* --- Alap beállítások --- */
     body {
       font-family: "Georgia", "Cambria", serif;
-      max-width: 550px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-      background-color: #fafafa;
-      color: #222;
-      line-height: 1.6;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      line-height: 1.45;
       transition: background 0.3s, color 0.3s;
     }
 
-    h1 {
+    /* --- Fejléc blokk --- */
+    header.site-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    header .back-arrow {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      text-decoration: none;
+      color: white;
+      background-color: #2980b9;
+      padding: 5px 8px;
+      border-radius: 80px;
+      transition: background-color 0.3s;
+    }
+    .back-arrow:hover {
+      background-color: #1d5f8a;
+    }
+
+    header h1 {
       font-family: "Calibri Light", sans-serif;
-      font-size: 2.2em;
-      color: #2f5496;
-      text-align: center;
+      font-size: 2.4em;
       margin-bottom: 0.3em;
+      letter-spacing: 0.02em;
     }
 
-    h2 {
+    header h2 {
       font-size: 1.1em;
-      color: #666;
-      text-align: center;
-      margin-bottom: 1.5em;
+      font-weight: normal;
+      letter-spacing: 0.1em;
+      margin: 0;
+      opacity: 0.7;
     }
 
+    header .underline {
+      width: 60%;
+      height: 2px;
+      background: currentColor;
+      opacity: 0.2;
+      margin: 1rem auto 0;
+    }
+
+    /* --- Gombok --- */
     .controls {
       text-align: center;
       margin-bottom: 1.5em;
@@ -39,84 +70,109 @@
     button {
       font-size: 0.8em;
       padding: 0.4em 0.8em;
-      margin: 0 0.3em;
+      margin: 0.3em;
       cursor: pointer;
-      background: oklab(77.634% 0.00205 0.15242);
-      color: white;
       border: none;
-      border-radius: 2px;
-      transition: background 0.5s;
+      border-radius: 3px;
+      color: white;
+      transition: background 0.3s;
     }
 
-    button:hover {
-      background: #1d3a6d;
-    }
+    button:hover { opacity: 0.9; }
 
+    /* --- Világos téma --- */
+    body.light {
+      background: #fafafa;
+      color: #222;
+    }
+    body.light header h1 { color: #2f5496; }
+    body.light header h2 { color: #555; }
+    body.light button { background: #2f5496; }
+
+    /* --- Sötét téma --- */
+    body.dark {
+      background: #121212;
+      color: #e0e0e0;
+    }
+    body.dark header h1 { color: #81a1c1; }
+    body.dark header h2 { color: #a3a3a3; }
+    body.dark button { background: #81a1c1; color: #121212; }
+
+    /* --- Szépia téma --- */
+    body.sepia {
+      background: #f4ecd8;
+      color: #4b3b1f;
+    }
+    body.sepia header h1 { color: #704214; }
+    body.sepia header h2 { color: #8a6b4f; }
+    body.sepia button { background: #b58b56; }
+
+    /* --- Novella szövegformázás --- */
     .novella {
-      white-space: pre-wrap;
       text-align: justify;
-      font-size: 1em; /* alapméret */
+      font-size: 1.05em;
+      letter-spacing: 0.01em;
+      word-spacing: 0.05em;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1.5em 1.8em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .novella p {
+      text-indent: 1.5em;
+      margin: 0;
+      padding: 0;
+    }
+
+    body.dark .novella {
+      background: rgba(30, 30, 30, 0.4);
+    }
+
+    body.sepia .novella {
+      background: rgba(244, 236, 216, 0.6);
     }
 
     footer {
       margin-top: 3em;
       text-align: center;
       font-size: 0.9em;
-      color: #777;
+      opacity: 0.7;
     }
-
-    /* Sötét mód */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-
-    body.dark-mode h1 {
-      color: #81a1c1;
-    }
-
-    body.dark-mode h2 {
-      color: #a3a3a3;
-    }
-
-    body.dark-mode button {
-      background: #81a1c1;
-      color: #121212;
-    }
-
-    body.dark-mode button:hover {
-      background: #4f6d8f;
-    }
-    .back-arrow {
-    display: inline-block;
-    text-decoration: none;
-    color: black; /* Szöveg színe */
-    background-color: #2980b9; /* Háttérszín */
-    padding: 5px 5px; /* Párnázás */
-    border-radius: 80px; /* Lekerekített sarkok */
-    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
-}
   </style>
 </head>
-<body>
+<body class="light">
+
+  <!-- Fejléc -->
   <header class="site-header">
-    <h1><a href="../../pages/writings.html" class="back-arrow">&#8678;</a></h1>
+    <a href="../../pages/writings.html" class="back-arrow">&#8678;</a>
+    <h1>Fő a béke</h1>
+    <h2>Novella – 2025</h2>
+    <div class="underline"></div>
   </header>
 
-  <h1>Fő a béke</h1>
-  <h2>2025</h2>
-
-  <!-- 🔹 Betűméret állító gombok és sötét mód -->
+  <!-- Gombok -->
   <div class="controls">
     <button onclick="changeFontSize(1)">A+</button>
     <button onclick="changeFontSize(-1)">A–</button>
     <button onclick="resetFontSize()">Alap</button>
-    <button onclick="toggleDarkMode()">🌙 Sötét mód</button>
+    <br>
+    <button onclick="setTheme('light')">🌞 Világos</button>
+    <button onclick="setTheme('dark')">🌙 Sötét</button>
+    <button onclick="setTheme('sepia')">📜 Szépia</button>
   </div>
 
+  <!-- Novella szövege -->
   <div class="novella" id="novella">
-Józsi fordul be a kocsmába. Munkatársa szülinapi bulija reggelig tartott, hazafelé meg miért ne? -Még benézzünk ide is. Meglátva Beliánt, kicsit megsajnálta és egy sört hozott neki és magának is. Józsi hamar kézbe vette a társalgás irányítását. Munkáról, jó és rossz főnökökről, talpraesettségről, autókról, a boldogságról szóló maratoni monológja nagyon untatta Beliánt: - De ilyen az élet Bélikém -mondja. - Mindig van valami zűr. Majd felhúzza két vállát és hunyorítva szinte szét kürtölve hozzáteszi: - Nincs olyan ember, akinek ne lenne valami gondja, minimum egy adósság, nem? Félálomból vágta rá a választ, a vele szemben ülő Belián: - Hát a gyerekek, válaszol egykedvűen - nincs gondjuk. A szájától húzta vissza az üveget és tette le az asztalra, majd derűsen nézett el Belián feje fölött: - Ez igen, te, hik, tényleg!
-	Valószínű, Józsi elérte a bejövő hívások figyelmen kívül hagyásának maximális számát, ami automatikusan Giorgiana megjelenését eredményezte. Jódzsi, már megint mikor akarsz hazajönni, nu ți-o fost de ajuns toată noaptea, de ce nu râspunzi la telefon? Ha nem hozzák ki a sodrából, igazán kedves nő a Giorgi és csak egy fejjel magasabb és csupán tizenöt kilóval súlyosabb Józsinál. Nem is csoda, hogy Józsi meg sem próbálta befejezni a sörét, hanem: - Na szeva Bélikém, még dumálunk. Belián elnézte ahogy e házaspár elhagyja a helységet. Giorgi és Jódzsi. Menetelve egymás mellet beszélgetnek. Jobb oldalon házak és kerítések, bal oldalon szilva és egyéb gyümölcsfák. Mikor maturizálsz már? – Csendül fel a jól ismert kérdés, majd folytatja -Itt ülnél egész nap, ha nem jövök érted! Mit tudtál beszélni azzal a néma fiúval? Beszél az egyáltalán? – mondja Giorgiana. Na bine amu` dragă, m-am distrat cu băieții, nu te stresa - nyugtatva a bestiát érdeklődik - Mit csinálnak a gyerekek? Mit csináljanak? Rosszak, játszanak, mint a gyerekek – anyanyelvén hozzáteszi:    - N-au nici un stres. Semmi gondjuk, mi? – és egy erős békítő mondatot indít: - Na akkor menjünk délután a strandra, ce zici? Izgatottá válik a nő: – Régen voltunk, nincs fürdésruhám, az a sárga virágos már nem jó rám, szerintem szettem fel a lány óta, vagyis lehet, hogy beleférnék cât de cât, de jó lenne már egy új. Közben Józsi elmerül gondolataiban, amíg felesége hangosan gondolkodik. Kéne szólni ennek Beliánnak, jöjjön ő is, rendes fiú – de eszébe jut, hogy egy nagy baj van vele. – Csak kár, hogy nem sokat beszél. Lelkiismeretét azért megnyugtatja: - Ha megyünk még, majd legközelebb szólók neki is. Az biztos.
+Józsi fordul be a kocsmába. Munkatársa szülinapi bulija reggelig tartott, hazafelé meg miért ne? -Még benézzünk ide is. Meglátva Beliánt, kicsit megsajnálta és egy sört hozott neki és magának is. Józsi hamar kézbe vette a társalgás irányítását. Munkáról, jó és rossz főnökökről, talpraesettségről, autókról, a boldogságról szóló maratoni monológja nagyon untatta Beliánt: - De ilyen az élet Bélikém -mondja. - Mindig van valami zűr. Majd felhúzza két vállát és hunyorítva szinte szét kürtölve hozzáteszi: - Nincs olyan ember, akinek ne lenne valami gondja, minimum egy adósság, nem? Félálomból vágta rá a választ, a vele szemben ülő Belián: - Hát a gyerekek, válaszol egykedvűen - nincs gondjuk.
+
+A szájától húzta vissza az üveget és tette le az asztalra, majd derűsen nézett el Belián feje fölött: - Ez igen, te, hik, tényleg!
+
+Valószínű, Józsi elérte a bejövő hívások figyelmen kívül hagyásának maximális számát, ami automatikusan Giorgiana megjelenését eredményezte. Jódzsi, már megint mikor akarsz hazajönni, nu ți-o fost de ajuns toată noaptea, de ce nu râspunzi la telefon? Ha nem hozzák ki a sodrából, igazán kedves nő a Giorgi és csak egy fejjel magasabb és csupán tizenöt kilóval súlyosabb Józsinál. Nem is csoda, hogy Józsi meg sem próbálta befejezni a sörét, hanem: - Na szeva Bélikém, még dumálunk.
+
+Belián elnézte ahogy e házaspár elhagyja a helységet. Giorgi és Jódzsi. Menetelve egymás mellet beszélgetnek. Jobb oldalon házak és kerítések, bal oldalon szilva és egyéb gyümölcsfák. Mikor maturizálsz már? – Csendül fel a jól ismert kérdés, majd folytatja -Itt ülnél egész nap, ha nem jövök érted! Mit tudtál beszélni azzal a néma fiúval? Beszél az egyáltalán? – mondja Giorgiana.
+
+Na bine amu` dragă, m-am distrat cu băieții, nu te stresa - nyugtatva a bestiát érdeklődik - Mit csinálnak a gyerekek? Mit csináljanak? Rosszak, játszanak, mint a gyerekek – anyanyelvén hozzáteszi: - N-au nici un stres. Semmi gondjuk, mi? – és egy erős békítő mondatot indít: - Na akkor menjünk délután a strandra, ce zici? Izgatottá válik a nő: – Régen voltunk, nincs fürdésruhám, az a sárga virágos már nem jó rám, szerintem szettem fel a lány óta, vagyis lehet, hogy beleférnék cât de cât, de jó lenne már egy új. Közben Józsi elmerül gondolataiban, amíg felesége hangosan gondolkodik. Kéne szólni ennek Beliánnak, jöjjön ő is, rendes fiú – de eszébe jut, hogy egy nagy baj van vele. – Csak kár, hogy nem sokat beszél. Lelkiismeretét azért megnyugtatja: - Ha megyünk még, majd legközelebb szólók neki is. Az biztos.
   </div>
 
   <footer>
@@ -124,12 +180,13 @@ Józsi fordul be a kocsmába. Munkatársa szülinapi bulija reggelig tartott, ha
   </footer>
 
   <script>
-    const novella = document.getElementById('writings');
-    let fontSize = 1; // em egységben
+    /* --- Betűméret --- */
+    const novella = document.getElementById('novella');
+    let fontSize = 1;
 
     function changeFontSize(change) {
       fontSize += change * 0.1;
-      fontSize = Math.max(0.6, Math.min(fontSize, 2)); // korlátozás
+      fontSize = Math.max(0.6, Math.min(fontSize, 2));
       novella.style.fontSize = fontSize + 'em';
     }
 
@@ -138,11 +195,21 @@ Józsi fordul be a kocsmába. Munkatársa szülinapi bulija reggelig tartott, ha
       novella.style.fontSize = '1em';
     }
 
-    // 🔹 Sötét mód kapcsoló
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
+    /* --- Színtémák --- */
+    function setTheme(themeName) {
+      document.body.className = themeName;
+      localStorage.setItem('theme', themeName);
     }
-  </script>
 
+    const saved = localStorage.getItem('theme');
+    if (saved) document.body.className = saved;
+
+    /* --- Automatikus bekezdésformázás --- */
+    window.addEventListener('DOMContentLoaded', () => {
+      const text = novella.textContent.trim();
+      const paragraphs = text.split(/\n\s*\n/);
+      novella.innerHTML = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+    });
+  </script>
 </body>
 </html>
