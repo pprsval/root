@@ -48,9 +48,51 @@
     "kep": null
   },
   {
-    "cim": "Rajzok 2018 ",
+    "cim": "Rajzok 2018",
     "tipus": "grafika",
     "pdf": "../assets/drawings/rajz_katalog.pdf",
+    "kep": null
+  },
+  {
+    "cim": "2025087-csillag",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/tiz-csillag.jpg",
+    "kep": null
+  },
+  {
+    "cim": "2025087-csillag",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/tiz-csillag.png",
+    "kep": null
+  },
+  {
+    "cim": "20250808-ea",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/2025 11 08 - ea.jpg",
+    "kep": null
+  },
+  {
+    "cim": "20250808-ea-01 ",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/ea_01.png",
+    "kep": null
+  },
+  {
+    "cim": "20250808-ea-01",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/ea.png",
+    "kep": null
+  },
+  {
+    "cim": "20250808-eu",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/2025 11 08 - eu.jpg",
+    "kep": null
+  },
+  {
+    "cim": "20250808-eu",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/eu.jpg",
     "kep": null
   }
 ]
