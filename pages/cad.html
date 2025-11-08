@@ -68,7 +68,7 @@
             div.appendChild(img);
             div.addEventListener('click', () => {
               if (item.pdf && item.pdf.trim() !== "") {
-                window.open(item.pdf, '_blank');
+                window.location.href = item.pdf;
               }
             });
           } else if (item.pdf && item.pdf.trim() !== "") {
@@ -89,7 +89,7 @@
 
             // Kattintásra megnyitás új fülön
             canvas.addEventListener('click', () => {
-              window.open(item.pdf, '_blank');
+              window.location.href = item.pdf;
             });
           }
 

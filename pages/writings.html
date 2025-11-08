@@ -61,7 +61,7 @@
           const link = document.createElement('a');         // létrehozzuk a linket
           link.href = item.pdf;                              // a PDF címe lesz a link
           link.textContent = item.cim;                      // a cím lesz a link szövege
-          link.target = '_blank';                            // új ablakban nyíljon meg
+          link.target = '_self';                            // új ablakban nyíljon meg
           title.appendChild(link);                           // a link a címbe kerül
           article.appendChild(title);                        // a cím az article-hez kerül
 
