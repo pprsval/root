@@ -10,5 +10,11 @@
     "tipus": "novella",
     "pdf": "../assets/writings/Fo-a-beke.html",
     "kep": "../assets/writings/fo-a-beke.png"
+  },
+  {
+    "cim": "CAD való neked!",
+    "tipus": "CAD cikk",
+    "pdf": "../assets/writings/CAD-valo-neked.pdf",
+    "kep": "../assets/images/CAD-valo-neked.jpg"
   }
 ]
