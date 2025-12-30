@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fő a béke – novella</title>
+  <style>
+    /* --- Alap beállítások --- */
+    body {
+      font-family: "Georgia", "Cambria", serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      line-height: 1.45;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* --- Fejléc blokk --- */
+    header.site-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    header .back-arrow {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      text-decoration: none;
+      color: white;
+      background-color: #2980b9;
+      padding: 5px 8px;
+      border-radius: 80px;
+      transition: background-color 0.3s;
+    }
+    .back-arrow:hover {
+      background-color: #1d5f8a;
+    }
+
+    header h1 {
+      font-family: "Calibri Light", sans-serif;
+      font-size: 2.4em;
+      margin-bottom: 0.3em;
+      letter-spacing: 0.02em;
+    }
+
+    header h2 {
+      font-size: 1.1em;
+      font-weight: normal;
+      letter-spacing: 0.1em;
+      margin: 0;
+      opacity: 0.7;
+    }
+
+    header .underline {
+      width: 60%;
+      height: 2px;
+      background: currentColor;
+      opacity: 0.2;
+      margin: 1rem auto 0;
+    }
+
+    /* --- Gombok --- */
+    .controls {
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
+
+    button {
+      font-size: 0.8em;
+      padding: 0.4em 0.8em;
+      margin: 0.3em;
+      cursor: pointer;
+      border: none;
+      border-radius: 3px;
+      color: white;
+      transition: background 0.3s;
+    }
+
+    button:hover { opacity: 0.9; }
+
+    /* --- Világos téma --- */
+    body.light {
+      background: #fafafa;
+      color: #222;
+    }
+    body.light header h1 { color: #2f5496; }
+    body.light header h2 { color: #555; }
+    body.light button { background: #2f5496; }
+
+    /* --- Sötét téma --- */
+    body.dark {
+      background: #121212;
+      color: #e0e0e0;
+    }
+    body.dark header h1 { color: #81a1c1; }
+    body.dark header h2 { color: #a3a3a3; }
+    body.dark button { background: #81a1c1; color: #121212; }
+
+    /* --- Szépia téma --- */
+    body.sepia {
+      background: #f4ecd8;
+      color: #4b3b1f;
+    }
+    body.sepia header h1 { color: #704214; }
+    body.sepia header h2 { color: #8a6b4f; }
+    body.sepia button { background: #b58b56; }
+
+    /* --- Novella szövegformázás --- */
+    .novella {
+      text-align: justify;
+      font-size: 1.05em;
+      letter-spacing: 0.01em;
+      word-spacing: 0.05em;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1.5em 1.8em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .novella p {
+      text-indent: 1.5em;
+      margin: 0;
+      padding: 0;
+    }
+
+    body.dark .novella {
+      background: rgba(30, 30, 30, 0.4);
+    }
+
+    body.sepia .novella {
+      background: rgba(244, 236, 216, 0.6);
+    }
+
+    footer {
+      margin-top: 3em;
+      text-align: center;
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body class="light">
+
+  <!-- Fejléc -->
+  <header class="site-header">
+    <a href="../../pages/writings.html" class="back-arrow">&#8678;</a>
+    <h1>Mentőkabin</h1>
+    <h2>Egy átlagos napra – 2025</h2>
+    <div class="underline"></div>
+  </header>
+
+  <!-- Gombok -->
+  <div class="controls">
+    <button onclick="changeFontSize(1)">A+</button>
+    <button onclick="changeFontSize(-1)">A–</button>
+    <button onclick="resetFontSize()">Alap</button>
+    <br>
+    <button onclick="setTheme('light')">🌞 Világos</button>
+    <button onclick="setTheme('dark')">🌙 Sötét</button>
+    <button onclick="setTheme('sepia')">📜 Szépia</button>
+  </div>
+
+  <!-- Novella szövege -->
+  <div class="novella" id="novella">
+    Belián erősen összpontosít, hogy az ajtót épp a kellő erősséggel csapja be maga után. Fenébe, még egyszer, túl gyenge volt. Kartusz kicsit felhúzza szája sarkát, aztán beletapos a gázba. Elkerülni, igen, mindennél fontosabb elkerülni, a párbeszédet Kartusszal. Vele beszélgetni, hát bonyolult. Lélegezni, óvatosan, lassan. Figyelmét most a felhőkre koncentrálja, de nem tart sokáig a felhőfókusz, mert beértek egy autót. Belián lassan rácsúsztatja jobb kezét az ajtó markolatra. Sötétkék Sandero az áldozat, szépen gurul a fehér vonlak között, nem indukál kellemetlenséget. A Sandero megjelenésén látszik, szinte sugárzik belőle a vágy, hogy egy agresszív sofőr előzze meg – gondolta Belián. Micsoda véletlen, hogy pont egy olyan autó közelít hátulról, amelynek vezetője nem más, mint Kartusz, aki már nyújtogatja is hol jobbra, hol pedig balra a nyakát. Kartusz kedvenc része következik: átlagos tempóban haladó autót előzni, ezt pedig trágár szófordulatokkal fűszerezni. Ilyenkor az anyósülésben lévő útitárs, ha az Belián, az ajtóba kapaszkodva egy olyan gombot képzel a markolat alsó részére, amit, ha mutatóujjával megnyom, egy szempillantás alatt mentőkabinná alakul az anyósülés. Fehérre festett páncélborítás épül köré és ugyanazon szempillantás alatt katapultál Kartusz mellől jó magasra szállva, háttérzeneként pedig kedvencei közül válogathat, kellemes hangulatot biztosítva a földet érésig.  Tiszta az út, szemből semmi. Indul a jelenet: kattan a bal jelző, hirtelen gyorsulás és sávváltás, még erősebb fölösleges gyorsulás és előzés majd visszaállás a sávba. Belián szokásához híven az ajtó markolatot szorongatja, mélyen lélegzik, szinte a csontjáig hatolnak Kartusz mocskos szavai és viselkedése undort vált ki belőle. Belián, próbálva leplezni érzéseit, bambul a messzi tájra, közben fogait összeszorítva, arra gondol, hogy neki ez már tényleg sok, erre neki nincs szüksége. Annyira mérges, hogy most úgy érzi megmondja Kartusznak a magáét, hogy felnőtt ember így nem viselkedhet! Most már nem érdekli, hogy párbeszédbe kell bonyolódjon ezzel nehéz emberrel. Betelt a pohár. Az ajtó karzatra támaszkodva kicsit megigazítja magát a székben, köszörül egyet a torkán és Kartusz felé fordul. De mikor már szólásra nyitná száját, mutatóujjával rátapint egy lenyomó gombra. Kartusz is jobbra forgatja fejét, most egymást nézik. Belián mosolyog mert megkönnyebbült és mert tudja mi fog következni, ha megnyomja azt az újonnan felfedezett és rég áhított gombot.
+    
+    Ezerkétszáz méteren teker egyet a hangerőszabályzón:
+
+    *
+  
+    
+   Sebességmámor, mindenki ezzel vádol
+
+  A kilométeróra is csak lehunyt szemmel számol
+
+  A  gumi lángol, az autó szinte táncol
+
+  A lábam le nem szál a gázról…
+  
+  *
+  
+  (Sub Bass Monster: Sebességmámor)
+  </div>
+
+  <footer>
+    &copy; 2025 Peres Valentin
+  </footer>
+
+  <script>
+    /* --- Betűméret --- */
+    const novella = document.getElementById('novella');
+    let fontSize = 1;
+
+    function changeFontSize(change) {
+      fontSize += change * 0.1;
+      fontSize = Math.max(0.6, Math.min(fontSize, 2));
+      novella.style.fontSize = fontSize + 'em';
+    }
+
+    function resetFontSize() {
+      fontSize = 1;
+      novella.style.fontSize = '1em';
+    }
+
+    /* --- Színtémák --- */
+    function setTheme(themeName) {
+      document.body.className = themeName;
+      localStorage.setItem('theme', themeName);
+    }
+
+    const saved = localStorage.getItem('theme');
+    if (saved) document.body.className = saved;
+
+    /* --- Automatikus bekezdésformázás --- */
+    window.addEventListener('DOMContentLoaded', () => {
+      const text = novella.textContent.trim();
+      const paragraphs = text.split(/\n\s*\n/);
+      novella.innerHTML = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+    });
+  </script>
+</body>
+</html>

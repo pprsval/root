@@ -1,4 +1,10 @@
 [
+   {
+    "cim": "CAD való neked! (Egy tömörített ismertető)",
+    "tipus": "CAD cikk",
+    "pdf": "../assets/cad/CAD-valo-neked.pdf",
+    "kep": "../assets/images/CAD-valo-neked.jpg"
+  },
   {
     "cim": "Aquarell kockatartó",
     "tipus": "CAD",
