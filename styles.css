@@ -25,15 +25,12 @@ body {
 /* Fejléc stílus */
 header {
     background-color: #2c3e50;
-    padding: 20px;
+    padding: 1px;
     text-align: center;
 }
 
 /* Konténer stílus */
-.container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
+.container { max-width: 600px; /* vagy amekkora szélességet szeretnél */ margin: 0 auto; /* ez középre teszi vízszintesen */ text-align: center; /* opcionális: ha a szöveget is középre akarod */ }
 }
 
 /* Profil stílus */
