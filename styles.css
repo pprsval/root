@@ -30,7 +30,9 @@ header {
 }
 
 /* Konténer stílus */
-.container { max-width: 600px; /* vagy amekkora szélességet szeretnél */ margin: 0 auto; /* ez középre teszi vízszintesen */ text-align: center; /* opcionális: ha a szöveget is középre akarod */ }
+.container { max-width: 600px; /* vagy amekkora szélességet szeretnél */ 
+             margin: 0 auto; /* ez középre teszi vízszintesen */ 
+             text-align: center; /* opcionális: ha a szöveget is középre akarod */ 
 }
 
 /* Profil stílus */

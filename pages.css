@@ -79,12 +79,7 @@ body {
   margin-right: 1.5rem;
 }
 
-/* Cím és link – egymás alatt, balra igazítva */
-.writing-item h2,
-.writing-item a {
-  margin: 0;
-  text-align: left;
-}
+
 
 /* Ha a linket a címhez szeretnéd közelebb hozni, adj margin‑t */
 .writing-item a {

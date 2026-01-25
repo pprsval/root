@@ -3,76 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digitális könyveim – Peres Valentin</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <title>homepage of Peres Valentin honlapja</title>
+
   <link rel="stylesheet" href="./../pages.css">
+
+  <style>
+
+    /* --- Könyvrács --- */
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      padding: 20px;
+    }
+
+    /* --- Kártya --- */
+    .card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+    }
+
+    /* --- Borító --- */
+    .card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+
+    /* --- Szöveg --- */
+    .card .container {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .card h4 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 8px 0 12px 0;
+      font-size: 0.95rem;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.1);
+      transition: background .2s ease;
+    }
+
+    .card a:hover {
+      background: rgba(0,0,0,0.2);
+    }
+
+  </style>
 </head>
+
 <body>
+
   <header class="site-header">
-    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Sorok között</h1>
+    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Sorok között - Between the lines</h1>
   </header>
-  <!-- Profilkép (bal oldalon) -->
+
   <div class="main-wrapper">
+
     <aside class="sidebar">
       <div class="profile">
         <img src="../data/writings.png" alt="Profilkép">
       </div>
     </aside>
 
+    <main class="content">
 
-  <!-- Dinamikus tartalom -->
-  <main class="content">
-    <div id="writings-list" class="loading"></div>
-  </main>
+      <!-- Könyvrács kezdete -->
+      <div class="book-grid">
 
-  <script>
-    // ----------- JSON betöltése és DOM‑építés -------------
-    fetch('../data/writings.json')
-      .then(r => {
-        if (!r.ok) throw new Error(`JSON betöltési hiba: ${r.status}`);
-        return r.json();
-      })
-      .then(writings => {
-        const container = document.getElementById('writings-list');
-        container.classList.remove('loading');
-        container.innerHTML = '';
+        <div class="card">
+          <img src="../assets/writings/ranezesre.png" alt="Könyv 1 borító">
+          <div class="container">
+            <h4><b>Ránézésre</b></h4>
+            <p>P. Valentin</p>
+            <a href="../assets/writings/" target="_blank">Olvasás</a>
+          </div>
+        </div>
 
-        if (!writings.length) {
-          container.textContent = 'Jelenleg nincs megjeleníthető írás.';
-          return;
-        }
+        <div class="card">
+          <img src="../assets/writings/hamarosan.png" alt="Könyv 2 borító">
+          <div class="container">
+            <h4><b>Hamarosan</b></h4>
+            <p>nasoramaH</p>
+            <a href="../data/book2.pdf" target="_blank">Olvasás</a>
+          </div>
+        </div>
 
-        writings.forEach(item => {
-          const article = document.createElement('article');
-          article.className = 'writing-item';
+        <div class="card">
+          <img src="../assets/writings/hamarosan.png" alt="Könyv 3 borító">
+          <div class="container">
+            <h4><b>Hamarosan</b></h4>
+            <p>nasoramaH</p>
+            <a href="../data/book3.pdf" target="_blank">Olvasás</a>
+          </div>
+        </div>
 
-          if (item.kep) {
-            const img = document.createElement('img');
-            img.src = item.kep;
-            img.alt = `${item.cim} előnézete`;
-            img.className = 'thumb';
-            article.appendChild(img);
-          }
+        <!-- További könyvek ugyanígy -->
 
-          const title = document.createElement('h2');       // létrehozzuk a címet
-          const link = document.createElement('a');         // létrehozzuk a linket
-          link.href = item.pdf;                              // a PDF címe lesz a link
-          link.textContent = item.cim;                      // a cím lesz a link szövege
-          link.target = '_self';                            // új ablakban nyíljon meg
-          title.appendChild(link);                           // a link a címbe kerül
-          article.appendChild(title);                        // a cím az article-hez kerül
+      </div>
+      <!-- Könyvrács vége -->
 
-          container.appendChild(article);                    // az article a containerbe kerül
-        });
-      })
-      .catch(err => {
-        console.error(err);
-        const container = document.getElementById('writings-list');
-        container.classList.remove('loading');
-        container.textContent = 'Hiba történt a tartalom betöltésekor.';
-      });
-  </script>
+    </main>
+  </div>
+
 </body>
 </html>

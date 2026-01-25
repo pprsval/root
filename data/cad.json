@@ -9,13 +9,13 @@
     "cim": "Aquarell kockatartó",
     "tipus": "CAD",
     "pdf": "../assets/cad/Aqua_sup.pdf",
-    "kep": "../assets/cad/aqua.bmp"
+    "kep": "../assets/cad/aqua.png"
   },
   {
     "cim": "Könyvkuckó / Little Free Library",
     "tipus": "CAD",
     "pdf": "../assets/cad/konyvkucko_little_free_library.pdf",
-    "kep": "../assets/cad/lfl_thbm.bmp"
+    "kep": "../assets/cad/lfl_thbm.png"
   },
   {
     "cim": "Lemezlépcső",
