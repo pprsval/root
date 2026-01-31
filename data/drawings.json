@@ -1,75 +1,9 @@
 [
   {
-    "cim": "2025087-csillag",
+    "cim": "Sketches Traditional-Digital",
     "tipus": "grafika",
-    "pdf": "../assets/drawings/tiz-csillag.jpg",
-    "kep": null
-  },
-  {
-    "cim": "2025087-csillag",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/tiz-csillag.png",
-    "kep": null
-  },
-  {
-    "cim": "20250808-ea",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025 11 08 - ea.jpg",
-    "kep": null
-  },
-  {
-    "cim": "20250808-ea-01 ",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/ea_01.png",
-    "kep": null
-  },
-  {
-    "cim": "20250808-ea-01",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/ea.png",
-    "kep": null
-  },
-  {
-    "cim": "20250808-eu",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025 11 08 - eu.jpg",
-    "kep": null
-  },
-  {
-    "cim": "20250808-eu",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/eu.jpg",
-    "kep": null
-  },
-  {
-    "cim": "2025-10-25-drw_space",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025-10-25-urhja.jpg",
-    "kep": null
-  },
-  {
-    "cim": "2025-10-25-travel_time",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025-10-25-travel_time.jpg",
-    "kep": null
-  },
-  {
-    "cim": "2025-10-25-oldman",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025-10-25-Nogr.jpg",
-    "kep": null
-  },
-  {
-    "cim": "2025-10-25-man",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025-10-25-man.jpg",
-    "kep": null
-  },
-  {
-    "cim": "2025-10-25-borcan",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2025-10-25-borcan.jpg",
-    "kep": null
+    "pdf": "../assets/assets/drawings/Sketches-Traditional-Digital.pdf",
+    "kep": "../assets/drawings/Sketches-Traditional-Digital/sketches-cover.png"
   },
   {
     "cim": "Mail art - Food for body and mind",

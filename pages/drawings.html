@@ -182,7 +182,7 @@
             img.src = file;
             img.alt = item.cim || 'Rajz';
             img.title = item.cim || '';
-            img.addEventListener('click', () => openLightbox(imageList.indexOf(file)));
+            img.addEventListener('click', () => window.open(item.pdf, '_blank'));
             figure.appendChild(img);
             imageList.push(file);
           } else if (isPdf) {
