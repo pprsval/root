@@ -6,27 +6,28 @@
     "kep": "../assets/drawings/Sketches-Traditional-Digital/sketches-cover.png"
   },
   {
-    "cim": "Mail art - Food for body and mind",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/Mail-art-body-soul/mail_art_food_for_body_and_mind.pdf",
-    "kep": "../assets/drawings/Mail-art-body-soul/mail-art-body-soul.png"
-  },
-  {
     "cim": "Portré",
     "tipus": "rajz",
     "pdf": "../assets/drawings/eszkport.jpg",
     "kep": null
   },
   {
-    "cim": "Mail art - Coffee",
-    "tipus": "illusztráció",
-    "pdf": "../assets/drawings/Mail-Art-coffee/mail_art_coffee.pdf",
-    "kep": "../assets/drawings/Mail-Art-coffee/peres-valentin.jpg"
-  },
-  {
     "cim": "Rajzok 2018",
     "tipus": "grafika",
     "pdf": "../assets/drawings/2018/rajz_katalog.pdf",
     "kep": "../assets/drawings/2018/draw-2018.png"
-  }  
+  } ,
+  {
+    "cim": "Mail art - Food for body and mind",
+    "tipus": "grafika",
+    "pdf": "../assets/drawings/Mail-art-body-soul/mail_art_food_for_body_and_mind.pdf",
+    "kep": "../assets/drawings/Mail-art-body-soul/mail-art-body-soul.png"
+  },
+  {
+    "cim": "Mail art - Coffee",
+    "tipus": "illusztráció",
+    "pdf": "../assets/drawings/Mail-Art-coffee/mail_art_coffee.pdf",
+    "kep": "../assets/drawings/Mail-Art-coffee/peres-valentin.jpg"
+  }
+  
 ]
