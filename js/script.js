@@ -17,6 +17,10 @@
     'drawings.html': {
       json: '../data/drawings.json',
       handler: handleDrawings          // később definiálva
+    },
+        'drawings.html': {
+      json: '../data/drawings.json',
+      handler: handleDrawings          // később definiálva
     }
   };
 

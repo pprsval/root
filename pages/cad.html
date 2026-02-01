@@ -6,9 +6,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <title>Mühely - Workbench</title>
+  <title>Visuals / Drawings – Peres Valentin</title>
   <link rel="stylesheet" href="./../pages.css">
-
   <style>
     /* --- Galéria --- */
     .gallery {
@@ -126,12 +125,9 @@
     }
   </style>
 </head>
-
-<!-- ⭐ A LÉNYEG: ITT A HELYES BODY -->
-<body data-json="../data/cad.json">
-
+<body>
   <header class="site-header">
-    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Mühely - Workbench</h1>
+    <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Mühely/Workbench</h1>
   </header>
 
   <div class="main-wrapper">
@@ -154,8 +150,98 @@
     <button class="close">&times;</button>
   </div>
 
-  <!-- ⭐ A KÖZÖS GALÉRIA SCRIPT -->
-  <script src="../js/gallery-loader.js"></script>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const prevBtn = lightbox.querySelector('.prev');
+    const nextBtn = lightbox.querySelector('.next');
+    const closeBtn = lightbox.querySelector('.close');
 
+    let currentIndex = 0;
+    let imageList = [];
+
+    // ----------- JSON betöltése és galéria építése -------------
+    fetch('../data/cad.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`JSON betöltési hiba: ${r.status}`);
+        return r.json();
+      })
+      .then(drawings => {
+        const container = document.getElementById('gallery');
+        container.classList.remove('loading');
+        container.innerHTML = '';
+
+        drawings.forEach((item, index) => {
+          const figure = document.createElement('figure');
+          const file = item.kep || item.pdf;
+          const isImage = /\.(jpg|jpeg|png|gif|webp)$/i.test(file);
+          const isPdf = /\.pdf$/i.test(file);
+
+          if (isImage) {
+            const img = document.createElement('img');
+            img.src = file;
+            img.alt = item.cim || 'Rajz';
+            img.title = item.cim || '';
+            img.addEventListener('click', () => window.open(item.pdf, '_blank'));
+            figure.appendChild(img);
+            imageList.push(file);
+          } else if (isPdf) {
+            const pdfDiv = document.createElement('div');
+            pdfDiv.className = 'pdf-thumb';
+            pdfDiv.innerHTML = `<span>📄</span><div>${item.cim || 'PDF fájl'}</div>`;
+            pdfDiv.addEventListener('click', () => window.open(file, '_blank'));
+            figure.appendChild(pdfDiv);
+          }
+
+          const caption = document.createElement('figcaption');
+          caption.textContent = item.cim || '';
+          figure.appendChild(caption);
+          container.appendChild(figure);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        const container = document.getElementById('gallery');
+        container.classList.remove('loading');
+        container.textContent = 'Hiba történt a képek betöltésekor.';
+      });
+
+    // ----------- Lightbox működés -------------
+    function openLightbox(index) {
+      if (index < 0 || index >= imageList.length) return;
+      currentIndex = index;
+      lightboxImg.src = imageList[currentIndex];
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % imageList.length;
+      lightboxImg.src = imageList[currentIndex];
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      lightboxImg.src = imageList[currentIndex];
+    }
+
+    // Gomb események
+    nextBtn.addEventListener('click', e => { e.stopPropagation(); showNext(); });
+    prevBtn.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
+    closeBtn.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    lightbox.addEventListener('click', closeLightbox);
+
+    // Billentyűparancsok
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+  </script>
 </body>
 </html>
