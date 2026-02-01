@@ -6,25 +6,130 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <title>CAD / Drawings</title>
+  <title>Mühely - Workbench</title>
   <link rel="stylesheet" href="./../pages.css">
+
   <style>
-    .gallery-item {
-      display: inline-block;
-      margin: 10px;
+    /* --- Galéria --- */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .gallery figure {
+      margin: 0;
       text-align: center;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      object-fit: cover;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
     }
-    .gallery-item img, .gallery-item canvas {
-      max-width: 200px;
-      max-height: 200px;
-      display: block;
-      margin-bottom: 5px;
-      border: 1px solid #ccc;
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .gallery .pdf-thumb {
+      background: #fafafa;
+      border: 2px dashed #ccc;
+      border-radius: 6px;
+      padding: 30px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-family: "Instrument Serif", serif;
+      transition: background 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .gallery .pdf-thumb:hover {
+      background: #f0f0f0;
+      transform: scale(1.03);
+    }
+
+    .gallery .pdf-thumb span {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .gallery figcaption {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #555;
+      font-family: "Instrument Serif", serif;
+    }
+
+    /* --- Lightbox --- */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .lightbox button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .lightbox .prev { left: 30px; }
+    .lightbox .next { right: 30px; }
+    .lightbox .close {
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      background: none;
     }
   </style>
 </head>
-<body>
+
+<!-- ⭐ A LÉNYEG: ITT A HELYES BODY -->
+<body data-json="../data/cad.json">
+
   <header class="site-header">
     <h1><a href="../../index.html" class="back-arrow">&#8678;</a> Mühely - Workbench</h1>
   </header>
@@ -37,75 +142,20 @@
     </aside>
 
     <main class="content">
-      <div id="gallery" class="loading"></div>
+      <div id="gallery" class="gallery loading"></div>
     </main>
   </div>
 
-  <!-- PDF.js könyvtár -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.104/pdf.min.js"></script>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button class="prev">&#10094;</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="next">&#10095;</button>
+    <button class="close">&times;</button>
+  </div>
 
-  <script>
-    fetch('../data/cad.json')
-      .then(r => r.json())
-      .then(items => {
-        const gallery = document.getElementById('gallery');
-        gallery.classList.remove('loading');
-        gallery.innerHTML = '';
+  <!-- ⭐ A KÖZÖS GALÉRIA SCRIPT -->
+  <script src="../js/gallery-loader.js"></script>
 
-        if (!items.length) {
-          gallery.textContent = 'Jelenleg nincs megjeleníthető tartalom.';
-          return;
-        }
-
-        items.forEach((item, index) => {
-          const div = document.createElement('div');
-          div.className = 'gallery-item';
-
-          if (item.kep && item.kep.trim() !== "") {
-            const img = document.createElement('img');
-            img.src = item.kep;
-            img.alt = item.cim;
-            div.appendChild(img);
-            div.addEventListener('click', () => {
-              if (item.pdf && item.pdf.trim() !== "") {
-                window.location.href = item.pdf;
-              }
-            });
-          } else if (item.pdf && item.pdf.trim() !== "") {
-            const canvas = document.createElement('canvas');
-            div.appendChild(canvas);
-
-            // PDF első oldal renderelése canvas-ra
-            pdfjsLib.getDocument(item.pdf).promise.then(pdf => {
-              pdf.getPage(1).then(page => {
-                const scale = 0.5;
-                const viewport = page.getViewport({ scale });
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-                const context = canvas.getContext('2d');
-                page.render({ canvasContext: context, viewport });
-              });
-            });
-
-            // Kattintásra megnyitás új fülön
-            canvas.addEventListener('click', () => {
-              window.location.href = item.pdf;
-            });
-          }
-
-          const caption = document.createElement('div');
-          caption.textContent = item.cim;
-          div.appendChild(caption);
-
-          gallery.appendChild(div);
-        });
-      })
-      .catch(err => {
-        console.error(err);
-        const gallery = document.getElementById('gallery');
-        gallery.classList.remove('loading');
-        gallery.textContent = 'Hiba történt a tartalom betöltésekor.';
-      });
-  </script>
 </body>
 </html>
