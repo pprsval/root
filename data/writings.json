@@ -6,15 +6,15 @@
     "kep": "../assets/writings/ranezesre.png"
   },
   {
-    "cim": "Fő a béke (novella)",
-    "tipus": "novella",
-    "pdf": "../assets/writings/Fo-a-beke.html",
-    "kep": "../assets/writings/fo-a-beke.png"
+    "cim": "",
+    "tipus": "",
+    "pdf": "",
+    "kep": "."
   },
   {
-    "cim": "Mentőkabin (novella)",
+    "cim": "",
     "tipus": "novella",
-    "pdf": "../assets/writings/mentokabin.html",
-    "kep": "../assets/writings/mentokabin.png"
+    "pdf": "",
+    "kep": ""
   }
 ]
