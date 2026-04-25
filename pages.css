@@ -20,9 +20,9 @@ body {
     display: inline-block;
     text-decoration: none;
     color: black; /* Szöveg színe */
-    background-color: #ffffff; /* Háttérszín */
+    background-color: #9a9386; /* Háttérszín */
     padding: 0px 0px; /* Párnázás */
-    border-radius: 5px; /* Lekerekített sarkok */
+    border-radius: 0px; /* Lekerekített sarkok */
     transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
 }
 
