@@ -1,6 +1,6 @@
 /* Alap stílusok */
 body {
-    font-family: "Instrument Serif", serif;
+    font-family: "Times New Roman", Times, serif;
     margin: 10;
     padding: 0;
     background-color: #9a9386;
@@ -8,9 +8,9 @@ body {
 }
 
 /* Konténer stílus */
-.container { max-width: 600px; /* vagy amekkora szélességet szeretnél */ 
+.container { max-width: 300px; /* vagy amekkora szélességet szeretnél */ 
              margin: 0 auto; /* ez középre teszi vízszintesen */ 
-             text-align:left; /* opcionális: ha a szöveget is középre akarod */ 
+             text-align:center; /* opcionális: ha a szöveget is középre akarod */ 
 }
 
 /* Profil stílus */
@@ -21,6 +21,7 @@ body {
 
 /* Profilkép stílus */
 .profile img {
+    padding: 50px 0px 10px;
     max-width: 150px; 
 }
 
