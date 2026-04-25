@@ -4,25 +4,25 @@
 body {
   margin: 0;
   font-family: 'Instrument Serif', serif;
-  background-color: #408080;
+  background-color: #dab16a;
 }
 
 /* Header – teljes szélesség, saját stílus */
 .site-header {
-  width: 100%;
-  padding: 1rem 2rem;
-  background: #2c3e50;               /* sötétebb árnyalat a kontraszthoz */
+  width: 5%;
+  padding: 0;
+  background: #ffffff;               /* sötétebb árnyalat a kontraszthoz */
   color: black;
-  text-align: center;
+  text-align: left;
 }
 
 .back-arrow {
     display: inline-block;
     text-decoration: none;
     color: black; /* Szöveg színe */
-    background-color: #2980b9; /* Háttérszín */
-    padding: 5px 5px; /* Párnázás */
-    border-radius: 80px; /* Lekerekített sarkok */
+    background-color: #ffffff; /* Háttérszín */
+    padding: 0px 0px; /* Párnázás */
+    border-radius: 5px; /* Lekerekített sarkok */
     transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
 }
 

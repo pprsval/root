@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galéria</title>
+    <link rel="stylesheet" href="./../pages.css">
+    <style>
+        
+        /* Alap beállítások - Minimalista stílus */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        p.subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Galéria rács */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            opacity: 0.85;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+        }
+
+        /* Lightbox (nagy nézet) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            color: white;
+            text-align: center;
+            width: 100%;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Reszponzív finomhangolás */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><a href="../../index.html" class="back-arrow">&#8678;</a></h1>
+        <p class="subtitle">OnePlus 7T</p>
+    </header>
+
+    <div class="gallery">
+        <!-- Képek - másold be a saját képeidet ide -->
+
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/IMG_20260329_185057.png" alt="Kép leírása" data-full="kepek/kep3_full.jpg">
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/20260318_0050.jpg" alt="Kép leírása" data-full="kepek/kep3_full.jpg">
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/20260318_0048.jpg" alt="Kép leírása" data-full="kepek/kep5_full.jpg">
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/20260318_0049.jpg" alt="Kép leírása" data-full="kepek/kep6_full.jpg">
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/20260314_0005.jpg" alt="Háazikó" data-full="image_1767557924038.jpeg">
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/20260314_0008.jpg" alt="Kép lefffírása" data-full="kepek/kep2_full.jpg">
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/20260314_0026.jpg" alt="Kép leírása" data-full="kepek/kep3_full.jpg">
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(this)">
+            <img src="../assets/photo/20260314_0033.jpg" alt="Kép leírása" data-full="kepek/kep4_full.jpg">
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Saját galéria</p>
+    </footer>
+
+    <!-- Lightbox konténer -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <script>
+        // Lightbox funkciók
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const fullSizeSrc = img.getAttribute('data-full') || img.src;
+            const altText = img.getAttribute('alt');
+            
+            lightboxImg.src = fullSizeSrc;
+            lightboxCaption.textContent = altText;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Görgés tiltása
+        }
+
+        function closeLightbox(event) {
+            // Csak akkor zárjuk be, ha nem magára a képre kattintottak
+            if (event.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+                document.body.style.overflow = ''; // Görgés engedélyezése
+            }
+        }
+
+        // ESC billentyűvel is bezárható
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox({target: lightbox});
+            }
+        });
+    </script>
+
+</body>
+</html>
