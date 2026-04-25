@@ -1,23 +1,16 @@
 /* Alap stílusok */
 body {
     font-family: "Instrument Serif", serif;
-    margin: 0;
+    margin: 10;
     padding: 0;
-    background-color: #dab16a;
+    background-color: #9a9386;
     color: black;
-}
-
-/* Fejléc stílus */
-header {
-    background-color: #60a261;
-    padding: 0px;
-    text-align: center;
 }
 
 /* Konténer stílus */
 .container { max-width: 600px; /* vagy amekkora szélességet szeretnél */ 
              margin: 0 auto; /* ez középre teszi vízszintesen */ 
-             text-align: center; /* opcionális: ha a szöveget is középre akarod */ 
+             text-align:left; /* opcionális: ha a szöveget is középre akarod */ 
 }
 
 /* Profil stílus */
@@ -28,29 +21,19 @@ header {
 
 /* Profilkép stílus */
 .profile img {
-    max-width: 200px; 
-}
-
-/* Tartalom stílus */
-.content {
-    flex: 5;
-}
-
-/* Linkek stílus */
-.content h2 {
-    margin: 15px 0;
+    max-width: 150px; 
 }
 
 .content a {
     text-decoration: none;
-    color: rgb(241, 255, 245);
+    color: rgb(255, 255, 255);
     padding: 1px;
     border-radius: 5px;
     transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
 }
 
 .content a:hover {
-    background-color: #52aa46; /* Világosabb szín hover állapotban */
+    background-color: #e2be20; /* Világosabb szín hover állapotban */
 }
 
 /* Mobil nézet */
