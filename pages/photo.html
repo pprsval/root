@@ -5,37 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galéria</title>
     <link rel="stylesheet" href="./../pages.css">
+
     <style>
-        
-        /* Alap beállítások - Minimalista stílus */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 40px 20px;
             background-color:#9a9386;
             color: #333;
-            line-height: 1.6;
         }
 
-        header {
-            max-width: 1200px;
-            margin: 0 auto 60px;
-            text-align: center;
-        }
-
-        h1 {
-            font-weight: 300;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        p.subtitle {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        /* Galéria rács */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -45,23 +24,14 @@
         }
 
         .gallery-item {
-            position: relative;
             cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            opacity: 0.85;
         }
 
         .gallery-item img {
             width: 100%;
-            height: auto;
             display: block;
-            border-radius: 2px;
         }
 
-        /* Lightbox (nagy nézet) */
         .lightbox {
             display: none;
             position: fixed;
@@ -69,11 +39,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            background: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
-            padding: 0px;
         }
 
         .lightbox.active {
@@ -83,162 +51,74 @@
         .lightbox img {
             max-width: 90%;
             max-height: 90vh;
-            object-fit: contain;
-            border-radius: 2px;
         }
 
-        .lightbox-close {
-            position: left;
-            top: 0px;
-            right: 0px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            line-height: 1;
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: 30px;
-            color: white;
-            text-align: center;
-            width: 100%;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             margin-top: 80px;
-            color: #ffffff;
-            font-size: 0.9rem;
-        }
-
-        /* Reszponzív finomhangolás */
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 15px;
-            }
-            
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
+            color: #fff;
         }
     </style>
 </head>
+
 <body>
-    <header>
-    </header>
-    <h1><a href="../../index.html" class="back-arrow">&#8678;</a></h1>
-    <div class="gallery">
-        <!-- Képek - másold be a saját képeidet ide -->
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260426_0022.jpg" alt="013" data-full="../assets/photo/20260426_0022.jpg">
-        </div>
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260426_0019.jpg" alt="012" data-full="../assets/photo/20260426_0019.jpg">
-        </div>
+<h1><a href="../../index.html">&#8678;</a></h1>
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260426_0012.jpg" alt="011" data-full="../assets/photo/20260426_0012.jpg">
-        </div>
+<div class="gallery"></div>
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260426_0007.jpg" alt="010" data-full="../assets/photo/20260426_0007.jpg">
-        </div>
+<footer>
+    <p>&copy; 2026</p>
+</footer>
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260426_0006.jpg" alt="009" data-full="../assets/photo/20260426_0006.jpg">
-        </div>
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <img id="lightbox-img">
+</div>
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/IMG_20260329_185057.png" alt="008" data-full="../assets/photo/IMG_20260329_185057.png">
-        </div>
-        
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260318_0050.jpg" alt="007" data-full="../assets/photo/20260318_0050.jpg">
-        </div>
-        
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260318_0048.jpg" alt="006" data-full="../assets/photo/20260318_0048.jpg">
-        </div>
+<!-- EZ FONTOS -->
+<script src="../images.js"></script>
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260318_0049.jpg" alt="005" data-full="../assets/photo/20260318_0049.jpg">
-        </div>
+<script>
+const gallery = document.querySelector(".gallery");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260314_0005.jpg" alt="004" data-full="../assets/photo/20260314_0005.jpg">
-        </div>
-        
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260314_0008.jpg" alt="003" data-full="../assets/photo/20260314_0008.jpg">
-        </div>
+// galéria generálás
+images.forEach(name => {
+    const div = document.createElement("div");
+    div.className = "gallery-item";
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260314_0026.jpg" alt="002" data-full="../assets/photo/20260314_0026.jpg">
-        </div>
+    const img = document.createElement("img");
+    img.src = `../assets/photo/${name}`;
+    img.setAttribute("data-full", img.src);
+    img.loading = "lazy";
 
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="../assets/photo/20260314_0033.jpg" alt="001" data-full="../assets/photo/20260314_0033.jpg">
-        </div>
+    div.appendChild(img);
 
-    </div>
+    div.onclick = () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+    };
 
-    <footer>
-        <p>&copy; 2026</p>
-    </footer>
+    gallery.appendChild(div);
+});
 
-    <!-- Lightbox konténer -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-        <img id="lightbox-img" src="" alt="">
-        <div class="lightbox-caption" id="lightbox-caption"></div>
-    </div>
+// lightbox close
+function closeLightbox(e) {
+    if (e.target !== lightboxImg) {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+    }
+}
 
-    <script>
-        // Lightbox funkciók
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-
-        function openLightbox(element) {
-            const img = element.querySelector('img');
-            const fullSizeSrc = img.getAttribute('data-full') || img.src;
-            const altText = img.getAttribute('alt');
-            
-            lightboxImg.src = fullSizeSrc;
-            lightboxCaption.textContent = altText;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Görgés tiltása
-        }
-
-        function closeLightbox(event) {
-            // Csak akkor zárjuk be, ha nem magára a képre kattintottak
-            if (event.target !== lightboxImg) {
-                lightbox.classList.remove('active');
-                lightboxImg.src = '';
-                document.body.style.overflow = ''; // Görgés engedélyezése
-            }
-        }
-
-        // ESC billentyűvel is bezárható
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox({target: lightbox});
-            }
-        });
-    </script>
+// ESC bezárás
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        lightbox.classList.remove("active");
+    }
+});
+</script>
 
 </body>
 </html>
