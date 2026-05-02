@@ -5,14 +5,14 @@
   const source = container.dataset.source;
   const folder = container.dataset.folder || "";
 
-  let items = [];
-  let images = [];
+  let state = [];
 
   fetch(source)
     .then(r => r.json())
     .then(data => {
-      items = sortByDate(normalize(data));
-      render(items);
+      state = normalize(data);
+      state = sortByDate(state);
+      render(state);
     })
     .catch(err => {
       console.error(err);
@@ -27,9 +27,11 @@
     }));
   }
 
-  // ---------------- SORT ----------------
+  // ---------------- SORT (DATE FIRST) ----------------
   function sortByDate(data) {
-    return data.sort((a, b) => getTime(b) - getTime(a));
+    return data.sort((a, b) => {
+      return getTime(b) - getTime(a);
+    });
   }
 
   function getTime(item) {
@@ -50,9 +52,8 @@
   // ---------------- RENDER ----------------
   function render(items) {
     container.innerHTML = "";
-    images = [];
 
-    items.forEach((item, index) => {
+    items.forEach(item => {
       const file = item.file;
       const full = folder + file;
 
@@ -61,37 +62,36 @@
       const isImg = /\.(jpg|jpeg|png|webp)$/i.test(file);
       const isPdf = /\.pdf$/i.test(file);
 
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+
       // ---------------- IMAGE ----------------
       if (isImg) {
         const img = document.createElement("img");
         img.src = full;
         img.loading = "lazy";
 
-        images.push(full);
+        img.onclick = () => openLightbox(full);
 
-        const imgIndex = images.length - 1;
-
-        img.onclick = () => openLightbox(imgIndex);
-
-        fig.appendChild(img);
+        thumb.appendChild(img);
       }
 
       // ---------------- PDF ----------------
       else if (isPdf) {
         const pdf = document.createElement("div");
         pdf.className = "pdf-thumb";
-
         pdf.innerHTML = `
           <div style="font-size:40px">📄</div>
-          <div>${item.title || file}</div>
+          <div>${item.title}</div>
         `;
 
         pdf.onclick = () => window.open(full, "_blank");
 
-        fig.appendChild(pdf);
+        thumb.appendChild(pdf);
       }
 
-      // ---------------- CAPTION ----------------
+      fig.appendChild(thumb);
+
       const cap = document.createElement("figcaption");
       cap.textContent = item.title || "";
       fig.appendChild(cap);
@@ -111,11 +111,8 @@
 
   document.body.appendChild(lightbox);
 
-  let current = 0;
-
-  function openLightbox(index) {
-    current = index;
-    img.src = images[current];
+  function openLightbox(src) {
+    img.src = src;
     lightbox.classList.add("active");
   }
 
