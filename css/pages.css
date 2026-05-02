@@ -145,4 +145,154 @@ body {
 .pdf-thumb:hover {
   background: #f5f5f5;
 }
+
+/* -------------------------------------------------
+   Általános layout – header + flex‑wrapper
+   ------------------------------------------------- */
+body {
+  margin: 0;
+  font-family: 'Instrument Serif', serif;
+  background-color: #9a9386;
+}
+
+/* Header – teljes szélesség, saját stílus */
+.site-header {
+  width: 5%;
+  padding: 0;
+  background: #ffffff;               /* sötétebb árnyalat a kontraszthoz */
+  color: black;
+  text-align: left;
+}
+
+.back-arrow {
+    display: inline-block;
+    text-decoration: none;
+    color: black; /* Szöveg színe */
+    background-color: #9a9386; /* Háttérszín */
+    padding: 0px 0px; /* Párnázás */
+    border-radius: 0px; /* Lekerekített sarkok */
+    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
+}
+
+/* Flex‑wrapper, ami csak a sidebar‑t és a content‑et tartalmazza */
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 68px);    /* 68 px ≈ a header magassága, ha fix */
+}
+
+/* -------------------------------------------------
+   Bal oldali profilkép (sidebar)
+   ------------------------------------------------- */
+.sidebar {
+  flex: 0 0 200px;               /* fix szélesség, mobilon átméretezhető */
+  background: #408080;
+  padding: 1rem;
+  text-align: center;            /* kép középre */
+}
+.sidebar .profile img {
+  width: 100%;
+  max-width: 150px;              /* a képet ne legyen nagyobb, mint 150 px */
+  height: auto;
+  border-radius: 8px;
+}
+
+/* -------------------------------------------------
+   Fő tartalom
+   ------------------------------------------------- */
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* -------------------------------------------------
+   Íráslista – flex‑sor a kép + szöveg
+   ------------------------------------------------- */
+.writing-item {
+  display: flex;
+  align-items: center;           /* függőleges középre */
+  background: #408080;             /* világos háttér a kártyáknak */
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,.08);
+}
+
+/* Kép (ha van) */
+.writing-item .thumb {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 1.5rem;
+}
+
+
+
+/* Ha a linket a címhez szeretnéd közelebb hozni, adj margin‑t */
+.writing-item a {
+  margin-left: 0.75rem;          /* szóköz a cím és a link között */
+  color:black;
+  text-decoration: none;
+}
+.writing-item a:hover { text-decoration: underline; }
+
+/* -------------------------------------------------
+   Mobilra – a sidebar felül, a lista teljes szélességben
+   ------------------------------------------------- */
+@media (max-width: 768px) {
+  .main-wrapper {               /* a flex‑irány most függőlegesen */
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex: 0 0 auto;
+    padding: 0.5rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .writing-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;          /* mobilon a szöveg középre kerül */
+  }
+
+  .writing-item .thumb {
+    margin: 0 0 1rem 0;
+  }
+
+  .writing-item a {
+    margin-left: 0;               /* a mobil nézetben ne legyen bal‑margin */
+    margin-top: 0.5rem;           /* kis távolság a cím alatti linkhez */
+  }
+
+  .thumb img {
+  width: 100%;
+  border-radius: 6px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.thumb img:hover {
+  transform: scale(1.02);
+}
+
+.pdf-thumb {
+  padding: 25px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.pdf-thumb:hover {
+  background: #f5f5f5;
+}
+}
+
 }
