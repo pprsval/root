@@ -1,12 +1,42 @@
 [
   {
+    "title": "2018",
+    "file": "2018",
+    "date": "2026-01-01",
+    "tags": [
+      "drawing"
+    ]
+  },
+  {
+    "title": "Mail Art coffee",
+    "file": "Mail-Art-coffee",
+    "date": "2026-01-01",
+    "tags": [
+      "drawing"
+    ]
+  },
+  {
+    "title": "Sketches Traditional Digital",
+    "file": "Sketches-Traditional-Digital",
+    "date": "2026-01-01",
+    "tags": [
+      "drawing"
+    ]
+  },
+  {
     "title": "eszkport",
     "file": "eszkport.jpg",
-    "cover": "eszkport.jpg"
+    "date": "2026-01-01",
+    "tags": [
+      "drawing"
+    ]
   },
   {
     "title": "februar THB",
     "file": "februar_THB.jpg",
-    "cover": "februar_THB.jpg"
+    "date": "2026-01-01",
+    "tags": [
+      "drawing"
+    ]
   }
 ]

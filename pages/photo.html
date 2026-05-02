@@ -1,124 +1,62 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galéria</title>
-    <link rel="stylesheet" href="./../css/pages.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            background-color:#9a9386;
-            color: #333;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  <title>Photo – Peres Valentin</title>
 
-        .gallery-item {
-            cursor: pointer;
-        }
+  <link rel="stylesheet" href="./../css/pages.css">
 
-        .gallery-item img {
-            width: 100%;
-            display: block;
-        }
+  <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
 
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
+    .gallery figure {
+      margin: 0;
+    }
 
-        .lightbox.active {
-            display: flex;
-        }
+    .gallery img {
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-        }
+    .gallery img:hover {
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
 
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            color: #fff;
-        }
-    </style>
+    figcaption {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+      font-family: "Instrument Serif", serif;
+    }
+  </style>
 </head>
 
 <body>
 
-<h1><a href="../../index.html">&#8678;</a></h1>
+<header>
+  <h1><a href="../../index.html">&#8678;</a></h1>
+</header>
 
-<div class="gallery"></div>
-
-<footer>
-    <p>&copy; 2026</p>
-</footer>
-
-<!-- lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-    <img id="lightbox-img">
+<div class="gallery"
+     data-source="../data/photo.json"
+     data-folder="../assets/photo/">
 </div>
-
-<!-- EZ FONTOS -->
-<script src="../images.js"></script>
-
-<script>
-const gallery = document.querySelector(".gallery");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-
-// galéria generálás
-images.forEach(name => {
-    const div = document.createElement("div");
-    div.className = "gallery-item";
-
-    const img = document.createElement("img");
-    img.src = `../assets/photo/${name}`;
-    img.setAttribute("data-full", img.src);
-    img.loading = "lazy";
-
-    div.appendChild(img);
-
-    div.onclick = () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add("active");
-    };
-
-    gallery.appendChild(div);
-});
-
-// lightbox close
-function closeLightbox(e) {
-    if (e.target !== lightboxImg) {
-        lightbox.classList.remove("active");
-        lightboxImg.src = "";
-    }
-}
-
-// ESC bezárás
-document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-        lightbox.classList.remove("active");
-    }
-});
-</script>
+<script src="../js/gallery-engine.js"></script>
 
 </body>
 </html>

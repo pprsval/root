@@ -1,8 +1,18 @@
 [
   {
-    "title": "Ránézésre (versek)",
-    "type": "vers",
+    "title": "PV Ranezesre",
     "file": "PV-Ranezesre.pdf",
-    "cover": "ranezesre.png"
+    "date": "2026-01-01",
+    "tags": [
+      "writing"
+    ]
+  },
+  {
+    "title": "ranezesre",
+    "file": "ranezesre.png",
+    "date": "2026-01-01",
+    "tags": [
+      "writing"
+    ]
   }
 ]

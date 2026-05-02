@@ -2,61 +2,97 @@
   {
     "title": "Aqua sup",
     "file": "Aqua_sup.pdf",
-    "cover": "Aqua_sup.pdf"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "CAD valo neked",
     "file": "CAD-valo-neked.png",
-    "cover": "CAD-valo-neked.png"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "Lemezlepcso striat",
     "file": "Lemezlepcso_striat.pdf",
-    "cover": "Lemezlepcso_striat.pdf"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "MV",
     "file": "MV.jpg",
-    "cover": "MV.jpg"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "MV dekor nyil",
     "file": "MV_dekor_nyil.pdf",
-    "cover": "MV_dekor_nyil.pdf"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "Screenshot 2025 02 15 001229",
     "file": "Screenshot 2025-02-15 001229.png",
-    "cover": "Screenshot 2025-02-15 001229.png"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "aqua",
     "file": "aqua.png",
-    "cover": "aqua.png"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "konyvkucko little free library",
     "file": "konyvkucko_little_free_library.pdf",
-    "cover": "konyvkucko_little_free_library.pdf"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "lepcso thbm",
     "file": "lepcso_thbm.png",
-    "cover": "lepcso_thbm.png"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "lfl thbm",
     "file": "lfl_thbm.png",
-    "cover": "lfl_thbm.png"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "parasolar",
     "file": "parasolar.pdf",
-    "cover": "parasolar.pdf"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   },
   {
     "title": "thbm paras",
     "file": "thbm_paras.jpg",
-    "cover": "thbm_paras.jpg"
+    "date": "2026-01-01",
+    "tags": [
+      "cad"
+    ]
   }
 ]

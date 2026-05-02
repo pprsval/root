@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-  <title>Írások</title>
+  <title>Writings – Peres Valentin</title>
 
   <link rel="stylesheet" href="./../css/pages.css">
 
@@ -27,23 +27,13 @@
 
     .gallery img {
       width: 100%;
-      height: auto;
       border-radius: 6px;
-      object-fit: cover;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: 0.2s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.03);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .gallery figcaption {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      color: #555;
-      font-family: "Instrument Serif", serif;
     }
 
     .pdf-thumb {
@@ -54,89 +44,33 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
-      font-family: "Instrument Serif", serif;
     }
 
     .pdf-thumb:hover {
       background: #f0f0f0;
-      transform: scale(1.03);
     }
 
-    .pdf-thumb span {
-      font-size: 2.5rem;
+    figcaption {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #555;
+      font-family: "Instrument Serif", serif;
     }
   </style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <h1><a href="../../index.html" class="back-arrow">&#8678;</a></h1>
+<header>
+  <h1><a href="../../index.html">&#8678;</a></h1>
 </header>
 
-<div class="main-wrapper">
-  <main class="content">
-    <div id="gallery" class="gallery"></div>
-  </main>
+<div class="gallery"
+     data-source="../data/writings.json"
+     data-folder="../assets/writings/">
 </div>
-
-<script>
-fetch('../data/writings.json')
-  .then(res => res.json())
-  .then(items => {
-    const container = document.getElementById('gallery');
-    container.innerHTML = '';
-
-    items.forEach(item => {
-      const figure = document.createElement('figure');
-
-      const file = item.file;
-      const isImage = /\.(jpg|jpeg|png|gif|webp)$/i.test(file);
-      const isPdf = /\.pdf$/i.test(file);
-
-      // LINK
-      const link = document.createElement('a');
-      link.href = file;
-      link.target = "_blank";
-
-      // KÉP
-      if (isImage) {
-        const img = document.createElement('img');
-        img.src = item.cover || file;
-        img.alt = item.title;
-        link.appendChild(img);
-      }
-
-      // PDF
-      else if (isPdf) {
-        const pdfDiv = document.createElement('div');
-        pdfDiv.className = 'pdf-thumb';
-        pdfDiv.innerHTML = `
-          <span>📄</span>
-          <div>${item.title}</div>
-        `;
-        link.appendChild(pdfDiv);
-      }
-
-      figure.appendChild(link);
-
-      // cím
-      const caption = document.createElement('figcaption');
-      caption.textContent = item.title || '';
-      figure.appendChild(caption);
-
-      container.appendChild(figure);
-    });
-  })
-  .catch(err => {
-    console.error(err);
-    document.getElementById('gallery').innerText =
-      'Hiba történt a tartalom betöltésekor.';
-  });
-</script>
+<script src="../js/gallery-engine.js"></script>
 
 </body>
 </html>

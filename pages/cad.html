@@ -29,21 +29,13 @@
       width: 100%;
       height: auto;
       border-radius: 6px;
-      object-fit: cover;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
+      transition: 0.2s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.03);
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .gallery figcaption {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      color: #555;
-      font-family: "Instrument Serif", serif;
     }
 
     .pdf-thumb {
@@ -54,10 +46,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
-      font-family: "Instrument Serif", serif;
+      transition: 0.2s ease;
     }
 
     .pdf-thumb:hover {
@@ -65,31 +55,27 @@
       transform: scale(1.03);
     }
 
-    .pdf-thumb span {
-      font-size: 2.5rem;
+    figcaption {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #555;
+      font-family: "Instrument Serif", serif;
     }
   </style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <h1>
-    <a href="../../index.html" class="back-arrow">&#8678;</a>
-  </h1>
+<header>
+  <h1><a href="../../index.html">&#8678;</a></h1>
 </header>
 
-<div class="main-wrapper">
-  <main class="content">
-    <div class="gallery"></div>
-  </main>
+<div class="gallery"
+     data-source="../data/cad.json"
+     data-folder="../assets/cad/">
 </div>
 
-<script src="../js/gallery.js"></script>
-
-<script>
-  loadGallery("../data/cad.json", "../assets/cad/");
-</script>
+<script src="../js/gallery-engine.js"></script>
 
 </body>
 </html>
