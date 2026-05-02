@@ -14,21 +14,28 @@
       return r.json();
     })
     .then(data => {
-      items = sortByDate(data);
-
-      // 🔥 REMOVE ALL COVER FILES FROM RENDER LIST
-      const coverSet = new Set(
-        items.filter(i => i.cover).map(i => i.cover)
-      );
-
-      items = items.filter(i => !coverSet.has(i.file));
-
+      items = normalizeData(data);
+      items = sortByDate(items);
+      items = attachCovers(items);
+      items = removeDuplicateCovers(items);
       render(items);
     })
     .catch(err => {
       console.error(err);
       container.innerHTML = "Hiba a tartalom betöltésekor.";
     });
+
+  // ---------------- NORMALIZE ----------------
+  const normalize = (p) => (p || "").split("/").pop().trim();
+  const stripExt = (f) => (f || "").replace(/\.[^/.]+$/, "");
+
+  function normalizeData(data) {
+    return data.map(i => ({
+      ...i,
+      file: normalize(i.file),
+      cover: i.cover ? normalize(i.cover) : null
+    }));
+  }
 
   // ---------------- SORT ----------------
   function sortByDate(data) {
@@ -50,6 +57,42 @@
     return 0;
   }
 
+  // ---------------- AUTO PAIRING ----------------
+  function attachCovers(data) {
+    const images = data.filter(i =>
+      /\.(png|jpg|jpeg|webp)$/i.test(i.file)
+    );
+
+    const pdfs = data.filter(i =>
+      /\.pdf$/i.test(i.file)
+    );
+
+    pdfs.forEach(pdf => {
+      const base = stripExt(pdf.file);
+
+      const match = images.find(img =>
+        stripExt(img.file) === base
+      );
+
+      if (match) {
+        pdf.cover = match.file;
+      }
+    });
+
+    return data;
+  }
+
+  // ---------------- REMOVE DUPLICATES ----------------
+  function removeDuplicateCovers(data) {
+    const coverSet = new Set(
+      data
+        .filter(i => i.cover)
+        .map(i => i.cover)
+    );
+
+    return data.filter(i => !coverSet.has(i.file));
+  }
+
   // ---------------- RENDER ----------------
   function render(items) {
     container.innerHTML = "";
@@ -59,7 +102,6 @@
       const full = folder + file;
 
       const fig = document.createElement("figure");
-
       const thumb = document.createElement("div");
       thumb.className = "thumb";
 
@@ -67,7 +109,7 @@
       const isImage = /\.(jpg|jpeg|png|webp)$/i.test(file);
 
       // ---------------- IMAGE ----------------
-      if (isImage) {
+      if (isImage && !item._isCover) {
         const img = document.createElement("img");
         img.src = full;
         img.alt = item.title || "";
