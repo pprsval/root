@@ -2,7 +2,7 @@
   {
     "title": "2018",
     "file": "2018",
-    "date": "2026-03-03",
+    "date": "2026-05-02",
     "tags": [
       "drawings"
     ]
@@ -10,7 +10,7 @@
   {
     "title": "Mail Art coffee",
     "file": "Mail-Art-coffee",
-    "date": "2026-03-03",
+    "date": "2026-05-02",
     "tags": [
       "drawings"
     ]
@@ -18,7 +18,95 @@
   {
     "title": "Sketches Traditional Digital",
     "file": "Sketches-Traditional-Digital",
-    "date": "2026-03-03",
+    "date": "2026-05-02",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 GRA+COL 01 EDIT",
+    "file": "2026_02_GRA+COL_01_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 GRA+COL 02 EDIT",
+    "file": "2026_02_GRA+COL_02_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 GRA 01 02 EDIT",
+    "file": "2026_02_GRA_01_02_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 GRA 04 GRA EDIT",
+    "file": "2026_02_GRA_04_GRA_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 GRA 05 EDIT",
+    "file": "2026_02_GRA_05_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 GRA 06 EDIT",
+    "file": "2026_02_GRA_06_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 TUS 01 EDIT",
+    "file": "2026_02_TUS_01_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 TUS 02 EDIT",
+    "file": "2026_02_TUS_02_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 TUS 03 EDIT",
+    "file": "2026_02_TUS_03_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 TUS 04 EDIT",
+    "file": "2026_02_TUS_04_EDIT.jpg",
+    "date": "2026-03-01",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 TUS 05 EDIT",
+    "file": "2026_02_TUS_05_EDIT.jpg",
+    "date": "2026-03-01",
     "tags": [
       "drawings"
     ]
@@ -32,8 +120,56 @@
     ]
   },
   {
+    "title": "2026 02 DIG 02",
+    "file": "2026_02_DIG_02.png",
+    "date": "2026-02-14",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 DIG 03",
+    "file": "2026_02_DIG_03.png",
+    "date": "2026-02-14",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "2026 02 DIG 01 EDIT",
+    "file": "2026_02_DIG_01_EDIT.jpg",
+    "date": "2026-02-10",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "Sketches Traditional Digital",
+    "file": "Sketches-Traditional-Digital.pdf",
+    "date": "2026-01-31",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
     "title": "eszkport",
     "file": "eszkport.jpg",
+    "date": "2025-12-30",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "mail art coffee",
+    "file": "mail_art_coffee.pdf",
+    "date": "2025-12-30",
+    "tags": [
+      "drawings"
+    ]
+  },
+  {
+    "title": "rajz katalog",
+    "file": "rajz_katalog.pdf",
     "date": "2025-12-30",
     "tags": [
       "drawings"
