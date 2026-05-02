@@ -13,53 +13,114 @@
   <title>Gallery</title>
 
   <style>
+
+    /* =========================
+       GRID LAYOUT
+    ========================= */
+
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 15px;
       padding: 20px;
     }
 
-    figure { margin: 0; text-align: center; }
-
-    img {
-      width: 100%;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.2s;
+    figure {
+      margin: 0;
+      text-align: center;
     }
 
-    img:hover {
+    /* =========================
+       SAFE IMAGE STYLING
+    ========================= */
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      object-fit: cover;
+    }
+
+    .gallery img:hover {
       transform: scale(1.03);
     }
 
+    /* =========================
+       PDF THUMB FIXED BOX
+    ========================= */
+
     .pdf-thumb {
-      padding: 30px;
+      aspect-ratio: 3 / 4;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       border: 2px dashed #ccc;
       border-radius: 6px;
+
+      overflow: hidden;
+      background: transparent;
       cursor: pointer;
     }
+
+    .pdf-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* fallback inside pdf */
+    .pdf-thumb div {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* =========================
+       CAPTION
+    ========================= */
 
     figcaption {
       font-size: 0.9rem;
       margin-top: 6px;
     }
 
+    /* =========================
+       LIGHTBOX SAFE MODE
+    ========================= */
+
     .lightbox {
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.85);
+
       display: none;
       justify-content: center;
       align-items: center;
+
+      z-index: 9999;
+      overflow: hidden;
     }
 
-    .lightbox.active { display: flex; }
+    .lightbox.active {
+      display: flex;
+    }
 
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 90vw;
+      max-height: 90vh;
+
+      width: auto;
+      height: auto;
+
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
     }
+
   </style>
 </head>
 

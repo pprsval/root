@@ -1,140 +1,175 @@
-/* -------------------------------------------------
-   Általános layout – header + flex‑wrapper
-   ------------------------------------------------- */
+
+/* =========================
+   BASE
+========================= */
+
 body {
   margin: 0;
   font-family: 'Instrument Serif', serif;
   background-color: #9a9386;
 }
 
-/* Header – teljes szélesség, saját stílus */
+/* =========================
+   HEADER
+========================= */
+
 .site-header {
   width: 5%;
-  padding: 0;
-  background: #ffffff;               /* sötétebb árnyalat a kontraszthoz */
+  background: #fff;
   color: black;
-  text-align: left;
 }
 
 .back-arrow {
-    display: inline-block;
-    text-decoration: none;
-    color: black; /* Szöveg színe */
-    background-color: #9a9386; /* Háttérszín */
-    padding: 0px 0px; /* Párnázás */
-    border-radius: 0px; /* Lekerekített sarkok */
-    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  background-color: #9a9386;
 }
 
-/* Flex‑wrapper, ami csak a sidebar‑t és a content‑et tartalmazza */
+/* =========================
+   MAIN LAYOUT
+========================= */
+
 .main-wrapper {
   display: flex;
-  flex-direction: row;
-  min-height: calc(100vh - 68px);    /* 68 px ≈ a header magassága, ha fix */
+  min-height: calc(100vh - 68px);
 }
 
-/* -------------------------------------------------
-   Bal oldali profilkép (sidebar)
-   ------------------------------------------------- */
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar {
-  flex: 0 0 200px;               /* fix szélesség, mobilon átméretezhető */
+  flex: 0 0 200px;
   background: #408080;
   padding: 1rem;
-  text-align: center;            /* kép középre */
+  text-align: center;
 }
+
 .sidebar .profile img {
   width: 100%;
-  max-width: 150px;              /* a képet ne legyen nagyobb, mint 150 px */
+  max-width: 150px;
   height: auto;
   border-radius: 8px;
 }
 
-/* -------------------------------------------------
-   Fő tartalom
-   ------------------------------------------------- */
+/* =========================
+   CONTENT
+========================= */
+
 .content {
   flex: 1;
   padding: 2rem;
 }
 
-/* -------------------------------------------------
-   Íráslista – flex‑sor a kép + szöveg
-   ------------------------------------------------- */
+/* =========================
+   WRITING ITEM (FIXED GRID CORE)
+========================= */
+
 .writing-item {
   display: flex;
-  align-items: center;           /* függőleges középre */
-  background: #408080;             /* világos háttér a kártyáknak */
+  align-items: center;
+  background: #408080;
   border-radius: 6px;
   padding: 1rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,.08);
 }
 
-/* Kép (ha van) */
+/* =========================
+   WRITING THUMB (IMAGE + PDF SAFE BOX)
+========================= */
+
 .writing-item .thumb {
+  flex: 0 0 120px;
   width: 120px;
   height: 120px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 1.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  border-radius: 6px;
 }
 
+/* IMAGE inside writing */
+.writing-item .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
 
+/* =========================
+   PDF THUMB (BULLETPROOF BOX)
+========================= */
 
-/* Ha a linket a címhez szeretnéd közelebb hozni, adj margin‑t */
+.writing-item .pdf-thumb {
+  width: 120px;
+  height: 120px;
+  flex: 0 0 120px;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+
+  overflow: hidden;
+  background: transparent;
+}
+
+/* PDF cover image */
+.writing-item .pdf-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* fallback icon/text */
+.writing-item .pdf-thumb div {
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   LINKS
+========================= */
+
 .writing-item a {
-  margin-left: 0.75rem;          /* szóköz a cím és a link között */
-  color:black;
+  margin-left: 0.75rem;
+  color: black;
   text-decoration: none;
 }
-.writing-item a:hover { text-decoration: underline; }
 
-/* -------------------------------------------------
-   Mobilra – a sidebar felül, a lista teljes szélességben
-   ------------------------------------------------- */
-@media (max-width: 768px) {
-  .main-wrapper {               /* a flex‑irány most függőlegesen */
-    flex-direction: column;
-  }
+/* =========================
+   GALLERY (CAD / PHOTO / DRAWINGS)
+========================= */
 
-  .sidebar {
-    width: 100%;
-    flex: 0 0 auto;
-    padding: 0.5rem;
-  }
-
-  .content {
-    padding: 1rem;
-  }
-
-  .writing-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;          /* mobilon a szöveg középre kerül */
-  }
-
-  .writing-item .thumb {
-    margin: 0 0 1rem 0;
-  }
-
-  .writing-item a {
-    margin-left: 0;               /* a mobil nézetben ne legyen bal‑margin */
-    margin-top: 0.5rem;           /* kis távolság a cím alatti linkhez */
-  }
-
-  .thumb img {
+.thumb img,
+.pdf-thumb img {
   width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
   border-radius: 6px;
-  transition: 0.2s;
+  display: block;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .thumb img:hover {
   transform: scale(1.02);
 }
 
+/* =========================
+   PDF CARD (OUTSIDE WRITINGS)
+========================= */
+
 .pdf-thumb {
-  padding: 25px;
+  padding: 20px;
   border: 2px dashed #ccc;
   border-radius: 8px;
   text-align: center;
@@ -146,172 +181,69 @@ body {
   background: #f5f5f5;
 }
 
-/* -------------------------------------------------
-   Általános layout – header + flex‑wrapper
-   ------------------------------------------------- */
-body {
-  margin: 0;
-  font-family: 'Instrument Serif', serif;
-  background-color: #9a9386;
-}
-
-/* Header – teljes szélesség, saját stílus */
-.site-header {
-  width: 5%;
-  padding: 0;
-  background: #ffffff;               /* sötétebb árnyalat a kontraszthoz */
-  color: black;
-  text-align: left;
-}
-
-.back-arrow {
-    display: inline-block;
-    text-decoration: none;
-    color: black; /* Szöveg színe */
-    background-color: #9a9386; /* Háttérszín */
-    padding: 0px 0px; /* Párnázás */
-    border-radius: 0px; /* Lekerekített sarkok */
-    transition: background-color 0.3s; /* Áttűnés a háttérszín változásakor */
-}
-
-/* Flex‑wrapper, ami csak a sidebar‑t és a content‑et tartalmazza */
-.main-wrapper {
-  display: flex;
-  flex-direction: row;
-  min-height: calc(100vh - 68px);    /* 68 px ≈ a header magassága, ha fix */
-}
-
-/* -------------------------------------------------
-   Bal oldali profilkép (sidebar)
-   ------------------------------------------------- */
-.sidebar {
-  flex: 0 0 200px;               /* fix szélesség, mobilon átméretezhető */
-  background: #408080;
-  padding: 1rem;
-  text-align: center;            /* kép középre */
-}
-.sidebar .profile img {
-  width: 100%;
-  max-width: 150px;              /* a képet ne legyen nagyobb, mint 150 px */
-  height: auto;
-  border-radius: 8px;
-}
-
-/* -------------------------------------------------
-   Fő tartalom
-   ------------------------------------------------- */
-.content {
-  flex: 1;
-  padding: 2rem;
-}
-
-/* -------------------------------------------------
-   Íráslista – flex‑sor a kép + szöveg
-   ------------------------------------------------- */
-.writing-item {
-  display: flex;
-  align-items: center;           /* függőleges középre */
-  background: #408080;             /* világos háttér a kártyáknak */
-  border-radius: 6px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,.08);
-}
-
-/* Kép (ha van) */
-.writing-item .thumb {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 1.5rem;
-}
-
-
-
-/* Ha a linket a címhez szeretnéd közelebb hozni, adj margin‑t */
-.writing-item a {
-  margin-left: 0.75rem;          /* szóköz a cím és a link között */
-  color:black;
-  text-decoration: none;
-}
-.writing-item a:hover { text-decoration: underline; }
-
-/* -------------------------------------------------
-   Mobilra – a sidebar felül, a lista teljes szélességben
-   ------------------------------------------------- */
-@media (max-width: 768px) {
-  .main-wrapper {               /* a flex‑irány most függőlegesen */
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    flex: 0 0 auto;
-    padding: 0.5rem;
-  }
-
-  .content {
-    padding: 1rem;
-  }
-
-  .writing-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;          /* mobilon a szöveg középre kerül */
-  }
-
-  .writing-item .thumb {
-    margin: 0 0 1rem 0;
-  }
-
-  .writing-item a {
-    margin-left: 0;               /* a mobil nézetben ne legyen bal‑margin */
-    margin-top: 0.5rem;           /* kis távolság a cím alatti linkhez */
-  }
-
-  .thumb img {
-  width: 250px;
-  border-radius: 6px;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-.thumb img:hover {
-  transform: scale(1.02);
-}
-
-.pdf-thumb {
-  padding: 25px;
-  border: 2px dashed #ccc;
-  border-radius: 8px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.pdf-thumb:hover {
-  background: #f5f5f5;
-}
-}
+/* =========================
+   LIGHTBOX (NO STRETCH GUARANTEE)
+========================= */
 
 .lightbox {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.9);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   z-index: 9999;
+  overflow: hidden;
 }
 
 .lightbox img {
   max-width: 90vw;
   max-height: 90vh;
+
   width: auto;
   height: auto;
+
   object-fit: contain;
+  display: block;
   border-radius: 6px;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .main-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .writing-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .writing-item .thumb,
+  .writing-item .pdf-thumb {
+    flex: none;
+    width: x;
+    height: 160px;
+    margin-bottom: 1rem;
+  }
+
+  .writing-item a {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
 }
