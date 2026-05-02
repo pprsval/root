@@ -5,171 +5,118 @@
   const source = container.dataset.source;
   const folder = container.dataset.folder || "";
 
-  let items = [];
-  let draggedIndex = null;
+  let state = [];
 
   fetch(source)
-    .then(r => {
-      if (!r.ok) throw new Error(`JSON load error: ${r.status}`);
-      return r.json();
-    })
+    .then(r => r.json())
     .then(data => {
-      items = data;
-
-      // 🔥 SORT (legfrissebb elöl)
-      items.sort((a, b) => getTime(b) - getTime(a));
-
-      render(items);
-      enableDrag();
-      showExportButton();
+      state = normalize(data);
+      state = sortByDate(state);
+      render(state);
     })
     .catch(err => {
       console.error(err);
-      container.innerHTML = "Hiba a tartalom betöltésekor.";
+      container.innerHTML = "Load error";
     });
 
-  // ---------------- DATE ----------------
+  // ---------------- NORMALIZE ----------------
+  function normalize(data) {
+    return data.map((item, i) => ({
+      ...item,
+      _index: i
+    }));
+  }
+
+  // ---------------- SORT (DATE FIRST) ----------------
+  function sortByDate(data) {
+    return data.sort((a, b) => {
+      return getTime(b) - getTime(a);
+    });
+  }
+
   function getTime(item) {
     if (item.date) {
       const t = Date.parse(item.date);
       if (!isNaN(t)) return t;
     }
 
-    if (item.file) {
-      const match = item.file.match(/\d{4}[-]?\d{2}[-]?\d{2}/);
-      if (match) {
-        const n = match[0].replace(/-/g, "");
-        return Date.parse(`${n.slice(0,4)}-${n.slice(4,6)}-${n.slice(6,8)}`);
-      }
+    const match = item.file?.match(/\d{8}/);
+    if (match) {
+      const d = match[0];
+      return Date.parse(`${d.slice(0,4)}-${d.slice(4,6)}-${d.slice(6,8)}`);
     }
 
     return 0;
   }
 
   // ---------------- RENDER ----------------
-  function render(list) {
+  function render(items) {
     container.innerHTML = "";
 
-    list.forEach(item => {
-      const fullPath = folder + item.file;
-      const figure = document.createElement("figure");
+    items.forEach(item => {
+      const file = item.file;
+      const full = folder + file;
 
-      const isImage = /\.(jpg|jpeg|png|webp)$/i.test(item.file);
-      const isPdf = /\.pdf$/i.test(item.file);
+      const fig = document.createElement("figure");
 
-      if (isImage) {
+      const isImg = /\.(jpg|jpeg|png|webp)$/i.test(file);
+      const isPdf = /\.pdf$/i.test(file);
+
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+
+      // ---------------- IMAGE ----------------
+      if (isImg) {
         const img = document.createElement("img");
-        img.src = fullPath;
-        img.alt = item.title || "";
+        img.src = full;
         img.loading = "lazy";
-        img.onclick = () => openLightbox(fullPath);
-        figure.appendChild(img);
+
+        img.onclick = () => openLightbox(full);
+
+        thumb.appendChild(img);
       }
 
+      // ---------------- PDF ----------------
       else if (isPdf) {
         const pdf = document.createElement("div");
         pdf.className = "pdf-thumb";
         pdf.innerHTML = `
-          <span>📄</span>
-          <div>${item.title || ""}</div>
+          <div style="font-size:40px">📄</div>
+          <div>${item.title}</div>
         `;
-        pdf.onclick = () => window.open(fullPath, "_blank");
-        figure.appendChild(pdf);
+
+        pdf.onclick = () => window.open(full, "_blank");
+
+        thumb.appendChild(pdf);
       }
+
+      fig.appendChild(thumb);
 
       const cap = document.createElement("figcaption");
       cap.textContent = item.title || "";
-      figure.appendChild(cap);
+      fig.appendChild(cap);
 
-      container.appendChild(figure);
+      container.appendChild(fig);
     });
-  }
-
-  // ---------------- DRAG & DROP ----------------
-  function enableDrag() {
-    const figures = container.querySelectorAll("figure");
-
-    figures.forEach((fig, index) => {
-      fig.draggable = true;
-
-      fig.addEventListener("dragstart", () => {
-        draggedIndex = index;
-        fig.classList.add("dragging");
-      });
-
-      fig.addEventListener("dragend", () => {
-        fig.classList.remove("dragging");
-      });
-
-      fig.addEventListener("dragover", e => e.preventDefault());
-
-      fig.addEventListener("drop", () => {
-        if (draggedIndex === null) return;
-
-        const moved = items.splice(draggedIndex, 1)[0];
-        items.splice(index, 0, moved);
-
-        draggedIndex = null;
-
-        render(items);
-        enableDrag();
-      });
-    });
-  }
-
-  // ---------------- EXPORT JSON ----------------
-  function showExportButton() {
-    const btn = document.createElement("button");
-    btn.innerText = "💾 JSON mentése";
-
-    btn.style.position = "fixed";
-    btn.style.bottom = "20px";
-    btn.style.right = "20px";
-    btn.style.padding = "10px 15px";
-    btn.style.zIndex = "999";
-
-    btn.onclick = () => {
-      const blob = new Blob(
-        [JSON.stringify(items, null, 2)],
-        { type: "application/json" }
-      );
-
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "updated.json";
-      a.click();
-    };
-
-    document.body.appendChild(btn);
   }
 
   // ---------------- LIGHTBOX ----------------
-  const lightbox = createLightbox();
+  const lightbox = document.createElement("div");
+  lightbox.className = "lightbox";
+
+  const img = document.createElement("img");
+  lightbox.appendChild(img);
+
+  lightbox.onclick = () => lightbox.classList.remove("active");
+
+  document.body.appendChild(lightbox);
 
   function openLightbox(src) {
-    lightbox.img.src = src;
-    lightbox.el.classList.add("active");
-  }
-
-  function createLightbox() {
-    const el = document.createElement("div");
-    el.className = "lightbox";
-
-    const img = document.createElement("img");
-    el.appendChild(img);
-
-    el.onclick = (e) => {
-      if (e.target === el) el.classList.remove("active");
-    };
-
-    document.body.appendChild(el);
-
-    return { el, img };
+    img.src = src;
+    lightbox.classList.add("active");
   }
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      document.querySelector(".lightbox")?.classList.remove("active");
-    }
+    if (e.key === "Escape") lightbox.classList.remove("active");
   });
 })();

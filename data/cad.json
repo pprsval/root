@@ -1,48 +1,8 @@
 [
   {
-    "title": "Aqua sup",
-    "file": "Aqua_sup.pdf",
-    "date": "2026-01-01",
-    "tags": [
-      "cad"
-    ]
-  },
-  {
     "title": "CAD valo neked",
     "file": "CAD-valo-neked.png",
-    "date": "2026-01-01",
-    "tags": [
-      "cad"
-    ]
-  },
-  {
-    "title": "Lemezlepcso striat",
-    "file": "Lemezlepcso_striat.pdf",
-    "date": "2026-01-01",
-    "tags": [
-      "cad"
-    ]
-  },
-  {
-    "title": "MV",
-    "file": "MV.jpg",
-    "date": "2026-01-01",
-    "tags": [
-      "cad"
-    ]
-  },
-  {
-    "title": "MV dekor nyil",
-    "file": "MV_dekor_nyil.pdf",
-    "date": "2026-01-01",
-    "tags": [
-      "cad"
-    ]
-  },
-  {
-    "title": "Screenshot 2025 02 15 001229",
-    "file": "Screenshot 2025-02-15 001229.png",
-    "date": "2026-01-01",
+    "date": "2026-01-14",
     "tags": [
       "cad"
     ]
@@ -50,15 +10,7 @@
   {
     "title": "aqua",
     "file": "aqua.png",
-    "date": "2026-01-01",
-    "tags": [
-      "cad"
-    ]
-  },
-  {
-    "title": "konyvkucko little free library",
-    "file": "konyvkucko_little_free_library.pdf",
-    "date": "2026-01-01",
+    "date": "2026-01-14",
     "tags": [
       "cad"
     ]
@@ -66,7 +18,7 @@
   {
     "title": "lepcso thbm",
     "file": "lepcso_thbm.png",
-    "date": "2026-01-01",
+    "date": "2026-01-14",
     "tags": [
       "cad"
     ]
@@ -74,7 +26,55 @@
   {
     "title": "lfl thbm",
     "file": "lfl_thbm.png",
-    "date": "2026-01-01",
+    "date": "2026-01-14",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Aqua sup",
+    "file": "Aqua_sup.pdf",
+    "date": "2025-12-30",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Lemezlepcso striat",
+    "file": "Lemezlepcso_striat.pdf",
+    "date": "2025-12-30",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "MV",
+    "file": "MV.jpg",
+    "date": "2025-12-30",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "MV dekor nyil",
+    "file": "MV_dekor_nyil.pdf",
+    "date": "2025-12-30",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Screenshot 2025 02 15 001229",
+    "file": "Screenshot 2025-02-15 001229.png",
+    "date": "2025-12-30",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "konyvkucko little free library",
+    "file": "konyvkucko_little_free_library.pdf",
+    "date": "2025-12-30",
     "tags": [
       "cad"
     ]
@@ -82,7 +82,7 @@
   {
     "title": "parasolar",
     "file": "parasolar.pdf",
-    "date": "2026-01-01",
+    "date": "2025-12-30",
     "tags": [
       "cad"
     ]
@@ -90,7 +90,7 @@
   {
     "title": "thbm paras",
     "file": "thbm_paras.jpg",
-    "date": "2026-01-01",
+    "date": "2025-12-30",
     "tags": [
       "cad"
     ]
