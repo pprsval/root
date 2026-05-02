@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-  <title>Writings – Peres Valentin</title>
-
   <link rel="stylesheet" href="./../css/pages.css">
+
+  <title>Gallery</title>
 
   <style>
     .gallery {
@@ -20,42 +20,45 @@
       padding: 20px;
     }
 
-    .gallery figure {
-      margin: 0;
-      text-align: center;
-    }
+    figure { margin: 0; text-align: center; }
 
-    .gallery img {
+    img {
       width: 100%;
       border-radius: 6px;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: 0.2s;
     }
 
-    .gallery img:hover {
+    img:hover {
       transform: scale(1.03);
     }
 
     .pdf-thumb {
-      background: #fafafa;
+      padding: 30px;
       border: 2px dashed #ccc;
       border-radius: 6px;
-      padding: 30px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       cursor: pointer;
     }
 
-    .pdf-thumb:hover {
-      background: #f0f0f0;
+    figcaption {
+      font-size: 0.9rem;
+      margin-top: 6px;
     }
 
-    figcaption {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      color: #555;
-      font-family: "Instrument Serif", serif;
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
     }
   </style>
 </head>
@@ -63,13 +66,13 @@
 <body>
 
 <header>
-  <h1><a href="../../index.html">&#8678;</a></h1>
+  <a href="../../index.html">← back</a>
 </header>
 
 <div class="gallery"
      data-source="../data/writings.json"
-     data-folder="../assets/writings/">
-</div>
+     data-folder="../assets/writings/"></div>
+
 <script src="../js/gallery-engine.js"></script>
 
 </body>

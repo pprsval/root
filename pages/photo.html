@@ -1,47 +1,64 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-  <title>Photo – Peres Valentin</title>
-
   <link rel="stylesheet" href="./../css/pages.css">
+
+  <title>Gallery</title>
 
   <style>
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
       padding: 20px;
     }
 
-    .gallery figure {
-      margin: 0;
-    }
+    figure { margin: 0; text-align: center; }
 
-    .gallery img {
+    img {
       width: 100%;
       border-radius: 6px;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: 0.2s;
     }
 
-    .gallery img:hover {
-      transform: scale(1.02);
-      opacity: 0.95;
+    img:hover {
+      transform: scale(1.03);
+    }
+
+    .pdf-thumb {
+      padding: 30px;
+      border: 2px dashed #ccc;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
     figcaption {
+      font-size: 0.9rem;
       margin-top: 6px;
-      font-size: 0.85rem;
-      color: #666;
-      text-align: center;
-      font-family: "Instrument Serif", serif;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
     }
   </style>
 </head>
@@ -49,13 +66,13 @@
 <body>
 
 <header>
-  <h1><a href="../../index.html">&#8678;</a></h1>
+  <a href="../../index.html">← back</a>
 </header>
 
 <div class="gallery"
      data-source="../data/photo.json"
-     data-folder="../assets/photo/">
-</div>
+     data-folder="../assets/photo/"></div>
+
 <script src="../js/gallery-engine.js"></script>
 
 </body>
