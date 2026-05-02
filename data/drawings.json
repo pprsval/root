@@ -1,39 +1,12 @@
 [
   {
-    "cim": "Február ",
-    "tipus": "grafika",
-    "pdf": "https://sway.cloud.microsoft/hMmjd50OjWQHxqrE?ref=Link",
-    "kep": "../assets/drawings/februar_THB.jpg"
+    "title": "eszkport",
+    "file": "eszkport.jpg",
+    "cover": "eszkport.jpg"
   },
   {
-    "cim": "Sketches Traditional-Digital",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/Sketches-Traditional-Digital/Sketches-Traditional-Digital.pdf",
-    "kep": "../assets/drawings/Sketches-Traditional-Digital/sketches-cover.png"
-  },
-  {
-    "cim": "Portré",
-    "tipus": "rajz",
-    "pdf": "../assets/drawings/eszkport.jpg",
-    "kep": null
-  },
-  {
-    "cim": "Rajzok 2018",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/2018/rajz_katalog.pdf",
-    "kep": "../assets/drawings/2018/draw-2018.png"
-  } ,
-  {
-    "cim": "Food for body and mind",
-    "tipus": "grafika",
-    "pdf": "../assets/drawings/mail-art-body-soul/mail_art_food_for_body_and_mind.pdf",
-    "kep": "../assets/drawings/mail-art-body-soul/mail-art-body-soul.png"
-  } ,
-  {
-    "cim": "Mail art - Coffee",
-    "tipus": "illusztráció",
-    "pdf": "../assets/drawings/Mail-Art-coffee/mail_art_coffee.pdf",
-    "kep": "../assets/drawings/Mail-Art-coffee/peres-valentin.jpg"
+    "title": "februar THB",
+    "file": "februar_THB.jpg",
+    "cover": "februar_THB.jpg"
   }
-  
 ]

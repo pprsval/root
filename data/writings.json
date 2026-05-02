@@ -1,20 +1,17 @@
 [
   {
-    "cim": "Ránézésre (versek)",
-    "tipus": "vers",
-    "pdf": "../assets/writings/PV-Ranezesre.pdf",
-    "kep": "../assets/writings/ranezesre.png"
+    "title": "PV Ranezesre",
+    "file": "PV-Ranezesre.pdf",
+    "cover": "PV-Ranezesre.pdf"
   },
   {
-    "cim": "",
-    "tipus": "",
-    "pdf": "",
-    "kep": "."
+    "title": "TESZT",
+    "file": "TESZT.html",
+    "cover": "TESZT.html"
   },
   {
-    "cim": "",
-    "tipus": "novella",
-    "pdf": "",
-    "kep": ""
+    "title": "ranezesre",
+    "file": "ranezesre.png",
+    "cover": "ranezesre.png"
   }
 ]
