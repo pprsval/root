@@ -1,17 +1,8 @@
 [
   {
-    "title": "PV Ranezesre",
+    "title": "Ránézésre (versek)",
+    "type": "vers",
     "file": "PV-Ranezesre.pdf",
-    "cover": "PV-Ranezesre.pdf"
-  },
-  {
-    "title": "TESZT",
-    "file": "TESZT.html",
-    "cover": "TESZT.html"
-  },
-  {
-    "title": "ranezesre",
-    "file": "ranezesre.png",
     "cover": "ranezesre.png"
   }
 ]
