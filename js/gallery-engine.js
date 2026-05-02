@@ -5,33 +5,34 @@
   const source = container.dataset.source;
   const folder = container.dataset.folder || "";
 
-  let state = [];
+  let items = [];
 
+  // ---------------- LOAD ----------------
   fetch(source)
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) throw new Error(`JSON load error: ${r.status}`);
+      return r.json();
+    })
     .then(data => {
-      state = normalize(data);
-      state = sortByDate(state);
-      render(state);
+      items = sortByDate(data);
+
+      // 🔥 REMOVE ALL COVER FILES FROM RENDER LIST
+      const coverSet = new Set(
+        items.filter(i => i.cover).map(i => i.cover)
+      );
+
+      items = items.filter(i => !coverSet.has(i.file));
+
+      render(items);
     })
     .catch(err => {
       console.error(err);
-      container.innerHTML = "Load error";
+      container.innerHTML = "Hiba a tartalom betöltésekor.";
     });
 
-  // ---------------- NORMALIZE ----------------
-  function normalize(data) {
-    return data.map((item, i) => ({
-      ...item,
-      _index: i
-    }));
-  }
-
-  // ---------------- SORT (DATE FIRST) ----------------
+  // ---------------- SORT ----------------
   function sortByDate(data) {
-    return data.sort((a, b) => {
-      return getTime(b) - getTime(a);
-    });
+    return data.sort((a, b) => getTime(b) - getTime(a));
   }
 
   function getTime(item) {
@@ -59,16 +60,17 @@
 
       const fig = document.createElement("figure");
 
-      const isImg = /\.(jpg|jpeg|png|webp)$/i.test(file);
-      const isPdf = /\.pdf$/i.test(file);
-
       const thumb = document.createElement("div");
       thumb.className = "thumb";
 
+      const isPdf = /\.pdf$/i.test(file);
+      const isImage = /\.(jpg|jpeg|png|webp)$/i.test(file);
+
       // ---------------- IMAGE ----------------
-      if (isImg) {
+      if (isImage) {
         const img = document.createElement("img");
         img.src = full;
+        img.alt = item.title || "";
         img.loading = "lazy";
 
         img.onclick = () => openLightbox(full);
@@ -78,24 +80,48 @@
 
       // ---------------- PDF ----------------
       else if (isPdf) {
-        const pdf = document.createElement("div");
-        pdf.className = "pdf-thumb";
-        pdf.innerHTML = `
-          <div style="font-size:40px">📄</div>
-          <div>${item.title}</div>
-        `;
+        const pdfCard = document.createElement("div");
+        pdfCard.className = "pdf-thumb";
 
-        pdf.onclick = () => window.open(full, "_blank");
+        if (item.cover) {
+          const img = document.createElement("img");
+          img.src = folder + item.cover;
+          img.alt = item.title || "";
+          img.loading = "lazy";
 
-        thumb.appendChild(pdf);
+          pdfCard.appendChild(img);
+        } else {
+          const fallback = document.createElement("div");
+          fallback.style.cssText = `
+            aspect-ratio: 3/4;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            background:#eaeaea;
+            border-radius:8px;
+            font-family:'Instrument Serif', serif;
+          `;
+
+          fallback.innerHTML = `
+            <div style="font-size:2.5rem;">📄</div>
+            <div style="font-size:0.9rem;">${item.title || "PDF"}</div>
+          `;
+
+          pdfCard.appendChild(fallback);
+        }
+
+        pdfCard.onclick = () => window.open(full, "_blank");
+
+        thumb.appendChild(pdfCard);
       }
 
-      fig.appendChild(thumb);
-
+      // ---------------- CAPTION ----------------
       const cap = document.createElement("figcaption");
       cap.textContent = item.title || "";
-      fig.appendChild(cap);
 
+      fig.appendChild(thumb);
+      fig.appendChild(cap);
       container.appendChild(fig);
     });
   }
@@ -117,6 +143,8 @@
   }
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") lightbox.classList.remove("active");
+    if (e.key === "Escape") {
+      lightbox.classList.remove("active");
+    }
   });
 })();
