@@ -21,8 +21,8 @@ body {
 
 /* Profilkép stílus */
 .profile img {
-    padding: 50px 0px 10px;
-    max-width: 150px; 
+    padding: 10px 0px 10px;
+    max-width: 100px; 
 }
 
 .content a {
