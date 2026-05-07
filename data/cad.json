@@ -1,39 +1,79 @@
 [
   {
-    "title": "Aqua sup",
-    "file": "Aqua_sup.pdf",
+    "title": "Aquarel",
+    "file": "Aquarel.png",
+    "date": "2026-05-07",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Little Free Library",
+    "file": "Little Free Library.png",
+    "date": "2026-05-07",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Merci Vali",
+    "file": "Merci Vali.png",
+    "date": "2026-05-07",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Padlásfeljáró",
+    "file": "Padlásfeljáró.png",
+    "date": "2026-05-07",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Árnyékolás",
+    "file": "Árnyékolás.png",
+    "date": "2026-05-07",
+    "tags": [
+      "cad"
+    ]
+  },
+  {
+    "title": "Aquarel",
+    "file": "Aquarel.pdf",
     "date": "2025-12-30",
     "tags": [
       "cad"
     ]
   },
   {
-    "title": "Lemezlepcso striat",
-    "file": "Lemezlepcso_striat.pdf",
+    "title": "Little Free Library",
+    "file": "Little Free Library.pdf",
     "date": "2025-12-30",
     "tags": [
       "cad"
     ]
   },
   {
-    "title": "MV dekor nyil",
-    "file": "MV_dekor_nyil.pdf",
+    "title": "Merci Vali",
+    "file": "Merci Vali.pdf",
     "date": "2025-12-30",
     "tags": [
       "cad"
     ]
   },
   {
-    "title": "konyvkucko little free library",
-    "file": "konyvkucko_little_free_library.pdf",
+    "title": "Padlásfeljáró",
+    "file": "Padlásfeljáró.pdf",
     "date": "2025-12-30",
     "tags": [
       "cad"
     ]
   },
   {
-    "title": "parasolar",
-    "file": "parasolar.pdf",
+    "title": "Árnyékolás",
+    "file": "Árnyékolás.pdf",
     "date": "2025-12-30",
     "tags": [
       "cad"
