@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="post-title" content="DXF kontúrból Inventor Sheet Metal alkatrész">
+  <meta name="post-date" content="2026-06-14">
+  <meta name="post-type" content="Műhelynapló">
+  <meta name="post-description" content="Egy egyszerű CAD-kísérlet: DXF kontúr importálása Inventorba, Sheet Metal modell készítése, majd teríték exportálása DXF-be.">
+  <meta name="post-thumb" content="images/01-dxf-contur.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../../css/main.css">
+  <link rel="stylesheet" href="../../../css/blog.css">
+
+  <title>AltumDesk műhelynapló | DXF kontúrból Inventor Sheet Metal alkatrész</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="content page-title">
+      <h2><b>AltumDesk</b></h2>
+      <p><i>CAD műhelynapló by P. Valentin</i></p>
+      <p class="email">
+        <i>e-mail: <strong>altumdesk@outlook.com</strong></i>
+      </p>
+    </div>
+  </div>
+
+  <header>
+  <div class="content back-link">
+    <a href="../../../pages/cad.html">← back</a>
+  </div>
+</header>
+
+  <main class="blog-post">
+    <article>
+
+      <div class="post-meta">2026.06.14 · Inventor · Sheet Metal · Flat Pattern</div>
+
+      <h1>DXF kontúrból Inventor Sheet Metal alkatrész</h1>
+
+      <p class="lead">
+        Ebben a bejegyzésben egy egyszerű CAD-kísérletet dokumentálok.
+        Egy DXF kontúrból indultam ki, ezt Inventorba importáltam, majd Sheet Metal
+        alkatrésszé alakítottam.
+      </p>
+
+      <div class="note">
+        <strong>Megjegyzés:</strong>
+        Ez egy műhelynapló-bejegyzés, nem gyártási útmutató. A cél a saját
+        tapasztalat, folyamat és tanulság dokumentálása.
+      </div>
+
+      <div class="toc">
+        <strong>Tartalom</strong>
+        <ol>
+          <li><a href="#kiindulas">Kiindulás</a></li>
+          <li><a href="#import">Import Inventorba</a></li>
+          <li><a href="#modell">Sheet Metal modell</a></li>
+          <li><a href="#ellenorzes">Ellenőrzés</a></li>
+          <li><a href="#export">Teríték és DXF export</a></li>
+          <li><a href="#tanulsagok">Tanulságok</a></li>
+        </ol>
+      </div>
+
+      <h2 id="kiindulas">1. Kiindulás</h2>
+
+      <p>
+        A kiindulás egy egyszerű DXF kontúr volt. Érdemes ellenőrizni,
+        hogy a vonalak valóban zárt kontúrt alkotnak-e, nincsenek-e apró hézagok
+        vagy duplikált vonalak.
+      </p>
+
+      <p>
+        Ezt első körben vizuálisan ellenőriztem, majd Inventorban a Face paranccsal
+        teszteltem. Ha az Inventor nem ismeri fel a zárt profilt, akkor valószínűleg
+        nyitott kontúr, duplikált vonal vagy hibás csatlakozás van a sketchben.
+      </p>
+
+      <div class="figure">
+        <img src="images/01-dxf-contur.png" alt="Kiinduló DXF kontúr">
+        <div class="caption">01 · Egyszerű DXF kontúr.</div>
+      </div>
+
+      <h2 id="import">2. Import Inventorba</h2>
+
+      <p>
+        Új sketch-et nyitva lehetőség van CAD formátumú fájlok importálására.
+        Import után érdemes ellenőrizni a méreteket és az egységeket.
+      </p>
+
+      <p>
+        Ha a kontúr rendben van, a Face paranccsal felületet rendelhetünk hozzá.
+        Ha hézagos vagy problémás a kontúr, nem fog működni a Face, vagy olyan
+        helyeket is kitölthet, amelyeket nem kellene.
+      </p>
+
+      <div class="figure">
+        <img src="images/02-inventor-sketch.png" alt="DXF import Inventor sketch környezetben">
+        <div class="caption">02 · DXF import Inventor sketch környezetben.</div>
+      </div>
+
+      <h2 id="modell">3. Sheet Metal modell</h2>
+
+      <p>
+        Következő lépésként az alkatrészt szerkesztettem: anyagtípust és vastagságot
+        állítottam be, hajlításokat és rögzítő füleket adtam hozzá, majd ellenőriztem
+        a modellt.
+      </p>
+
+      <div class="figure">
+        <img src="images/03-sheet-metal-model.png" alt="Inventor Sheet Metal modell">
+        <div class="caption">03 · Sheet Metal modell Inventorban.</div>
+      </div>
+
+      <h2 id="ellenorzes">4. Ellenőrzés</h2>
+
+      <p>
+        A végén ránéztem a darab tömegére az iProperties panelben.
+        Ha az anyag és a vastagság helyesen van beállítva, a program térfogat
+        és sűrűség alapján tömeget is számol.
+      </p>
+
+      <div class="figure">
+        <img src="images/04-iproperties.png" alt="Inventor iProperties fizikai adatok">
+        <div class="caption">04 · iProperties / Physical adatok ellenőrzése.</div>
+      </div>
+
+      <h2 id="export">5. Teríték és DXF export</h2>
+
+      <p>
+        A Flat Pattern létrehozását követően jobb klikk a terítékre, majd
+        <code>Export Face As...</code>.
+      </p>
+
+      <p>
+        Ilyenkor azt kell megfigyelni, milyen vonalak kerülnek a terítékre és milyen
+        vonalak nem. Vágáshoz általában tiszta kontúrra van szükség. Ha például
+        hajlítási vonalakra is szükség van gravírozott formában, azt külön ellenőrizni
+        kell export előtt.
+      </p>
+
+      <div class="figure">
+        <img src="images/05-flat-pattern.png" alt="Inventor Flat Pattern teríték">
+        <div class="caption">05 · Flat Pattern nézet.</div>
+      </div>
+
+      <div class="figure">
+        <img src="images/06-export-dxf.png" alt="Exportált teríték DXF előnézet">
+        <div class="caption">06 · Exportált teríték DXF előnézet.</div>
+      </div>
+
+      <h2 id="tanulsagok">6. Tanulságok</h2>
+
+      <p>
+        Ez egy egyszerű, mégis érdekes folyamat, ami bemutatja, hogyan lehet egy DXF-et
+        újra formázhatóvá alakítani.
+      </p>
+
+      <ul>
+        <li>a kontúr legyen zárt és tiszta;</li>
+        <li>Inventorban az egységek helyesen legyenek beállítva;</li>
+        <li>a darab anyagtípusa és vastagsága legyen ellenőrizve;</li>
+        <li>az exportnál figyelni kell, mi kerül a terítékre és mi nem;</li>
+        <li>a végső ellenőrzés nem kihagyható lépés.</li>
+      </ul>
+
+      <p>
+        Ami talán a legfontosabb: ellenőrizni kell a méreteket, vastagságokat,
+        hajlítási sugarakat, gyárthatóságot és minden olyan szempontot, ami számításba jöhet.
+      </p>
+
+      <div class="post-footer">
+        AltumDesk műhelynapló · saját tanulási jegyzet · CAD · technikusi szemlélet
+      </div>
+
+    </article>
+  </main>
+
+</body>
+</html>

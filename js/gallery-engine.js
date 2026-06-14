@@ -26,8 +26,15 @@
     });
 
   // ---------------- NORMALIZE ----------------
-  const normalize = (p) => (p || "").split("/").pop().trim();
-  const stripExt = (f) => (f || "").replace(/\.[^/.]+$/, "");
+  // Fontos: nem vágjuk le a mappaútvonalat.
+  // Kell, hogy működjön ez is:
+  // 2026_06_14_dxf_to_inventor/index.html
+  // 2026_06_14_dxf_to_inventor/images/01-dxf-contur.png
+  const normalize = (p) => (p || "").replace(/\\/g, "/").trim();
+
+  const fileName = (p) => (p || "").split("/").pop().trim();
+
+  const stripExt = (f) => fileName(f).replace(/\.[^/.]+$/, "");
 
   function normalizeData(data) {
     return data.map(i => ({
@@ -48,10 +55,16 @@
       if (!isNaN(t)) return t;
     }
 
-    const match = item.file?.match(/\d{8}/);
+    const match = item.file?.match(/\d{4}[_-]\d{2}[_-]\d{2}|\d{8}/);
+
     if (match) {
-      const d = match[0];
-      return Date.parse(`${d.slice(0,4)}-${d.slice(4,6)}-${d.slice(6,8)}`);
+      const raw = match[0].replace(/_/g, "-");
+
+      if (/^\d{8}$/.test(raw)) {
+        return Date.parse(`${raw.slice(0,4)}-${raw.slice(4,6)}-${raw.slice(6,8)}`);
+      }
+
+      return Date.parse(raw);
     }
 
     return 0;
@@ -107,6 +120,7 @@
 
       const isPdf = /\.pdf$/i.test(file);
       const isImage = /\.(jpg|jpeg|png|webp)$/i.test(file);
+      const isHtml = /\.html$/i.test(file);
 
       // ---------------- IMAGE ----------------
       if (isImage && !item._isCover) {
@@ -158,9 +172,64 @@
         thumb.appendChild(pdfCard);
       }
 
+      // ---------------- HTML / BLOG POST ----------------
+      else if (isHtml) {
+        const postCard = document.createElement("div");
+        postCard.className = "pdf-thumb blog-thumb";
+
+        if (item.cover) {
+          const img = document.createElement("img");
+          img.src = folder + item.cover;
+          img.alt = item.title || "";
+          img.loading = "lazy";
+
+          postCard.appendChild(img);
+        } else {
+          const fallback = document.createElement("div");
+          fallback.style.cssText = `
+            aspect-ratio: 3/4;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            background:#eaeaea;
+            border-radius:8px;
+            font-family:'Instrument Serif', serif;
+            padding:20px;
+            text-align:center;
+          `;
+
+          fallback.innerHTML = `
+            <div style="font-size:2.5rem;">✎</div>
+            <div style="font-size:0.9rem;">${item.type || "Műhelynapló"}</div>
+          `;
+
+          postCard.appendChild(fallback);
+        }
+
+        postCard.onclick = () => {
+          window.location.href = full;
+        };
+
+        thumb.appendChild(postCard);
+      }
+
+      // ---------------- UNKNOWN FILE ----------------
+      else {
+        return;
+      }
+
       // ---------------- CAPTION ----------------
       const cap = document.createElement("figcaption");
-      cap.textContent = item.title || "";
+
+      if (isHtml && item.date) {
+        cap.innerHTML = `
+          <strong>${item.title || ""}</strong><br>
+          <span>${item.date} · ${item.type || "Műhelynapló"}</span>
+        `;
+      } else {
+        cap.textContent = item.title || "";
+      }
 
       fig.appendChild(thumb);
       fig.appendChild(cap);

@@ -1,0 +1,147 @@
+/* AltumDesk műhelynapló bejegyzések */
+
+.page-title {
+  text-align: center;
+  margin: 40px auto 30px;
+  padding: 0 20px;
+}
+
+.page-title h2 {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: normal;
+}
+
+.page-title p {
+  margin: 8px 0 14px;
+}
+
+.page-title .email {
+  margin-top: 24px;
+  font-size: 0.95rem;
+}
+
+.back-link {
+  margin-bottom: 30px;
+}
+
+.blog-post {
+  max-width: 850px;
+  margin: 0 auto 70px;
+  padding: 0 20px;
+}
+
+.post-meta {
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.blog-post h1 {
+  margin: 0 0 18px;
+  font-size: 2.2rem;
+  line-height: 1.15;
+  font-weight: normal;
+}
+
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.note {
+  margin: 28px 0;
+  padding: 14px 18px;
+  border-left: 3px solid #999;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.toc {
+  margin: 32px 0;
+  padding: 16px 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.toc strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.toc ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.blog-post h2 {
+  margin: 46px 0 14px;
+  font-size: 1.7rem;
+  font-weight: normal;
+}
+
+.blog-post h3 {
+  margin: 28px 0 10px;
+  font-size: 1.25rem;
+}
+
+.blog-post p {
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+
+.blog-post ul,
+.blog-post ol {
+  line-height: 1.7;
+  padding-left: 24px;
+}
+
+.figure {
+  margin: 28px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.figure img {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+  cursor: default;
+  transition: none;
+}
+
+.figure img:hover {
+  transform: none;
+}
+
+.caption {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  border-top: 1px solid #ccc;
+}
+
+code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.post-footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+@media (max-width: 700px) {
+  .blog-post h1 {
+    font-size: 1.8rem;
+  }
+
+  .page-title {
+    margin-top: 30px;
+  }
+}

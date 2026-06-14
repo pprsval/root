@@ -1,5 +1,17 @@
 [
   {
+    "title": "DXF kontúrból Inventor Sheet Metal alkatrész",
+    "file": "2026_06_14_dxf_to_inventor/index.html",
+    "date": "2026-06-14",
+    "type": "Műhelynapló",
+    "description": "Egy egyszerű CAD-kísérlet: DXF kontúr importálása Inventorba, Sheet Metal modell készítése, majd teríték exportálása DXF-be.",
+    "cover": "2026_06_14_dxf_to_inventor/images/01-dxf-contur.png",
+    "tags": [
+      "cad",
+      "blog"
+    ]
+  },
+  {
     "title": "Aquarel",
     "file": "Aquarel.png",
     "date": "2026-05-07",

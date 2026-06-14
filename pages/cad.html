@@ -10,9 +10,34 @@
 
   <link rel="stylesheet" href="./../css/pages.css">
 
-  <title>cad tervek</title>
+  <title>CAD tervek</title>
 
   <style>
+    .page-title {
+      text-align: center;
+      margin: 40px auto 30px;
+      padding: 0 20px;
+    }
+
+    .page-title h2 {
+      margin: 0;
+      font-size: 2.4rem;
+      font-weight: normal;
+    }
+
+    .page-title p {
+      margin: 8px 0 14px;
+    }
+
+    .page-title nav {
+      margin: 14px 0;
+    }
+
+    .page-title .email {
+      margin-top: 24px;
+      font-size: 0.95rem;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -20,7 +45,10 @@
       padding: 20px;
     }
 
-    figure { margin: 0; text-align: center; }
+    figure {
+      margin: 0;
+      text-align: center;
+    }
 
     img {
       width: 100%;
@@ -54,7 +82,9 @@
       align-items: center;
     }
 
-    .lightbox.active { display: flex; }
+    .lightbox.active {
+      display: flex;
+    }
 
     .lightbox img {
       max-width: 90%;
@@ -64,18 +94,33 @@
 </head>
 
 <body>
-<header>
-<div class="content">
-<a href="../../index.html">← back</a>
-</div>
-</header>
 
+  <div class="container">
+    <div class="content page-title">
 
-<div class="gallery"
-     data-source="../data/cad.json"
-     data-folder="../assets/cad/"></div>
+      <h2><b>AltumDesk</b></h2>
 
-<script src="../js/gallery-engine.js"></script>
+      <p><i>CAD műhelynapló by P. Valentin</i></p>
+
+      <p class="email">
+        <i>e-mail: <strong>altumdesk@outlook.com</strong></i>
+      </p>
+
+    </div>
+  </div>
+
+  <header>
+    <div class="content">
+      <a href="../../index.html">← back</a>
+    </div>
+  </header>
+
+  <div class="gallery"
+       data-source="../data/cad.json"
+       data-folder="../assets/cad/">
+  </div>
+
+  <script src="../js/gallery-engine.js"></script>
 
 </body>
 </html>
