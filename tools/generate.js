@@ -1,9 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 
+// --------------------------------------------------
 // AltumDesk egyszerű JSON generátor
-// Futtatás a weboldal gyökeréből:
+// Futtatás mindig a weboldal gyökeréből:
 // node tools/generate.js
+// --------------------------------------------------
 
 const ROOT = process.cwd();
 
@@ -20,7 +22,7 @@ Object.entries(CONFIG).forEach(([name, folder]) => {
   const dir = path.join(ROOT, folder);
 
   if (!fs.existsSync(dir)) {
-    console.warn(`Mappa nem található: ${folder}`);
+    console.warn(`⚠ Mappa nem található: ${folder}`);
     return;
   }
 
@@ -30,6 +32,8 @@ Object.entries(CONFIG).forEach(([name, folder]) => {
       const fullPath = path.join(dir, entry);
       const stat = fs.statSync(fullPath);
 
+      // ---------------- BLOG / MŰHELYNAPLÓ ----------------
+      // assets/cad/2026_06_14_dxf_to_inventor/index.html
       if (stat.isDirectory()) {
         const indexPath = path.join(fullPath, "index.html");
 
@@ -56,6 +60,7 @@ Object.entries(CONFIG).forEach(([name, folder]) => {
         };
       }
 
+      // ---------------- SIMA KÉP / PDF ----------------
       if (!ALLOWED_FILES.test(entry)) {
         return null;
       }
@@ -78,6 +83,8 @@ Object.entries(CONFIG).forEach(([name, folder]) => {
   console.log(`✔ ${name}.json updated (${items.length} items)`);
 });
 
+// --------------------------------------------------
+
 function cleanTitle(fileName) {
   return fileName
     .replace(/\.[^/.]+$/, "")
@@ -99,7 +106,8 @@ function getMeta(html, name) {
 function normalizeDate(date) {
   if (!date) return "";
 
-  const dot = date.match(/^(\\d{4})\\.(\\d{2})\\.(\\d{2})$/);
+  // 2026.06.14 -> 2026-06-14
+  const dot = date.match(/^(\d{4})\.(\d{2})\.(\d{2})$/);
   if (dot) {
     return `${dot[1]}-${dot[2]}-${dot[3]}`;
   }
