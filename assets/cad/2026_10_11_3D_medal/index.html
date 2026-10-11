@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#a49d92">
+  <title>Clay Medallion — Peres Valentin</title>
+  <style>
+    :root { color-scheme:light; --paper:#a49d92; --ink:#211d19; --muted:#5f584f; --line:#746c62; --panel:#b4ada2; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:var(--paper); color:var(--ink); font:16px/1.55 Georgia,"Times New Roman",serif; }
+    main { width:min(1120px,calc(100% - 36px)); margin:0 auto; padding:22px 0 28px; }
+    .back { display:inline-block; color:var(--ink); text-decoration:none; font-size:14px; }
+    .back:hover { text-decoration:underline; }
+    header { padding:26px 0 18px; text-align:center; }
+    .eyebrow { margin:0 0 5px; color:var(--muted); font-size:12px; letter-spacing:.11em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(28px,4vw,40px); font-style:italic; font-weight:600; line-height:1.2; }
+    .lede { margin:8px 0 0; color:var(--muted); font-size:15px; }
+    .stage { position:relative; height:min(68vh,700px); min-height:390px; overflow:hidden; background:var(--paper); }
+    canvas { display:block; width:100%; height:100%; outline:none; touch-action:none; }
+    .empty-state { position:absolute; inset:0; display:grid; place-items:center; color:var(--muted); text-align:center; pointer-events:none; }
+    .stage.loaded .empty-state { display:none; }
+    .controls { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:8px 2px 13px; color:var(--muted); font-size:13px; }
+    button,select { border:1px solid var(--line); border-radius:2px; background:transparent; color:var(--ink); font:inherit; }
+    button { padding:5px 10px; cursor:pointer; }
+    button:hover { background:#ffffff2b; }
+    details { border-top:1px solid #746c6277; border-bottom:1px solid #746c6277; }
+    summary { padding:9px 2px; color:var(--ink); font-size:14px; cursor:pointer; }
+    .settings { display:grid; grid-template-columns:minmax(190px,1fr) 2fr; gap:14px 32px; padding:4px 2px 14px; }
+    .orientation { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+    .orientation label,.light-control label { color:var(--muted); font-size:13px; }
+    select { max-width:100%; min-height:34px; padding:4px 8px; }
+    .light-controls { display:grid; grid-template-columns:repeat(3,minmax(120px,1fr)); gap:12px 18px; }
+    .light-control { display:grid; grid-template-columns:1fr auto; align-items:center; gap:3px 8px; }
+    .light-control output { font-size:12px; font-variant-numeric:tabular-nums; }
+    .light-control input { grid-column:1 / -1; width:100%; accent-color:#40382f; }
+    .light-reset { grid-column:1 / -1; justify-self:start; font-size:13px; }
+    footer { padding-top:18px; color:var(--muted); text-align:center; font-size:12px; }
+    @media(max-width:680px) {
+      main { width:calc(100% - 24px); padding-top:16px; }
+      header { padding:20px 0 12px; }
+      .stage { height:58vh; min-height:340px; }
+      .settings { grid-template-columns:1fr; gap:14px; }
+      .light-controls { grid-template-columns:1fr 1fr; }
+      .controls { align-items:flex-start; }
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <main>
+    
+    <header>
+      <p class="eyebrow">Peres Valentin · CAD</p>
+      <h1>Clay Medallion</h1>
+      <p class="lede">A small medallion mould study, modelled in Autodesk Inventor.</p>
+    </header>
+
+    <section aria-label="Interactive 3D medallion">
+      <div class="stage" id="stage">
+        <canvas id="canvas" aria-label="Interactive 3D medallion"></canvas>
+        <div class="empty-state"><span id="status" role="status">Loading model…</span></div>
+      </div>
+      <div class="controls">
+        <span>Drag to rotate · Scroll to zoom · Right-drag to pan</span>
+        <button id="reset-view" type="button">Reset view</button>
+      </div>
+      <details>
+        <summary>Model &amp; lighting</summary>
+        <div class="settings">
+          <div class="orientation">
+            <label for="orientation">Model orientation</label>
+            <select id="orientation">
+              <option value="0,0,0">Original</option>
+              <option value="1.5707963,0,0">X +90°</option>
+              <option value="-1.5707963,0,0">X −90°</option>
+              <option value="0,0,1.5707963">Z +90°</option>
+              <option value="0,0,-1.5707963">Z −90°</option>
+              <option value="0,3.1415927,0">Y 180°</option>
+            </select>
+          </div>
+          <div class="light-controls">
+            <div class="light-control"><label for="exposure">Exposure</label><output id="exposure-value">1.15</output><input id="exposure" type="range" min="0.4" max="2.5" step="0.05" value="1.15"></div>
+            <div class="light-control"><label for="key-intensity">Key light</label><output id="key-intensity-value">3.0</output><input id="key-intensity" type="range" min="0" max="6" step="0.1" value="3"></div>
+            <div class="light-control"><label for="fill-intensity">Fill light</label><output id="fill-intensity-value">1.2</output><input id="fill-intensity" type="range" min="0" max="4" step="0.1" value="1.2"></div>
+            <div class="light-control"><label for="hemi-intensity">Ambient light</label><output id="hemi-intensity-value">2.0</output><input id="hemi-intensity" type="range" min="0" max="4" step="0.1" value="2"></div>
+            <div class="light-control"><label for="light-azimuth">Light direction</label><output id="light-azimuth-value">45°</output><input id="light-azimuth" type="range" min="0" max="360" step="1" value="45"></div>
+            <div class="light-control"><label for="light-height">Light height</label><output id="light-height-value">55°</output><input id="light-height" type="range" min="5" max="85" step="1" value="55"></div>
+            <button class="light-reset" id="reset-lighting" type="button">Reset lighting</button>
+          </div>
+        </div>
+      </details>
+    </section>
+    <footer>Interactive 3D model · GLB</footer>
+  </main>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import {TrackballControls} from 'three/addons/controls/TrackballControls.js';
+    import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+
+    const stage = document.querySelector('#stage');
+    const canvas = document.querySelector('#canvas');
+    const status = document.querySelector('#status');
+    const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#a49d92');
+    const hemi = new THREE.HemisphereLight(0xeaf6ff, 0x273440, 2.0);
+    scene.add(hemi);
+    const key = new THREE.DirectionalLight(0xffffff, 3.0);
+    key.position.set(4, 7, 5);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0x93c9df, 1.2);
+    fill.position.set(-5, 2, -4);
+    scene.add(fill);
+
+    const lightRadius = 10;
+    function updateKeyDirection() {
+      const azimuth = THREE.MathUtils.degToRad(Number(document.querySelector('#light-azimuth').value));
+      const elevation = THREE.MathUtils.degToRad(Number(document.querySelector('#light-height').value));
+      key.position.set(
+        lightRadius * Math.cos(elevation) * Math.cos(azimuth),
+        lightRadius * Math.sin(elevation),
+        lightRadius * Math.cos(elevation) * Math.sin(azimuth)
+      );
+    }
+    const lightSettings = [
+      ['exposure', value => renderer.toneMappingExposure = Number(value), 2],
+      ['key-intensity', value => key.intensity = Number(value), 1],
+      ['fill-intensity', value => fill.intensity = Number(value), 1],
+      ['hemi-intensity', value => hemi.intensity = Number(value), 1],
+      ['light-azimuth', updateKeyDirection, 0],
+      ['light-height', updateKeyDirection, 0]
+    ];
+    for (const [id, update, decimals] of lightSettings) {
+      const input = document.querySelector(`#${id}`);
+      const output = document.querySelector(`#${id}-value`);
+      input.addEventListener('input', () => {
+        update(input.value);
+        output.value = decimals ? Number(input.value).toFixed(decimals) : `${input.value}°`;
+      });
+    }
+    updateKeyDirection();
+    document.querySelector('#reset-lighting').addEventListener('click', () => {
+      for (const [id] of lightSettings) {
+        const input = document.querySelector(`#${id}`);
+        input.value = input.defaultValue;
+        input.dispatchEvent(new Event('input'));
+      }
+    });
+
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.01, 100000);
+    camera.up.set(0, 1, 0);
+    const controls = new TrackballControls(camera, renderer.domElement);
+    controls.rotateSpeed = 4.0;
+    controls.zoomSpeed = 1.2;
+    controls.panSpeed = 0.65;
+    controls.staticMoving = false;
+    controls.dynamicDampingFactor = 0.12;
+    controls.noPan = false;
+
+    const loader = new GLTFLoader();
+    let modelPivot = null;
+    let savedCamera = null;
+    let savedTarget = null;
+
+    function resize() {
+      const width = stage.clientWidth;
+      const height = stage.clientHeight;
+      if (!width || !height) return;
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      controls.handleResize();
+    }
+    new ResizeObserver(resize).observe(stage);
+    window.addEventListener('resize', resize);
+    resize();
+
+    function applyOrientation() {
+      if (!modelPivot) return;
+      const values = document.querySelector('#orientation').value.split(',').map(Number);
+      modelPivot.rotation.set(values[0], values[1], values[2]);
+    }
+
+    function showModel(gltf, displayName) {
+      if (modelPivot) scene.remove(modelPivot);
+      modelPivot = new THREE.Group();
+      const model = gltf.scene;
+      const initialBox = new THREE.Box3().setFromObject(model);
+      const center = initialBox.getCenter(new THREE.Vector3());
+      model.position.sub(center);
+      modelPivot.add(model);
+      scene.add(modelPivot);
+      applyOrientation();
+
+      const box = new THREE.Box3().setFromObject(modelPivot);
+      const sphere = box.getBoundingSphere(new THREE.Sphere());
+      const radius = Math.max(sphere.radius, 0.01);
+      controls.target.set(0, 0, 0);
+      camera.position.set(radius * 2.2, radius * 1.6, radius * 2.6);
+      camera.near = Math.max(radius / 1000, 0.001);
+      camera.far = radius * 100;
+      camera.updateProjectionMatrix();
+      camera.lookAt(0, 0, 0);
+      controls.update();
+      savedCamera = camera.position.clone();
+      savedTarget = controls.target.clone();
+      status.textContent = displayName;
+      stage.classList.add('loaded');
+    }
+
+    function loadFromUrl(url, displayName) {
+      status.textContent = 'Loading…';
+      loader.load(url, gltf => showModel(gltf, displayName), undefined, error => {
+        console.error(error);
+        status.textContent = 'Could not load the model. Check that medal.glb is next to index.html.';
+      });
+    }
+
+
+    loadFromUrl('./medal.glb', 'Medallion model');
+    document.querySelector('#orientation').addEventListener('change', applyOrientation);
+    document.querySelector('#reset-view').addEventListener('click', () => {
+      if (!savedCamera || !savedTarget) return;
+      camera.position.copy(savedCamera);
+      camera.up.set(0, 1, 0);
+      controls.target.copy(savedTarget);
+      camera.lookAt(savedTarget);
+      controls.update();
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('beforeunload', () => {
+      controls.dispose();
+      renderer.dispose();
+    });
+  </script>
+</body>
+</html>
