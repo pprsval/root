@@ -3,11 +3,11 @@ const path = require("path");
 
 // --------------------------------------------------
 // AltumDesk egyszerű JSON generátor
-// Futtatás mindig a weboldal gyökeréből:
+// From the site root (or invoke this script by absolute path):
 // node tools/generate.js
 // --------------------------------------------------
 
-const ROOT = process.cwd();
+const ROOT = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve(__dirname, "..");
 
 const CONFIG = {
   cad: "assets/cad",
@@ -73,7 +73,7 @@ Object.entries(CONFIG).forEach(([name, folder]) => {
       };
     })
     .filter(Boolean)
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+    .sort((a, b) => compareOrdinal(b.date, a.date) || compareOrdinal(a.file, b.file));
 
   const outPath = path.join(ROOT, "data", `${name}.json`);
 
@@ -118,3 +118,5 @@ function normalizeDate(date) {
 function escapeRegex(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+// ISO dates sort chronologically; ordinal ties do not depend on OS locale.
+function compareOrdinal(a, b) { return a < b ? -1 : a > b ? 1 : 0; }
