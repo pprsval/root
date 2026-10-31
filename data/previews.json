@@ -1,0 +1,370 @@
+{
+  "cad/Personal CAD & Workshop Projects.jpg": {
+    "width": 1080,
+    "height": 840,
+    "variants": [
+      {
+        "file": "previews/cad/Personal CAD & Workshop Projects.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/cad/Personal CAD & Workshop Projects.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/cad/Personal CAD & Workshop Projects.jpg.960.webp",
+        "width": 960
+      },
+      {
+        "file": "previews/cad/Personal CAD & Workshop Projects.jpg.1080.webp",
+        "width": 1080
+      }
+    ]
+  },
+  "cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png": {
+    "width": 1070,
+    "height": 554,
+    "variants": [
+      {
+        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.960.webp",
+        "width": 960
+      },
+      {
+        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.1070.webp",
+        "width": 1070
+      }
+    ]
+  },
+  "drawings/Sketchbook-1.png": {
+    "width": 540,
+    "height": 784,
+    "variants": [
+      {
+        "file": "previews/drawings/Sketchbook-1.png.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/drawings/Sketchbook-1.png.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/drawings/Sketchbook-1.png.540.webp",
+        "width": 540
+      }
+    ]
+  },
+  "drawings/Sketchbook-2.png": {
+    "width": 540,
+    "height": 784,
+    "variants": [
+      {
+        "file": "previews/drawings/Sketchbook-2.png.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/drawings/Sketchbook-2.png.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/drawings/Sketchbook-2.png.540.webp",
+        "width": 540
+      }
+    ]
+  },
+  "drawings/Sketchbook-3.jpg": {
+    "width": 902,
+    "height": 1200,
+    "variants": [
+      {
+        "file": "previews/drawings/Sketchbook-3.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/drawings/Sketchbook-3.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/drawings/Sketchbook-3.jpg.902.webp",
+        "width": 902
+      }
+    ]
+  },
+  "drawings/IMG_20260502_125848_EDIT.png": {
+    "width": 1200,
+    "height": 2000,
+    "variants": [
+      {
+        "file": "previews/drawings/IMG_20260502_125848_EDIT.png.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/drawings/IMG_20260502_125848_EDIT.png.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/drawings/IMG_20260502_125848_EDIT.png.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260426_0006.jpg": {
+    "width": 3984,
+    "height": 2984,
+    "variants": [
+      {
+        "file": "previews/photo/20260426_0006.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260426_0006.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260426_0006.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260426_0007.jpg": {
+    "width": 2580,
+    "height": 1582,
+    "variants": [
+      {
+        "file": "previews/photo/20260426_0007.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260426_0007.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260426_0007.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260426_0012.jpg": {
+    "width": 2948,
+    "height": 3232,
+    "variants": [
+      {
+        "file": "previews/photo/20260426_0012.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260426_0012.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260426_0012.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260426_0019.jpg": {
+    "width": 2984,
+    "height": 3984,
+    "variants": [
+      {
+        "file": "previews/photo/20260426_0019.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260426_0019.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260426_0019.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260426_0022.jpg": {
+    "width": 3984,
+    "height": 2984,
+    "variants": [
+      {
+        "file": "previews/photo/20260426_0022.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260426_0022.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260426_0022.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/IMG_20260329_185057.png": {
+    "width": 2958,
+    "height": 2006,
+    "variants": [
+      {
+        "file": "previews/photo/IMG_20260329_185057.png.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/IMG_20260329_185057.png.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/IMG_20260329_185057.png.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260318_0048.jpg": {
+    "width": 3888,
+    "height": 3245,
+    "variants": [
+      {
+        "file": "previews/photo/20260318_0048.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260318_0048.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260318_0048.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260318_0049.jpg": {
+    "width": 2493,
+    "height": 3586,
+    "variants": [
+      {
+        "file": "previews/photo/20260318_0049.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260318_0049.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260318_0049.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260318_0050.jpg": {
+    "width": 2801,
+    "height": 4048,
+    "variants": [
+      {
+        "file": "previews/photo/20260318_0050.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260318_0050.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260318_0050.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260314_0005.jpg": {
+    "width": 3000,
+    "height": 3315,
+    "variants": [
+      {
+        "file": "previews/photo/20260314_0005.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260314_0005.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260314_0005.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260314_0008.jpg": {
+    "width": 2219,
+    "height": 2380,
+    "variants": [
+      {
+        "file": "previews/photo/20260314_0008.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260314_0008.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260314_0008.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260314_0026.jpg": {
+    "width": 3580,
+    "height": 1984,
+    "variants": [
+      {
+        "file": "previews/photo/20260314_0026.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260314_0026.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260314_0026.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "photo/20260314_0033.jpg": {
+    "width": 3905,
+    "height": 2879,
+    "variants": [
+      {
+        "file": "previews/photo/20260314_0033.jpg.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/photo/20260314_0033.jpg.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/photo/20260314_0033.jpg.960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "writings/Ránézésre.png": {
+    "width": 1051,
+    "height": 1314,
+    "variants": [
+      {
+        "file": "previews/writings/Ránézésre.png.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/writings/Ránézésre.png.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/writings/Ránézésre.png.960.webp",
+        "width": 960
+      }
+    ]
+  }
+}

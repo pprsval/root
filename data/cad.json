@@ -1,30 +1,37 @@
 [
-    {
-        "title":  "Personal CAD \u0026 Workshop Projects",
-        "file":  "Personal CAD \u0026 Workshop Projects.jpg",
-        "date":  "2026-10-30",
-        "tags":  [
-                     "cad"
-                 ]
-    },
-    {
-        "title":  "Personal CAD \u0026 Workshop Projects",
-        "file":  "Personal CAD \u0026 Workshop Projects.pdf",
-        "date":  "2026-10-30",
-        "tags":  [
-                     "cad"
-                 ]
-    },
-    {
-        "title":  "DXF kontúrból Inventor Sheet Metal alkatrész",
-        "file":  "2026_06_14_dxf_to_inventor/index.html",
-        "date":  "2026-06-14",
-        "type":  "Műhelynapló",
-        "description":  "Egy egyszerű CAD-kísérlet: DXF kontúr importálása Inventorba, Sheet Metal modell készítése, majd teríték exportálása DXF-be.",
-        "cover":  "2026_06_14_dxf_to_inventor/images/01-dxf-contur.png",
-        "tags":  [
-                     "cad",
-                     "blog"
-                 ]
-    }
+  {
+    "title": "Personal CAD & Workshop Projects",
+    "file": "Personal CAD & Workshop Projects.jpg",
+    "date": "2026-10-30",
+    "tags": [
+      "cad"
+    ],
+    "category": "cad",
+    "fileType": "jpg"
+  },
+  {
+    "title": "Personal CAD & Workshop Projects",
+    "file": "Personal CAD & Workshop Projects.pdf",
+    "date": "2026-10-30",
+    "tags": [
+      "cad"
+    ],
+    "cover": "Personal CAD & Workshop Projects.jpg",
+    "category": "cad",
+    "fileType": "pdf"
+  },
+  {
+    "title": "DXF kontúrból Inventor Sheet Metal alkatrész",
+    "file": "2026_06_14_dxf_to_inventor/index.html",
+    "date": "2026-06-14",
+    "type": "Műhelynapló",
+    "description": "Egy egyszerű CAD-kísérlet: DXF kontúr importálása Inventorba, Sheet Metal modell készítése, majd teríték exportálása DXF-be.",
+    "cover": "2026_06_14_dxf_to_inventor/images/01-dxf-contur.png",
+    "tags": [
+      "cad",
+      "blog"
+    ],
+    "category": "cad",
+    "fileType": "html"
+  }
 ]

@@ -1,2 +1,2 @@
-# Keep the POSIX launcher runnable after checkout on either platform.
+# Keep POSIX shell scripts, including deployment tooling, runnable on either platform.
 *.sh text eol=lf

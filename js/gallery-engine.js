@@ -1,261 +1,91 @@
 (() => {
-  const container = document.querySelector(".gallery");
+  const container = document.querySelector('.gallery');
   if (!container) return;
-
-  const source = container.dataset.source;
-  const folder = container.dataset.folder || "";
-
-  let items = [];
-
-  // ---------------- LOAD ----------------
-  fetch(source)
-    .then(r => {
-      if (!r.ok) throw new Error(`JSON load error: ${r.status}`);
-      return r.json();
-    })
-    .then(data => {
-      items = normalizeData(data);
-      items = sortByDate(items);
-      items = attachCovers(items);
-      items = removeDuplicateCovers(items);
-      render(items);
-    })
-    .catch(err => {
-      console.error(err);
-      container.innerHTML = "Hiba a tartalom betöltésekor.";
-    });
-
-  // ---------------- NORMALIZE ----------------
-  // Fontos: nem vágjuk le a mappaútvonalat.
-  // Kell, hogy működjön ez is:
-  // 2026_06_14_dxf_to_inventor/index.html
-  // 2026_06_14_dxf_to_inventor/images/01-dxf-contur.png
-  const normalize = (p) => (p || "").replace(/\\/g, "/").trim();
-
-  const fileName = (p) => (p || "").split("/").pop().trim();
-
-  const stripExt = (f) => fileName(f).replace(/\.[^/.]+$/, "");
-
-  function normalizeData(data) {
-    return data.map(i => ({
-      ...i,
-      file: normalize(i.file),
-      cover: i.cover ? normalize(i.cover) : null
-    }));
+  const folder = new URL(container.dataset.folder, document.baseURI);
+  const assetRoot = new URL('../', folder);
+  const category = folder.pathname.split('/').filter(Boolean).pop();
+  const source = new URL(container.dataset.source, document.baseURI);
+  const imageType = /^(png|jpe?g|webp)$/i;
+  const safeView = /^(png|jpe?g|webp|pdf|mp4|webm|mp3|wav|ogg)$/i;
+  const pathUrl = (file, base) => {
+    if (!file || file.split('/').some(p => p === '..' || p === '.' || !p) || /[\\:]/.test(file)) throw Error('Invalid content path');
+    return new URL(file.split('/').map(encodeURIComponent).join('/'), base).href;
+  };
+  const lightbox = document.createElement('dialog');
+  lightbox.className = 'lightbox';
+  lightbox.setAttribute('aria-label', 'Image viewer');
+  const close = document.createElement('button'); close.className = 'lightbox-close'; close.type = 'button'; close.textContent = 'Close ×';
+  const fullImage = document.createElement('img'); lightbox.append(close, fullImage); document.body.append(lightbox);
+  let opener;
+  close.onclick = () => lightbox.close();
+  lightbox.onclick = event => { if (event.target === lightbox) lightbox.close(); };
+  lightbox.addEventListener('close', () => { document.body.classList.remove('viewing-image'); opener?.focus(); });
+  function enlarge(url, title, trigger) {
+    opener = trigger; fullImage.src = url; fullImage.alt = title || ''; lightbox.showModal(); document.body.classList.add('viewing-image'); close.focus();
   }
-
-  // ---------------- SORT ----------------
-  function sortByDate(data) {
-    return data.sort((a, b) => getTime(b) - getTime(a));
+  function link(url, label, download) {
+    const a = document.createElement('a'); a.href = url; a.textContent = label;
+    if (download) a.download = ''; else { a.target = '_blank'; a.rel = 'noopener'; }
+    return a;
   }
-
-  function getTime(item) {
-    if (item.date) {
-      const t = Date.parse(item.date);
-      if (!isNaN(t)) return t;
+  Promise.all([
+    fetch(source).then(r => { if (!r.ok) throw Error('Content load failed'); return r.json(); }),
+    fetch(new URL('previews.json', source)).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+  ]).then(([items, previews]) => {
+    // Backward compatibility with the original JSON arrays and same-stem PDF covers.
+    items = items.map(i => ({ ...i }));
+    for (const item of items) if (!item.managed && /\.pdf$/i.test(item.file) && !item.cover) {
+      const stem = item.file.replace(/\.[^/.]+$/, '');
+      item.cover = items.find(i => /\.(png|jpe?g|webp)$/i.test(i.file) && i.file.replace(/\.[^/.]+$/, '') === stem)?.file;
     }
-
-    const match = item.file?.match(/\d{4}[_-]\d{2}[_-]\d{2}|\d{8}/);
-
-    if (match) {
-      const raw = match[0].replace(/_/g, "-");
-
-      if (/^\d{8}$/.test(raw)) {
-        return Date.parse(`${raw.slice(0,4)}-${raw.slice(4,6)}-${raw.slice(6,8)}`);
+    const covers = new Set(items.filter(i => i.cover).map(i => i.cover));
+    items = items.filter(i => !covers.has(i.file));
+    items.sort((a,b) => (a.order ?? Infinity) - (b.order ?? Infinity) || (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
+    container.replaceChildren();
+    for (const item of items) {
+      const type = item.fileType || item.file.split('.').pop().toLowerCase();
+      const isImage = imageType.test(type);
+      const article = !item.managed && /\/index\.html$/i.test(item.file);
+      const original = item.managed ? (item.publicFile ? pathUrl(item.publicFile, assetRoot) : null) : pathUrl(item.file, folder);
+      const imageFile = isImage ? item.file : item.cover;
+      const preview = item.preview || previews[category + '/' + imageFile];
+      const figure = document.createElement('figure'); figure.className = 'gallery-card';
+      const thumb = document.createElement('div'); thumb.className = 'thumb';
+      let visual;
+      if (preview || imageFile) {
+        visual = document.createElement('img'); visual.alt = item.title || ''; visual.loading = 'lazy'; visual.decoding = 'async';
+        if (preview) {
+          visual.width = preview.width; visual.height = preview.height; visual.sizes = 'auto, 100vw';
+          visual.srcset = preview.variants.map(v => pathUrl(v.file, assetRoot) + ' ' + v.width + 'w').join(', ');
+          visual.src = pathUrl(preview.variants[Math.min(1, preview.variants.length - 1)].file, assetRoot);
+        } else visual.src = pathUrl(imageFile, folder);
+        visual.onerror = () => { visual.onerror = null; visual.removeAttribute('srcset'); if (!item.managed && imageFile) visual.src = pathUrl(imageFile, folder); else visual.replaceWith(placeholder(type)); };
+      } else visual = placeholder(type);
+      if (isImage && (original || preview)) {
+        const button = document.createElement('button'); button.type = 'button'; button.className = 'image-button'; button.setAttribute('aria-label', item.title || 'View image');
+        button.onclick = () => enlarge(original || pathUrl(preview.variants.at(-1).file, assetRoot), item.title, button);
+        button.append(visual); thumb.append(button);
+      } else if (original && (!item.managed || safeView.test(type) || article || item.download)) {
+        const a = link(original, '', item.download); a.className = 'pdf-thumb' + (article ? ' blog-thumb' : ''); a.setAttribute('aria-label', item.title || type);
+        if (article) { a.removeAttribute('target'); a.removeAttribute('rel'); }
+        a.append(visual); thumb.append(a);
+      } else { thumb.append(visual); }
+      const caption = document.createElement('figcaption'); const title = document.createElement('span'); title.className = 'item-title'; title.textContent = item.title || ''; caption.append(title);
+      if (article && item.date) { const date = document.createElement('span'); date.className = 'item-meta'; date.textContent = item.date + (item.type ? ' · ' + item.type : ''); caption.append(date); }
+      if (item.description) { const text = document.createElement('p'); text.className = 'item-description'; text.textContent = item.description; caption.append(text); }
+      if (item.download && original) caption.append(link(original, 'Download', true));
+      if (item.attachments?.length) {
+        const details = document.createElement('details'); const summary = document.createElement('summary'); summary.textContent = 'Additional files (' + item.attachments.length + ')'; details.append(summary);
+        for (const attachment of item.attachments) details.append(link(pathUrl(attachment.file, assetRoot), attachment.label, attachment.download));
+        caption.append(details);
       }
-
-      return Date.parse(raw);
+      figure.append(thumb, caption); container.append(figure);
     }
-
-    return 0;
+    if (!items.length) { const p = document.createElement('p'); p.textContent = 'Nincs megjeleníthető tartalom.'; container.append(p); }
+  }).catch(error => { console.error(error); container.textContent = 'Hiba a tartalom betöltésekor.'; });
+  function placeholder(type) {
+    const box = document.createElement('div'); box.className = 'file-placeholder';
+    const icon = document.createElement('span'); icon.className = 'file-symbol'; icon.setAttribute('aria-hidden','true'); icon.textContent = '▤';
+    const label = document.createElement('span'); label.textContent = (type || 'FILE').toUpperCase(); box.append(icon,label); return box;
   }
-
-  // ---------------- AUTO PAIRING ----------------
-  function attachCovers(data) {
-    const images = data.filter(i =>
-      /\.(png|jpg|jpeg|webp)$/i.test(i.file)
-    );
-
-    const pdfs = data.filter(i =>
-      /\.pdf$/i.test(i.file)
-    );
-
-    pdfs.forEach(pdf => {
-      const base = stripExt(pdf.file);
-
-      const match = images.find(img =>
-        stripExt(img.file) === base
-      );
-
-      if (match) {
-        pdf.cover = match.file;
-      }
-    });
-
-    return data;
-  }
-
-  // ---------------- REMOVE DUPLICATES ----------------
-  function removeDuplicateCovers(data) {
-    const coverSet = new Set(
-      data
-        .filter(i => i.cover)
-        .map(i => i.cover)
-    );
-
-    return data.filter(i => !coverSet.has(i.file));
-  }
-
-  // ---------------- RENDER ----------------
-  function render(items) {
-    container.innerHTML = "";
-
-    items.forEach(item => {
-      const file = item.file;
-      const full = folder + file;
-
-      const fig = document.createElement("figure");
-      const thumb = document.createElement("div");
-      thumb.className = "thumb";
-
-      const isPdf = /\.pdf$/i.test(file);
-      const isImage = /\.(jpg|jpeg|png|webp)$/i.test(file);
-      const isHtml = /\.html$/i.test(file);
-
-      // ---------------- IMAGE ----------------
-      if (isImage && !item._isCover) {
-        const img = document.createElement("img");
-        img.src = full;
-        img.alt = item.title || "";
-        img.loading = "lazy";
-
-        img.onclick = () => openLightbox(full);
-
-        thumb.appendChild(img);
-      }
-
-      // ---------------- PDF ----------------
-      else if (isPdf) {
-        const pdfCard = document.createElement("div");
-        pdfCard.className = "pdf-thumb";
-
-        if (item.cover) {
-          const img = document.createElement("img");
-          img.src = folder + item.cover;
-          img.alt = item.title || "";
-          img.loading = "lazy";
-
-          pdfCard.appendChild(img);
-        } else {
-          const fallback = document.createElement("div");
-          fallback.style.cssText = `
-            aspect-ratio: 3/4;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            background:#eaeaea;
-            border-radius:8px;
-            font-family:'Instrument Serif', serif;
-          `;
-
-          fallback.innerHTML = `
-            <div style="font-size:2.5rem;">📄</div>
-            <div style="font-size:0.9rem;">${item.title || "PDF"}</div>
-          `;
-
-          pdfCard.appendChild(fallback);
-        }
-
-        pdfCard.onclick = () => window.open(full, "_blank");
-
-        thumb.appendChild(pdfCard);
-      }
-
-      // ---------------- HTML / BLOG POST ----------------
-      else if (isHtml) {
-        const postCard = document.createElement("div");
-        postCard.className = "pdf-thumb blog-thumb";
-
-        if (item.cover) {
-          const img = document.createElement("img");
-          img.src = folder + item.cover;
-          img.alt = item.title || "";
-          img.loading = "lazy";
-
-          postCard.appendChild(img);
-        } else {
-          const fallback = document.createElement("div");
-          fallback.style.cssText = `
-            aspect-ratio: 3/4;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            background:#eaeaea;
-            border-radius:8px;
-            font-family:'Instrument Serif', serif;
-            padding:20px;
-            text-align:center;
-          `;
-
-          fallback.innerHTML = `
-            <div style="font-size:2.5rem;">✎</div>
-            <div style="font-size:0.9rem;">${item.type || "Műhelynapló"}</div>
-          `;
-
-          postCard.appendChild(fallback);
-        }
-
-        postCard.onclick = () => {
-          window.location.href = full;
-        };
-
-        thumb.appendChild(postCard);
-      }
-
-      // ---------------- UNKNOWN FILE ----------------
-      else {
-        return;
-      }
-
-      // ---------------- CAPTION ----------------
-      const cap = document.createElement("figcaption");
-
-      if (isHtml && item.date) {
-        cap.innerHTML = `
-          <strong>${item.title || ""}</strong><br>
-          <span>${item.date} · ${item.type || "Műhelynapló"}</span>
-        `;
-      } else {
-        cap.textContent = item.title || "";
-      }
-
-      fig.appendChild(thumb);
-      fig.appendChild(cap);
-      container.appendChild(fig);
-    });
-  }
-
-  // ---------------- LIGHTBOX ----------------
-  const lightbox = document.createElement("div");
-  lightbox.className = "lightbox";
-
-  const img = document.createElement("img");
-  lightbox.appendChild(img);
-
-  lightbox.onclick = () => lightbox.classList.remove("active");
-
-  document.body.appendChild(lightbox);
-
-  function openLightbox(src) {
-    img.src = src;
-    lightbox.classList.add("active");
-  }
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      lightbox.classList.remove("active");
-    }
-  });
 })();

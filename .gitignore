@@ -1,2 +1,11 @@
 deplos.sh
 deploy.sh
+
+.content-cache.json
+
+# Local-only test/cache artifacts; public data and previews remain tracked.
+/test-results/
+/playwright-report/
+/coverage/
+/*.tmp
+/*.log

@@ -1,18 +1,23 @@
 [
-    {
-        "title":  "Ránézésre",
-        "file":  "Ránézésre.png",
-        "date":  "2026-01-19",
-        "tags":  [
-                     "writings"
-                 ]
-    },
-    {
-        "title":  "Ránézésre",
-        "file":  "Ránézésre.pdf",
-        "date":  "2025-12-30",
-        "tags":  [
-                     "writings"
-                 ]
-    }
+  {
+    "title": "Ránézésre",
+    "file": "Ránézésre.png",
+    "date": "2026-01-19",
+    "tags": [
+      "writings"
+    ],
+    "category": "writings",
+    "fileType": "png"
+  },
+  {
+    "title": "Ránézésre",
+    "file": "Ránézésre.pdf",
+    "date": "2025-12-30",
+    "tags": [
+      "writings"
+    ],
+    "cover": "Ránézésre.png",
+    "category": "writings",
+    "fileType": "pdf"
+  }
 ]

@@ -1,109 +1,52 @@
-# Gallery content generation
+# Peres Valentin — static public portfolio
 
-The site is static HTML/CSS/JavaScript. `js/gallery-engine.js` runs in the browser
-on Windows 11 and Debian Linux without Node.js, PowerShell, or added dependencies.
-Only the offline content-generation step needs a runtime. Publish `data/*.json`
-along with the existing site files and assets; no server-side generator is needed.
+## Daily publishing
 
-## Windows 11 (no Node.js required)
+1. Copy public content into **assets/cad**, **assets/drawings**, **assets/photo**, or **assets/writings**.
+2. Optionally add a same-stem raster cover or custom metadata under **content/public-content.json → overrides**.
+3. Run **Update Website Content.cmd**.
+4. Run **Preview Website.cmd**, then open http://127.0.0.1:8766/.
+5. Review Git Changes in Visual Studio; commit, push and deploy manually.
 
-Prerequisite: Windows PowerShell 5.1, included with Windows 11.
-Double-click `Generate JSON.cmd`, or run it from a terminal:
+Ordinary public files need no approval list or JSON entry. The category directory determines the subject, not the extension. PDF/image/document/archive/CAD and unknown non-active formats are detected. Custom metadata is optional. PDF/cover pairs produce one visible card. There are no explicit Download buttons by default; browsers may save formats they cannot display.
 
-```powershell
-.\'Generate JSON.cmd'
-```
+Read **WEBSITE_CONTENT_GUIDE_HU.md** for practical Hungarian examples.
 
-Alternatively, from the site root:
+## Dependencies
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\generate.ps1
-```
+System Node.js 18+ and ImageMagick 7 on PATH for updating; Node.js alone for preview. Verified with system Node.js v26.13.0. No Codex paths, npm packages, frontend framework, external fonts, or build step are required.
 
-The launcher uses a process-only execution-policy override, leaving saved policy
-settings unchanged. Organization-enforced PowerShell restrictions still apply.
-PowerShell 7 can also run `tools/generate.ps1`.
+Windows: Update Website Content.cmd / Preview Website.cmd.
+Linux: node tools/update-content.js / node tools/preview.js.
+Direct: node tools/update-content.js.
 
-## Debian Linux
+## Organization
 
-Prerequisites: a POSIX shell and Node.js (Node 18 or newer recommended).
-No npm install is needed. If Node is not installed:
+- **index.html, pages/**: public pages; pages/gallery.html preserves the legacy URL by redirecting Home.
+- **assets/**: original public portfolio content, article media, optimized previews, explicitly published copies of optional private files.
+- **css/warm.css**: the single active design implementation. Older CSS paths remain tiny compatibility imports to preserve their public URLs.
+- **js/navigation.js, gallery-engine.js, analytics.js**: shared navigation, galleries/lightbox, production-only analytics.
+- **data/**: generated public gallery/preview data; commit these files.
+- **content/public-content.json**: optional metadata overrides, optional private-folder location and deliberately authored article paths. There is no per-file public approval inventory.
+- **tools/**: update orchestration, low-level generators, article helper/template, preview and regression tests.
+- **.content-cache.json**: ignored local incremental cache and article-metadata provenance.
+- **.content-generated.json**: tracked inventory of managed derivatives/public copies.
 
-```sh
-sudo apt update
-sudo apt install nodejs
-```
+The retained Node and PowerShell low-level generators remain equivalent. The complete update pipeline runs the Node generator on a temporary mirror, merges curated metadata, discovers additional formats and nested ordinary content, checks references and produces cached previews. Article support files stay grouped with their article. Use the complete update command for daily work.
 
-From the site root:
+## Optional private sources
 
-```sh
-sh ./generate.sh
-# Existing command remains supported:
-node tools/generate.js
-```
+**../portfolio-private** is optional and outside the public website. Its absence does not block public publishing. If used, it retains the previous private-original/preview workflow and items.json metadata. No private source is copied to the public root without explicit permission. Back up this folder separately; never deploy it.
 
-Optionally use `chmod +x generate.sh` and then `./generate.sh`.
-Both launchers locate the site relative to themselves, so invoking them by an
-absolute path works from any working directory, including paths containing spaces.
-The generators also default to their script's parent directory. For a separate
-content root, use `node tools/generate.js /path/to/root` or
-`powershell.exe -File tools/generate.ps1 -Root 'C:\path\to\root'`.
+Public folders are inherently public: no link or a failed update does not conceal a file already placed there. Active/executable extensions and detected active payloads are rejected before updating public data. Use tools/create-article.js for deliberately authored HTML articles; arbitrary uploaded HTML/SVG/scripts are not embedded. This validation is not an antivirus scanner or a replacement for the hosting platform's MIME policy.
 
-## Shared content rules
+## Maintenance and tests
 
-Both generators scan `assets/cad`, `assets/photo`, `assets/drawings`, and
-`assets/writings`, writing the corresponding `data/<category>.json` files.
-They ignore dot-prefixed entries and unsupported files. Image/PDF extensions
-are PNG, JPG, JPEG, WEBP and PDF (case-insensitive). A child directory becomes a
-blog entry when it contains `index.html`; deeper files are not separate entries.
-Use the exact lowercase `index.html` spelling for compatibility with Linux.
-
-The existing schemas are unchanged:
-
-- Image/PDF: `title`, `file`, `date`, `tags`.
-- Blog: `title`, `file`, `date`, `type`, `description`, `cover`, `tags`.
-
-Blog metadata uses the existing `<meta name="post-title" content="...">` form,
-with `name` before `content`; also supported are `post-date`, `post-type`,
-`post-description`, and `post-thumb`. Single or double quotes are accepted.
-Values are trimmed and HTML entities are preserved, as in the original generator.
-Absent metadata keeps the filename-derived title, `Műhelynapló` type, empty
-description, null cover, and category/blog tags. Cover paths are relative to the
-post directory; use forward slashes in `post-thumb` on both operating systems.
-
-Use `YYYY-MM-DD` for post dates; `YYYY.MM.DD` is normalized to that form.
-Other date text is retained verbatim for compatibility, but only the documented
-formats have chronological ordering. Missing dates use the file or directory's
-last-modified date in UTC. To reproduce identical dates on another machine,
-preserve asset modification times when copying: Git checkout timestamps alone
-are not stable content dates. Explicit blog dates avoid that dependency.
-
-Ordering is descending date text, then ascending ordinal (case-sensitive) file
-path for ties, independent of system locale and directory enumeration order.
-For the documented dates this is newest first. Same-date ordering is now explicit.
-Paths use forward slashes. Outputs are UTF-8 without a BOM and always arrays,
-even when empty or containing one item. JSON indentation/escaping can differ
-between runtimes; parsed schemas, values, property order and item order agree.
-A missing asset directory warns and leaves its existing JSON untouched.
-
-## Checking generator parity
-
-Development checks require Node.js plus PowerShell. Windows PowerShell 5.1 is
-the default on Windows; on Linux install PowerShell 7 separately for this check
-only (it is not required for normal Linux generation).
-
-```sh
+```text
 node tools/test-generators.js
-# Explicitly test PowerShell 7:
-node tools/test-generators.js pwsh
+node tools/test-content-workflow.js
 ```
 
-The check compares parsed JSON for the site's current content and controlled
-fixtures: Unicode, uppercase extensions, UTC dates, date ties, metadata, nested
-cover paths, ignored files, empty/single-item arrays, and missing directories.
-It works in temporary copies, preserves timestamps, and leaves site data intact.
+The first checks Node/PowerShell parity. The second uses isolated fixtures for public PDF/image/other-format discovery, cover associations, private options, attachments, active-file/path validation, metadata, article creation, caching, repeated runs and cleanup. Original media is never altered by updating.
 
-Validation performed on Windows: both Windows PowerShell 5.1 and PowerShell 7
-matched Node output for 48 current entries and all fixtures. Native Debian
-execution was not available in the development environment; run the same check
-there to verify that environment.
+The existing Git and deploy.sh/rsync workflows are retained. A push is not assumed to deploy the site. Nothing in the update or preview tools commits, pushes, or deploys.
