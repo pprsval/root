@@ -1,4 +1,26 @@
 {
+  "cad/Modification of the Sheet Metal Fence Model.png": {
+    "width": 1413,
+    "height": 793,
+    "variants": [
+      {
+        "file": "previews/cad/Modification of the Sheet Metal Fence Model.png.240.webp",
+        "width": 240
+      },
+      {
+        "file": "previews/cad/Modification of the Sheet Metal Fence Model.png.480.webp",
+        "width": 480
+      },
+      {
+        "file": "previews/cad/Modification of the Sheet Metal Fence Model.png.960.webp",
+        "width": 960
+      },
+      {
+        "file": "previews/cad/Modification of the Sheet Metal Fence Model.png.1413.webp",
+        "width": 1413
+      }
+    ]
+  },
   "cad/Personal CAD & Workshop Projects.jpg": {
     "width": 1080,
     "height": 840,
@@ -18,28 +40,6 @@
       {
         "file": "previews/cad/Personal CAD & Workshop Projects.jpg.1080.webp",
         "width": 1080
-      }
-    ]
-  },
-  "cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png": {
-    "width": 1070,
-    "height": 554,
-    "variants": [
-      {
-        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.240.webp",
-        "width": 240
-      },
-      {
-        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.480.webp",
-        "width": 480
-      },
-      {
-        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.960.webp",
-        "width": 960
-      },
-      {
-        "file": "previews/cad/2026_06_14_dxf_to_inventor/images/01-dxf-contur.png.1070.webp",
-        "width": 1070
       }
     ]
   },

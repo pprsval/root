@@ -1,5 +1,26 @@
 [
   {
+    "title": "Modification of the Sheet Metal Fence Model",
+    "file": "Modification of the Sheet Metal Fence Model.pdf",
+    "date": "2026-11-01",
+    "tags": [
+      "cad"
+    ],
+    "category": "cad",
+    "fileType": "pdf",
+    "cover": "Modification of the Sheet Metal Fence Model.png"
+  },
+  {
+    "title": "Modification of the Sheet Metal Fence Model",
+    "file": "Modification of the Sheet Metal Fence Model.png",
+    "date": "2026-11-01",
+    "tags": [
+      "cad"
+    ],
+    "category": "cad",
+    "fileType": "png"
+  },
+  {
     "title": "Personal CAD & Workshop Projects",
     "file": "Personal CAD & Workshop Projects.jpg",
     "date": "2026-10-30",
@@ -19,19 +40,5 @@
     "cover": "Personal CAD & Workshop Projects.jpg",
     "category": "cad",
     "fileType": "pdf"
-  },
-  {
-    "title": "DXF kontúrból Inventor Sheet Metal alkatrész",
-    "file": "2026_06_14_dxf_to_inventor/index.html",
-    "date": "2026-06-14",
-    "type": "Műhelynapló",
-    "description": "Egy egyszerű CAD-kísérlet: DXF kontúr importálása Inventorba, Sheet Metal modell készítése, majd teríték exportálása DXF-be.",
-    "cover": "2026_06_14_dxf_to_inventor/images/01-dxf-contur.png",
-    "tags": [
-      "cad",
-      "blog"
-    ],
-    "category": "cad",
-    "fileType": "html"
   }
 ]
